@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import 'session';
+
 body, h2, h4 {
   margin: 0;
 }
