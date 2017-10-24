@@ -58,6 +58,4 @@ and sufficient CSS styling:
 ### Bonus Features
   * Likes
   * Notifications
-  * Messaging
   * Search
-  * Infinite Scroll for News Feed, Timeline Wall
