@@ -22,3 +22,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+#main-container {
+  background-color: #edf0f5;
+  margin: 0 auto;
+}

@@ -30,9 +30,9 @@ class SignupForm extends React.Component {
 
   render(){
     return(
-      <div id='signup-conatiner'>
+      <div id='signup-container'>
         <h2>Sign Up</h2>
-        <h4>It's free (I promise)!.</h4>
+        <h4>It's free (I promise)!</h4>
         <form onSubmit={this.handleSubmit}>
           <span>
             <input type='text'
@@ -53,6 +53,7 @@ class SignupForm extends React.Component {
                 ref={(input) => this.password = input}
                 ></input>
           <label>
+            Birthday <br></br>
             <select defaultValue='month'
                     ref={(input) => this.month = input}>
               <option disabled value='month'>Month</option>
@@ -78,7 +79,7 @@ class SignupForm extends React.Component {
               <option value='female'>Female</option>
             </select>
           </div>
-          <button>Create Account</button>
+          <button id='signup-button'>Create Account</button>
         </form>
       </div>
     )
