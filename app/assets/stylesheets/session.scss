@@ -80,8 +80,15 @@
   flex-direction: column;
 }
 
+#signup-container > form select{
+  height: 30px;
+  font-size: 12px;
+  margin-right: 2px;
+  margin-top: 5px;
+}
+
 #signup-container > form > span > input {
-  width: 188px;
+  width: 192px;
   height: 35px;
 }
 
@@ -99,6 +106,7 @@
 #class-aside {
   width: 500px;
   padding: 20px;
+  padding-left: 0;
 }
 
 #signup-button {
@@ -110,6 +118,12 @@
   color: white;
   font-size: 17px;
   font-weight: bold;
-  text-shadow: 1px 1px 4px black;
+  text-shadow: 1px 1px 4px rgba(black, 0.5);
   margin: 10px 0;
+  border-style: outset;
+  border-width: 1px;
+}
+
+#signup-button:hover {
+  cursor: pointer;
 }

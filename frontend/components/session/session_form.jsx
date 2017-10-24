@@ -26,6 +26,7 @@ class SessionForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
+    this.setState( { password : "" })
     this.props.login(this.state);
   }
 
