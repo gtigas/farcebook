@@ -14,10 +14,10 @@
  *= require_self
  */
 
-@import 'reset';
 @import 'session';
-
-
+body, h2, h4 {
+  margin: 0;
+}
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
