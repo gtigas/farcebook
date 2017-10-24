@@ -127,3 +127,22 @@
 #signup-button:hover {
   cursor: pointer;
 }
+
+.login-error {
+  position: absolute;
+  left: -66%;
+  background-color: #c81e2b;
+}
+
+.login-error h5{
+  margin: 15px;
+  font-size: 11px
+}
+
+.has-errors {
+  border: 2px solid #c81e2b !important
+}
+
+.login-form {
+  position: relative;
+}
