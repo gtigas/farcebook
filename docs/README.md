@@ -26,7 +26,7 @@ and sufficient CSS styling:
 * [DB schema][schema]
 * [Sample State][sample-state]
 
-[wireframes]: wireframes.md
+[wireframes]: /wireframes/wireframes.md
 [components]: hierarchy.md
 [sample-state]: state.md
 [api-endpoints]: routes.md
