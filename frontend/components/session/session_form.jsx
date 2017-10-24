@@ -64,7 +64,7 @@ class SessionForm extends React.Component {
                  className={this._hasErrors() ? 'has-errors' : null}/>
           </label>
 
-          <button>Log In</button>
+          <button className='login-button'>Log In</button>
         </form>
       </div>
     )

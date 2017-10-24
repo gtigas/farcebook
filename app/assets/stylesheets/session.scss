@@ -27,7 +27,7 @@
   flex-direction: column;
 }
 
-#splash-header button {
+.login-button {
   color: white;
   background-color: #4365af;
   border: 1px solid #2a477b;
@@ -35,7 +35,7 @@
   height: 25px;
 }
 
-#splash-header button:hover {
+.login-button:hover {
   background-color: #2a477b;
   cursor: pointer;
 }
@@ -46,6 +46,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 15px;
 }
 
 #signup-container {
@@ -96,7 +97,7 @@
   margin: 10px 0;
 }
 
-#main-body{
+.main-body{
   width: 950px;
   margin: 0 auto;
   display: flex;

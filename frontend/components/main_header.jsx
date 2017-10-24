@@ -15,9 +15,13 @@ class MainHeader extends React.Component {
 
   render(){
     return (
-      <header>
-        <h1>main header here</h1>
-        <button onClick={this.handleLogout}>Logout</button>
+      <header className='main-header'>
+        <div className='main-nav'>
+          <h1>main header here</h1>
+          <button onClick={this.handleLogout}
+                  className='login-button'>Logout</button>
+        </div>
+
       </header>
     )
   }

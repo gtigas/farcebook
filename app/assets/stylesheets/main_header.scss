@@ -1,0 +1,17 @@
+.main-header{
+  height: 45px;
+  background-color: #3b5998;
+  color: white;
+  border-bottom: 1px solid black;
+};
+
+
+
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 950px;
+  margin: 0 auto;
+}
