@@ -37,7 +37,7 @@ class SessionForm extends React.Component {
             Email
             <input type='text'
                    onChange={this.handleInput('email')}
-                   value={this.state.email} />
+                   value={this.state.email}/>
           </label>
 
           <label>
