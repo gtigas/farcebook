@@ -24,6 +24,7 @@ class ProfileMain extends React.Component{
       <div>
         <ProfileHeader user={this.props.user}
                       fetchUser={this.props.fetchUser}/>
+
         <main className='profile-body flex-row'>
           <ProfileAboutList user={this.props.user}/>
         </main>

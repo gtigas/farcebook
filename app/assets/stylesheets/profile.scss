@@ -116,3 +116,16 @@
   margin: 0 auto;
   margin-top: 20px;
 }
+
+#upload-profile {
+  position:absolute;
+  z-index: 3;
+  bottom: 35px;
+  left: 157px;
+  color: rgba(0,0,0, 0.4)
+}
+
+#upload-profile:hover{
+  color: rgba(0,0,0, 0.6);
+  cursor: pointer;
+}
