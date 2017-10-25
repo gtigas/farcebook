@@ -25,28 +25,28 @@ class ProfileAboutList extends React.Component{
         icon = "fa fa-home";
         text = "Hometown: "
         value = user.hometown
-        if (!Boolean(value)) return null;
+        if (!Boolean(value) || value === "null") return null;
         break;
       }
       case 'current_city':{
         icon = "fa fa-globe";
         text = "Current City: "
         value = user.current_city
-        if (!Boolean(value)) return null;
+        if (!Boolean(value) || value === "null") return null;
         break;
       }
       case 'school':{
         icon = "fa fa-graduation-cap";
         text = "Studies at "
         value = user.school
-        if (!Boolean(value)) return null;
+        if (!Boolean(value) || value === "null") return null;
         break;
       }
       case 'workplace':{
         icon = "fa fa-briefcase";
         text = "Works at "
         value = user.workplace
-        if (!Boolean(value)) return null;
+        if (!Boolean(value) || value === "null") return null;
         break;
       }
     }
@@ -80,7 +80,7 @@ class ProfileAboutList extends React.Component{
           <li>
             <i className="fa fa-user" aria-hidden="true"></i>
             &nbsp;
-            Gender: {user.gender}
+            Gender: {_.capitalize(user.gender)}
           </li>
           {this._conditionalRender('hometown')}
           {this._conditionalRender('current_city')}
