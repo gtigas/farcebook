@@ -18,12 +18,12 @@ class ProfileHeader extends React.Component{
   render () {
     return (
       <div id='profile-header'>
-        <FileUploadForm user={this.props.user}/> 
+        <FileUploadForm user={this.props.user}/>
         <h2>{this.props.user.fullName}</h2>
         <div id='upload-profile' onClick={this._openUpload}>
           <i className="fa fa-camera"></i>
         </div>
-        <ProfilePicture />
+        <ProfilePicture url={this.props.user.profile_picture_url}/>
         <ProfileHeaderNav />
       </div>
     )

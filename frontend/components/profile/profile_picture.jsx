@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ProfilePicture = () => (
+const ProfilePicture = ({url}) => (
   <div id='profile-pic'>
-
+    <img src={url}></img>
   </div>
 );
 
