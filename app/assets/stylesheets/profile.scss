@@ -6,6 +6,7 @@
   margin: 0 auto;
   border: 1px solid #dfe1e5;
   border-top: 0;
+  border-radius: 0 0 4px 4px;
 }
 
 #profile-header-nav {
@@ -16,14 +17,14 @@
   height: 45px;
   width: 100%;
   border: 1px solid #dfe1e5;
-  border-radius: 3px;
+  border-radius: 0 0 3px 3px;
   display: flex;
   align-items: center;
 }
 
 #profile-header-nav ul {
   position: absolute;
-  right: 300px;
+  right: 350px;
   margin: 0;
   display: flex;
   flex-direction: row;
@@ -40,4 +41,42 @@
 
 #profile-header-nav li:last-of-type {
   border-right: 1px solid #dfe1e5;
+}
+
+#profile-pic {
+  box-sizing: border-box;
+  border-style: double;
+  border: 7px solid white;
+  position: absolute;
+  border-radius: 3px;
+  bottom: 22px;
+  left: 22px;
+  background-color: yellow;
+  width: 170px;
+  height: 170px;
+  z-index: 2;
+}
+
+#profile-pic:before {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border-radius: 3px;
+  border: 1px solid #dfe1e5;
+}
+
+#profile-pic:after {
+  content: " ";
+  position: absolute;
+  z-index: 2;
+  top: -7px;
+  left: -7px;
+  right: -7px;
+  bottom: -7px;
+  border: 1px solid #dfe1e5;
+  border-radius: 3px;
 }
