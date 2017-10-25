@@ -63,7 +63,7 @@ class ProfileAboutList extends React.Component{
   render(){
     const user = this.props.user || {}
     return(
-      <div id='profile-about'>
+      <div id='profile-about' className='pos-rel'>
         <h1 onClick={this.handleClick}>...</h1>
         {this.props.modalIsOpen ? <ProfileUpdateForm
                                         user={user}

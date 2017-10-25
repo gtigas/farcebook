@@ -1,4 +1,18 @@
 .feed-body {
-  background: yellow;
-  height: 1000px;
+  background: white;
+  height: 800px;
+  border: 1px solid #dfe1e5;
+  justify-content: flex-start !important;
+  align-items: center;
+}
+
+
+.feed-body > ul {
+  list-style-position: inside;
+  padding: 0;
+}
+
+.feed-body > h2 {
+  font-size: 20px !important;
+  position: static !important ;
 }

@@ -32,7 +32,9 @@ class MainHeader extends React.Component {
           </Link>
 
           <div className="flex-row">
-            <h2>{this.props.userName}</h2>
+            <Link to={`/users/${this.props.userId}`}>
+              <h2>{this.props.userName}</h2>
+            </Link>
             <button onClick={this.handleLogout}
               className='login-button'>Logout</button>
             </div>
@@ -46,7 +48,8 @@ class MainHeader extends React.Component {
 
 const mapStateToProps = state =>  {
   return {
-    userName: _.capitalize(state.session.currentUser.fullName.split(" ")[0])
+    userName: _.capitalize(state.session.currentUser.fullName.split(" ")[0]),
+    userId: state.session.currentUser.id,
   }
 };
 
