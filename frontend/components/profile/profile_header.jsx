@@ -3,27 +3,37 @@ import { connect } from 'react-redux';
 import ProfileHeaderNav from './profile_header_nav';
 import ProfilePicture from './profile_picture';
 import FileUploadForm from './profile_upload'
+import { openModal, closeModal } from '../../actions/ui_actions';
 
 class ProfileHeader extends React.Component{
   constructor(props){
     super(props)
-    this.state = ({ modalOpen: false });
     this._openUpload = this._openUpload.bind(this);
   }
 
-  _openUpload(){
-    this.setState( {modalOpen: true})
+  _openUpload(pictureType){
+    return () => {
+      this.setState( { pictureType })
+      this.props.openModal('uploadForm');
+    }
   }
 
   render () {
     return (
       <div id='profile-header'>
-        <FileUploadForm user={this.props.user}/>
+        {this.props.modalOpen ? <FileUploadForm user={this.props.user}
+                                                closeModal={this.props.closeModal}
+                                                pictureType= {this.state.pictureType}
+                                                /> : null}
         <h2>{this.props.user.fullName}</h2>
-        <div id='upload-profile' onClick={this._openUpload}>
+        <div id='upload-profile' onClick={this._openUpload('profile_picture')}>
+          <i className="fa fa-camera"></i>
+        </div>
+        <div id='upload-cover' onClick={this._openUpload('cover_photo')}>
           <i className="fa fa-camera"></i>
         </div>
         <ProfilePicture url={this.props.user.profile_picture_url}/>
+        <img src={this.props.user.cover_photo_url} />
         <ProfileHeaderNav />
       </div>
     )
@@ -31,7 +41,12 @@ class ProfileHeader extends React.Component{
 }
 
 const mapStateToProps = state => ({
-
+  modalOpen: Boolean(state.ui.modal.uploadForm),
 });
 
-export default connect(mapStateToProps, null)(ProfileHeader)
+const mapDispatchToProps = dispatch => ({
+  openModal: (modalType) => dispatch(openModal(modalType)),
+  closeModal:(modalType) => dispatch(closeModal(modalType))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)

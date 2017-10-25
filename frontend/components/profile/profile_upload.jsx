@@ -8,6 +8,7 @@ class FileUploadForm extends React.Component {
     this.state = { imageFile: null, imageUrl: null };
     this.updateFile = this.updateFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+    this._closeModal = this._closeModal.bind(this)
   }
 
   updateFile(e){
@@ -37,15 +38,26 @@ class FileUploadForm extends React.Component {
     });
     debugger
     this.props.updatePicture(formData)
+    this.props.closeModal('uploadForm')
+  }
+
+  _closeModal(modalType){
+    return () => this.props.closeModal(modalType);
   }
 
   render(){
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='file' onChange={this.updateFile}/>
-          <button>Upload Photo!</button>
-        </form>
+      <div id='upload-container'>
+        <div id='upload-form'>
+          <h2>Upload your {this.props.pictureType === 'cover_photo' ? 'Cover Photo' : 'Profile Picture' }</h2>
+          <form className='flex-col' onSubmit={this.handleSubmit}>
+            <input type='file' onChange={this.updateFile}/>
+            Preview:
+            <img src={this.state.imageUrl} width='100px' />
+            <button>Upload Photo!</button>
+          </form>
+        </div>
+        <div className='modal-screen' onClick={this._closeModal('uploadForm')}></div>
       </div>
     )
   }
@@ -54,7 +66,7 @@ class FileUploadForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     user: ownProps.user,
-    pictureType: 'profile_picture'
+    pictureType: ownProps.pictureType
   }
 };
 
