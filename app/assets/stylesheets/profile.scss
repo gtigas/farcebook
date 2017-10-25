@@ -9,6 +9,16 @@
   border-radius: 0 0 4px 4px;
 }
 
+#profile-header > h2 {
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(black, 0.5);
+  position: absolute;
+  bottom: 60px;
+  left: 215px;
+}
+
 #profile-header-nav {
   position: absolute;
   bottom: 0;
@@ -46,7 +56,7 @@
 #profile-pic {
   box-sizing: border-box;
   border-style: double;
-  border: 7px solid white;
+  border: 4px solid white;
   position: absolute;
   border-radius: 3px;
   bottom: 22px;
@@ -68,15 +78,14 @@
   border-radius: 3px;
   border: 1px solid #dfe1e5;
 }
-
 #profile-pic:after {
   content: " ";
   position: absolute;
   z-index: 2;
-  top: -7px;
-  left: -7px;
-  right: -7px;
-  bottom: -7px;
-  border: 1px solid #dfe1e5;
+  top: -4px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px solid #b6b6b6;
   border-radius: 3px;
 }

@@ -6,7 +6,23 @@
   box-sizing: border-box;
 };
 
+#pseudo-logo {
+  background-color: white;
+  position: relative;
+  color: #3b5998;
+  height: 25px;
+  width: 25px;
+  border-radius: 2px;
+  margin-left: 10px;
+}
 
+#pseudo-logo h1 {
+  font-weight: 600;
+  position: absolute;
+  right: 4px;
+  top: -3px;
+  margin: 0;
+}
 
 .main-nav {
   display: flex;
@@ -15,4 +31,14 @@
   align-items: center;
   width: 950px;
   margin: 0 auto;
+}
+
+.main-nav > div {
+  align-items: center;
+}
+
+.main-nav h2{
+  font-weight: 400;
+  font-size: 13px;
+  padding: 0;
 }

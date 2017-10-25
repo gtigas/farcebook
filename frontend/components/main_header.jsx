@@ -1,6 +1,8 @@
 import React from 'react';
 import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+import _ from 'lodash';
 
 class MainHeader extends React.Component {
   constructor(props){
@@ -15,11 +17,20 @@ class MainHeader extends React.Component {
 
   render(){
     return (
-      <header className='main-header'>
+      <header className='main-header flex-row'>
         <div className='main-nav'>
-          <h1>main header here</h1>
-          <button onClick={this.handleLogout}
-                  className='login-button'>Logout</button>
+          <Link to='/feed' >
+            <div id='pseudo-logo'>
+              <h1>f</h1>
+            </div>
+          </Link>
+
+          <div className="flex-row">
+            <h2>{this.props.userName}</h2>
+            <button onClick={this.handleLogout}
+              className='login-button'>Logout</button>
+            </div>
+
         </div>
 
       </header>
@@ -28,7 +39,7 @@ class MainHeader extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+  userName: _.capitalize(state.session.currentUser.first_name)
 });
 
 const mapDispatchToProps = dispatch => ({

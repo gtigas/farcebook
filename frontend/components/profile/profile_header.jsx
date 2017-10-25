@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import ProfileHeaderNav from './profile_header_nav';
 import ProfilePicture from './profile_picture';
 
-const ProfileHeader = (props) => (
-  <div id='profile-header'>
-    <h1>Profile Header</h1>
-    <ProfilePicture />
-    <ProfileHeaderNav />
-  </div>
-);
+class ProfileHeader extends React.Component{
+
+  render () {
+    return (
+      <div id='profile-header'>
+        <h2>{this.props.user.fullName}</h2>
+        <ProfilePicture />
+        <ProfileHeaderNav />
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = state => ({
 
