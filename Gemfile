@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem  'annotate'
 gem "paperclip"
 gem 'aws-sdk', '2.10.47'
+gem 'figaro'
 
 
 # Use Capistrano for deployment
