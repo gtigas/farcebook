@@ -89,3 +89,31 @@
   border: 1px solid #b6b6b6;
   border-radius: 3px;
 }
+
+#profile-about {
+  width: 322px;
+  min-height: 200px;
+  background-color: white;
+  border: 1px solid #dfe1e5;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+#profile-about h2{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#profile-about li {
+  font-size: 14px;
+  font-weight: 300
+}
+
+
+
+.profile-body {
+  width: 950px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
