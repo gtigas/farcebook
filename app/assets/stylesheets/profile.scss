@@ -71,6 +71,7 @@
   z-index: 2;
   overflow: hidden;
   outline: 1px solid #dfe1e5;
+  width: 100%;
 }
 
 #profile-pic:before {
@@ -162,6 +163,18 @@
   padding-top: 10px;
 }
 
+#profile-update-container{
+  position: fixed;
+  background-color: white;
+  width: 300px;
+  height: 170px;
+  left: 40%;
+  top: 30%;
+  z-index: 4;
+  padding: 25px;
+  border-radius: 4px;
+  padding-top: 10px;
+}
 
 
 

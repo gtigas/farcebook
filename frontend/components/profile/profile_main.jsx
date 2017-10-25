@@ -26,7 +26,7 @@ class ProfileMain extends React.Component{
                       fetchUser={this.props.fetchUser}/>
 
         <main className='profile-body flex-row'>
-          <ProfileAboutList user={this.props.user}/>
+          <ProfileAboutList userId={this.props.user.id}/>
         </main>
       </div>
     )

@@ -36,7 +36,6 @@ class FileUploadForm extends React.Component {
         formData.append(`user[${key}]`, user[key]);
       }
     });
-    debugger
     this.props.updatePicture(formData)
     this.props.closeModal('uploadForm')
   }
