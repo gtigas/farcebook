@@ -163,3 +163,14 @@
 #class-aside li {
   padding: 25px 0;
 }
+
+.signup-error {
+  background-color: #c81e2b;
+  font-size: 15px;
+  color: white;
+  position: absolute;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  list-style: inside;
+}

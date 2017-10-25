@@ -10,10 +10,11 @@ export const receiveCurrentUser = (user) => {
   };
 };
 
-export const receiveErrors = (errors) => {
+export const receiveErrors = (errors, errorType) => {
   return {
     type: RECEIVE_ERRORS,
-    errors
+    errors,
+    errorType
   };
 };
 
@@ -23,7 +24,7 @@ export const login = (user) => dispatch => {
       dispatch(receiveCurrentUser(user));
     },
     (errors) => {
-      dispatch(receiveErrors(errors));
+      dispatch(receiveErrors(errors, 'login'));
     }
   );
 };
@@ -34,7 +35,7 @@ export const signup = (user) => dispatch => {
       dispatch(receiveCurrentUser(user));
     },
     (errors) => {
-      dispatch(receiveErrors(errors));
+      dispatch(receiveErrors(errors, 'signup'));
     }
   );
 };

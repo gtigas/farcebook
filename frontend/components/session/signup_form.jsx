@@ -8,12 +8,30 @@ class SignupForm extends React.Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createUserObject = this.createUserObject.bind(this);
+    this.errorShow = this.errorShow.bind(this);
+    this._hasErrors = this._hasErrors.bind(this);
   }
 
   handleSubmit(e){
     e.preventDefault();
     const user = this.createUserObject();
     this.props.signup(user);
+  }
+
+  _hasErrors(){
+    return (this.props.errors.length > 0);
+  }
+
+  errorShow(){
+    if (!this._hasErrors()) return null;
+    const errorList = this.props.errors.map( (error,idx) => {
+      return <li key={idx}>{error}</li>
+    });
+    return (
+      <ul className='signup-error'>
+        {errorList}
+      </ul>
+    )
   }
 
   createUserObject(){
@@ -38,19 +56,23 @@ class SignupForm extends React.Component {
             <input type='text'
                   placeholder='First name'
                   ref={(input) => this.first_name = input}
+                  className={this._hasErrors() ? 'has-errors' : null}
                   ></input>
             <input type='text'
                   placeholder='Last name'
                   ref={(input) => this.last_name = input}
+                  className={this._hasErrors() ? 'has-errors' : null}
                   ></input>
           </span>
           <input type='text'
                 placeholder='Email address'
                 ref={(input) => this.email = input}
+                className={this._hasErrors() ? 'has-errors' : null}
                 ></input>
           <input type='password'
                 placeholder='Password'
                 ref={(input) => this.password = input}
+                className={this._hasErrors() ? 'has-errors' : null}
                 ></input>
           <label>
             Birthday <br></br>
@@ -81,6 +103,7 @@ class SignupForm extends React.Component {
           </div>
           <button id='signup-button'>Create Account</button>
         </form>
+        {this.errorShow()}
       </div>
     )
   }
@@ -90,4 +113,8 @@ const mapDispatchToProps = dispatch =>({
   signup: user => dispatch(signup(user))
 });
 
-export default connect(null, mapDispatchToProps)(SignupForm);
+const mapStateToProps = state => ({
+  errors: state.errors.signup
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
