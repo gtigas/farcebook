@@ -9,8 +9,11 @@ class Feed extends React.Component{
 
   render(){
     return (
-      <div id='feed-container'>
-        <h2>Feed goes Here</h2>
+      <div id='main-container'>
+        <div className='main-nav feed-body'>
+          <h1>Feed goes Here</h1>
+
+        </div>
       </div>
     )
   }

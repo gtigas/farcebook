@@ -3,7 +3,14 @@ import React from 'react';
 
 const SplashMain = () => (
   <div className='main-body'>
-    <div id='class-aside'> <h2>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h2></div>
+    <div id='class-aside'>
+      <h2>Connect with your friends and your world around you.</h2>
+      <ul>
+        <li><strong>See photos and updates</strong>   from friends in News Feed.</li>
+        <li><strong>Share what's new</strong>   in your life on your Timeline.</li>
+        <li><strong>Find more</strong>  of what you're looking for.</li>
+      </ul>
+    </div>
     <SignupForm />
   </div>
 );

@@ -57,6 +57,7 @@
 #signup-container h2 {
   padding: 0 ;
   font-size: 32px;
+  font-weight: 600
 }
 
 #signup-container h4 {
@@ -89,7 +90,7 @@
 }
 
 #signup-container > form > span > input {
-  width: 192px;
+  width: 195px;
   height: 35px;
 }
 
@@ -105,8 +106,9 @@
 }
 
 #class-aside {
+  box-sizing: border-box;
   width: 500px;
-  padding: 20px;
+  padding: 50px;
   padding-left: 0;
 }
 
@@ -146,4 +148,18 @@
 
 .login-form {
   position: relative;
+}
+
+#class-aside h2 {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+#class-aside ul {
+  list-style: none;
+  margin-top: 40px;
+}
+
+#class-aside li {
+  padding: 25px 0;
 }

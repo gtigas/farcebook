@@ -32,7 +32,7 @@ class SignupForm extends React.Component {
     return(
       <div id='signup-container'>
         <h2>Sign Up</h2>
-        <h4>It's free (I promise)!</h4>
+        <h4>It's free and always will be.</h4>
         <form onSubmit={this.handleSubmit}>
           <span>
             <input type='text'

@@ -6,6 +6,10 @@
   box-sizing: border-box;
 };
 
+.main-header > div > div {
+  position: relative;
+}
+
 #pseudo-logo {
   background-color: white;
   position: relative;
@@ -41,4 +45,6 @@
   font-weight: 400;
   font-size: 13px;
   padding: 0;
+  position: absolute;
+  right: 400%;
 }
