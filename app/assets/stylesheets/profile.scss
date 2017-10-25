@@ -2,7 +2,7 @@
   position: relative;
   width: 950px;
   height: 360px;
-  background-color: green;
+  background-color: white;
   margin: 0 auto;
   border: 1px solid #dfe1e5;
   border-top: 0;
@@ -11,7 +11,7 @@
 
 #profile-header > img {
   overflow: hidden;
-  width: 100%
+  width: 100%;
 }
 
 #profile-header > h2 {
@@ -71,6 +71,9 @@
   z-index: 2;
   overflow: hidden;
   outline: 1px solid #dfe1e5;
+}
+
+#profile-pic > img {
   width: 100%;
 }
 
@@ -100,13 +103,14 @@
 }
 
 #profile-about {
+  position: relative;
   width: 322px;
-  min-height: 200px;
   background-color: white;
   border: 1px solid #dfe1e5;
   border-radius: 3px;
   box-sizing: border-box;
   padding: 15px;
+  padding-bottom: 0px;
 }
 
 #profile-about h2{
@@ -114,9 +118,25 @@
   font-weight: 400;
 }
 
+#profile-about h2 > i {
+    color: #4365af;
+    font-size: 25px;
+}
+
+#profile-about ul {
+  margin-top: 5px;
+  list-style: none;
+  padding-left: 10px;
+}
+
 #profile-about li {
   font-size: 14px;
-  font-weight: 300
+  font-weight: 300;
+  padding: 6px 0;
+}
+
+#profile-about li > i {
+  color: rgba(0,0,0, 0.5)
 }
 
 
@@ -195,4 +215,12 @@
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+}
+
+#profile-about > h1 {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  right: 15px;
+  top: -5px;
 }

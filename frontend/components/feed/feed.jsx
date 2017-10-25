@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions'
 
 class Feed extends React.Component{
-  componentDidMount(){
-    this.props.fetchUsers();
-  }
+  // componentDidMount(){
+  //   this.props.fetchUsers();
+  // }
 
   render(){
     return (

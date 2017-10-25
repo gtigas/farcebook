@@ -17,8 +17,8 @@ class User < ApplicationRecord
   validates :email, presence:true, uniqueness:true
   validates :password_digest, :session_token, presence:true
   validates :password, length: { minimum: 6, allow_nil: true }
-  has_attached_file :profile_picture, default_url: "missing.png"
-  has_attached_file :cover_photo, default_url: "missing.png"
+  has_attached_file :profile_picture, default_url: "https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"
+  has_attached_file :cover_photo, default_url: 'https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpg'
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\Z/
   after_initialize :ensure_session_token

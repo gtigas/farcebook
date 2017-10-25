@@ -1,6 +1,7 @@
 import React from 'react';
 import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
+import { fetchUsers } from '../actions/user_actions'
 import { Link } from 'react-router-dom'
 import _ from 'lodash';
 
@@ -14,6 +15,11 @@ class MainHeader extends React.Component {
     e.preventDefault();
     this.props.logout();
   }
+
+  componentDidMount(){
+    this.props.fetchUsers();
+  }
+
 
   render(){
     return (
@@ -38,12 +44,15 @@ class MainHeader extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userName: _.capitalize(state.session.currentUser.first_name)
-});
+const mapStateToProps = state =>  {
+  return {
+    userName: _.capitalize(state.session.currentUser.fullName.split(" ")[0])
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
-  logout: ()=> dispatch(logout())
+  logout: ()=> dispatch(logout()),
+  fetchUsers: () => dispatch(fetchUsers())
 });
 
 
