@@ -8,13 +8,11 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
-    <Switch>
-      <ProtectedRoute path='/feed' component={MainHeader}/>
-      <AuthRoute path='/' component={SplashHeader}/>
-    </Switch>
+    <AuthRoute exact path='/' component={SplashHeader}/>
+    <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>
       <AuthRoute exact path='/' component={SplashMain}/>
-      <ProtectedRoute exact path={`users/:userId`} component={ProfileMain}/>
+      <Route exact path='/users/:userId' component={ProfileMain}/>
     </main>
   </div>
 );
