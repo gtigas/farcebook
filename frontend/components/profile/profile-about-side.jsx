@@ -3,11 +3,9 @@ import React from 'react'
 const ProfileAboutList = ({user}) => {
   return(
     <div id='profile-about'>
-      <h2>Intro</h2>
+      <h2><i class="fa fa-globe"></i> &nbsp; Intro</h2>
       <ul>
-        <li>Stuff stuff stuff stuff</li>
-        <li>Stuff stuff stuff stuff</li>
-        <li>Stuff stuff stuff stuff</li>
+        <li>Under construction...</li>
       </ul>
     </div>
   )
