@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       delete '/reject_request', to: 'friendships#reject_friendship'
     end
     resource :session, only: [:create, :destroy]
+    resources :posts, only: [:index, :create, :update, :destroy]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
     get '/feed', to: 'users#feed'

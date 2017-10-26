@@ -46,6 +46,14 @@ class User < ApplicationRecord
     foreign_key: :receiver_id,
     class_name: 'Friendship'
 
+  has_many :authored_posts,
+    foreign_key: :author_id,
+    class_name: 'Post'
+
+  has_many :wall_posts,
+    foreign_key: :receiver_id, 
+    class_name: 'Post'
+
   def friendships
     Friendship.includes(:receiver, :requester).where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')
   end

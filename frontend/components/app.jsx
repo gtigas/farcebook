@@ -13,8 +13,8 @@ const App = () => (
     <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>
       <AuthRoute exact path='/' component={SplashMain}/>
-      <Route exact path='/users/:userId' component={ProfileMain}/>
-      <Route exact path='/feed' component={Feed} />
+      <ProtectedRoute exact path='/users/:userId' component={ProfileMain}/>
+      <ProtectedRoute exact path='/feed' component={Feed} />
     </main>
   </div>
 );
