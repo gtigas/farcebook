@@ -17,7 +17,7 @@ export const friendButton = (props) => {
   } else if (friendRequestPending){
     return (
       <button id="pending-friend" disabled>
-        Pending response...
+        Friend Request Sent
       </button>
     )
   }

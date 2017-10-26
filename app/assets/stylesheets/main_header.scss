@@ -41,16 +41,16 @@
   align-items: center;
 }
 
-.main-nav ul {
+.main-nav > div > ul {
   list-style: none;
-  margin-right: 100px;
+  margin-right: 50px;
 }
 
 .main-nav li {
   padding: 0 15px;
 }
 
-.main-nav li:first-of-type{
+.nav-list li:first-of-type{
   border-right: 1px solid #3c5b9d;
 }
 
@@ -62,4 +62,19 @@
 
 .main-nav a{
   text-decoration: none;
+}
+
+.main-header-nav {
+  list-style: none;
+  margin-right: 20px !important;
+  li {
+    color: rgba(27,40,70, 0.8);
+    padding: 0 7px;
+    font-size: 20px;
+    &:last-of-type {
+      border-right: 1px solid #3c5b9d;
+      padding-right: 20px
+    }
+  }
+
 }

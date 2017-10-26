@@ -3,6 +3,8 @@ import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/user_actions';
+import { fetchFriendRequests } from '../actions/friends_actions'
+import MainNav from './main-nav'
 import _ from 'lodash';
 
 class MainHeader extends React.Component {
@@ -18,6 +20,7 @@ class MainHeader extends React.Component {
 
   componentDidMount(){
     this.props.fetchUsers();
+    this.props.fetchRequests();
   }
 
 
@@ -32,7 +35,7 @@ class MainHeader extends React.Component {
           </Link>
 
           <div className="flex-row">
-            <ul className='flex-row'>
+            <ul className='flex-row nav-list'>
               <li className='flex-row'>
                 <img src={this.props.userPic}
                       width="25px"
@@ -48,6 +51,8 @@ class MainHeader extends React.Component {
                 </Link>
               </li>
             </ul>
+
+            <MainNav />
 
             <button onClick={this.handleLogout}
               className='login-button'>Logout</button>
@@ -70,7 +75,8 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  fetchRequests: () => dispatch(fetchFriendRequests()),
 });
 
 

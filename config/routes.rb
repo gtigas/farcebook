@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
+    get '/feed', to: 'users#feed'
   end
 end
