@@ -238,3 +238,24 @@
   right: 15px;
   top: -5px;
 }
+
+#add-friend, #pending-friend {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 12px;
+  width: 107px;
+  height: 29px;
+  box-sizing: border-box;
+  right: 35px;
+  bottom: 75px;
+  position: absolute;
+  color: #4b4f56;
+  z-index: 3;
+}
+
+
+#add-friend:hover {
+  cursor: pointer;
+}

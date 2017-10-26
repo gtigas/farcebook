@@ -40,7 +40,7 @@ class ProfileMain extends React.Component{
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.entities.users[ownProps.match.params.userId] || {}
+  user: state.entities.users[ownProps.match.params.userId] || { friend_ids:[]}
 });
 
 const mapDispatchToProps = dispatch => ({

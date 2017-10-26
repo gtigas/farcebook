@@ -1,8 +1,8 @@
 import React from 'react';
 import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions/user_actions'
 import { Link } from 'react-router-dom'
+import { fetchUsers } from '../actions/user_actions';
 import _ from 'lodash';
 
 class MainHeader extends React.Component {

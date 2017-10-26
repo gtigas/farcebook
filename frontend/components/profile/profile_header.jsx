@@ -4,12 +4,24 @@ import ProfileHeaderNav from './profile_header_nav';
 import ProfilePicture from './profile_picture';
 import FileUploadForm from './profile_upload'
 import { openModal, closeModal } from '../../actions/ui_actions';
+import { fetchUsers } from '../../actions/user_actions'
 
 class ProfileHeader extends React.Component{
   constructor(props){
-    super(props)
+    super(props);
+    this.state = { loading: true }
     this._openUpload = this._openUpload.bind(this);
+    this._friendButton = this._friendButton.bind(this);
   }
+
+  componentDidMount(){
+    this.setState({ loading: false })
+  }
+
+  componentWillUnmount() {
+    this.setState({loading: true});
+  }
+
 
   _openUpload(pictureType){
     return () => {
@@ -18,7 +30,30 @@ class ProfileHeader extends React.Component{
     }
   }
 
+  _friendButton(){
+    const { friendRequestPending, isCurrentUser, areFriends } = this.props;
+    if (isCurrentUser || areFriends ) return null;
+
+    let friendButton;
+    if (!friendRequestPending) {
+      return (
+        <button id="add-friend">
+          <i className="fa fa-user" aria-hidden="true"></i>+
+          &nbsp; Add Friend
+        </button>
+      )
+    } else if (friendRequestPending){
+      return (
+        <button id="pending-friend" disabled>
+          Pending response...
+        </button>
+      )
+    }
+  }
+
   render () {
+    if (this.props.loading) return null;
+
     return (
       <div id='profile-header'>
         {this.props.modalOpen ? <FileUploadForm user={this.props.user}
@@ -34,19 +69,26 @@ class ProfileHeader extends React.Component{
         </div>
         <ProfilePicture url={this.props.user.profile_picture_url}/>
         <img src={this.props.user.cover_photo_url} />
+        {this._friendButton()}
         <ProfileHeaderNav />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  modalOpen: Boolean(state.ui.modal.uploadForm),
-});
+const mapStateToProps = (state, { user }) =>{
+  return {
+    modalOpen: Boolean(state.ui.modal.uploadForm),
+    isCurrentUser: state.session.currentUser.id === user.id,
+    friendRequestPending: state.entities.friendRequests.sent.includes(user.id),
+    areFriends: user.friend_ids.includes(state.session.currentUser.id),
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   openModal: (modalType) => dispatch(openModal(modalType)),
-  closeModal:(modalType) => dispatch(closeModal(modalType))
+  closeModal: (modalType) => dispatch(closeModal(modalType)),
+  // fetchUsers: ()=> dispatch(fetchUsers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)
