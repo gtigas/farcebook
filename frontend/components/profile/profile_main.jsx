@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileHeader from './profile_header';
 import ProfileAboutList from './profile-about-side';
+import ProfileFriendsList from './profile_friends';
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 
@@ -31,17 +32,30 @@ class ProfileMain extends React.Component{
         <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
 
-        <main className='profile-body flex-row'>
-          <ProfileAboutList userId={this.props.user.id}/>
-        </main>
+        {!this.props.loading ?
+          <main className='profile-body flex-row'>
+            <aside>
+              <ProfileAboutList userId={this.props.user.id}/>
+              <ProfileFriendsList friends={this.props.friends}/>
+            </aside>
+            <section>
+
+            </section>
+          </main> : null}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  user: state.entities.users[ownProps.match.params.userId] || { friend_ids:[]}
-});
+const mapStateToProps = (state, ownProps) => {
+  const user = state.entities.users[ownProps.match.params.userId] || { friend_ids:[]}
+  const friends = user.friend_ids.map( id => state.entities.users[id])
+  return ({
+    user,
+    friends,
+    loading: state.ui.loading,
+  })
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),

@@ -24,8 +24,9 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUsers();
-    this.props.fetchRequests();
+    this.props.fetchUsers().then( ()=>{
+      this.props.fetchRequests();
+    });
   }
 
   closeDropdown(type) {
