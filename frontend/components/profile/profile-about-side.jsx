@@ -62,6 +62,8 @@ class ProfileAboutList extends React.Component{
 
   render(){
     const user = this.props.user || {}
+    const bArray = user.birth_date ? user.birth_date.split("-") : null
+    const userBirthday = bArray === null ? null : bArray[1] + "-" + bArray[2] + "-" + bArray[0]
     return(
       <div id='profile-about' className='pos-rel'>
         {this.props.isCurrentUser &&
@@ -77,6 +79,11 @@ class ProfileAboutList extends React.Component{
             <i className="fa fa-envelope-o" aria-hidden="true"></i>
             &nbsp;
             Email: {user.email}
+          </li>
+          <li>
+            <i className="fa fa-birthday-cake" aria-hidden="true"></i>
+            &nbsp;
+            Birthday: {userBirthday}
           </li>
           <li>
             <i className="fa fa-user" aria-hidden="true"></i>
