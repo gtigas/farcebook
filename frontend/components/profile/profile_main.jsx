@@ -15,7 +15,7 @@ class ProfileMain extends React.Component{
       this.props.fetchUser(this.props.match.params.userId)
       this.props.fetchUsers();
     } else {
-      // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchUser(this.props.match.params.userId)
     }
   }
 

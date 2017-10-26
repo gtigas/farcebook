@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { login, logout } from './actions/session_actions'
 import configureStore from './store/store'
 import Root from './components/root'
+import { fetchPosts, createPost, updatePost, deletePost } from './actions/posts_actions'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -13,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  window.store = store;
+  window.dispatch = store.dispatch;
+  window.fetchPosts = fetchPosts;
+  window.createPost = createPost;
+  window.updatePost = updatePost;
+  window.deletePost = deletePost;
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

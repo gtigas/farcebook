@@ -45,9 +45,6 @@
   }
   li {
     padding: 0 15px;
-    &:first-of-type {
-      border-right: 1px solid #3c5b9d;
-    }
   }
   h2 {
     font-weight: 400;
@@ -57,6 +54,10 @@
   a {
     text-decoration: none;
   }
+}
+
+.nav-list > li:first-of-type {
+  border-right: 1px solid #3c5b9d;
 }
 
 .main-header-nav {
@@ -78,7 +79,8 @@
 }
 
 .request-item {
-  color: black
+  color: black;
+  border: none
 }
 
 .request-list {
