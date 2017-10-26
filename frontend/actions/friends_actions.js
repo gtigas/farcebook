@@ -1,4 +1,5 @@
 import * as FriendAPIUtil from '../util/friends_api_util';
+import { receiveErrors } from './friends_actions'
 
 export const RECEIVE_REQUESTS = 'RECEIVE_REQUESTS';
 export const SEND_REQUEST = 'SEND_REQUEST';

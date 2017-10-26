@@ -8,7 +8,8 @@ export const friendButton = (props) => {
   let friendButton;
   if (!friendRequestPending) {
     return (
-      <button id="add-friend">
+      <button id="add-friend"
+              onClick={props.addFriend(props.user.id)}>
         <i className="fa fa-user" aria-hidden="true"></i>+
         &nbsp; Add Friend
       </button>

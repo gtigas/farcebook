@@ -6,6 +6,7 @@ import FileUploadForm from './profile_upload'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { fetchUsers } from '../../actions/user_actions'
 import { friendButton } from '../../util/profile_util'
+import { sendFriendRequest } from '../../actions/friends_actions'
 
 class ProfileHeader extends React.Component{
   constructor(props){
@@ -67,8 +68,9 @@ const mapStateToProps = (state, { user }) =>{
 };
 
 const mapDispatchToProps = dispatch => ({
-  openModal: (modalType) => dispatch(openModal(modalType)),
-  closeModal: (modalType) => dispatch(closeModal(modalType)),
+  openModal: modalType => dispatch(openModal(modalType)),
+  closeModal: modalType => dispatch(closeModal(modalType)),
+  addFriend: userId => () => dispatch(sendFriendRequest(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)
