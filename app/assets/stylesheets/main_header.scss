@@ -1,6 +1,6 @@
 .main-header{
   height: 43px;
-  background-color: #3b5998;
+  background-color: #4365af;
   color: white;
   border-bottom: 1px solid black;
   box-sizing: border-box;
@@ -41,11 +41,25 @@
   align-items: center;
 }
 
+.main-nav ul {
+  list-style: none;
+  margin-right: 100px;
+}
+
+.main-nav li {
+  padding: 0 15px;
+}
+
+.main-nav li:first-of-type{
+  border-right: 1px solid #3c5b9d;
+}
+
 .main-nav h2{
   font-weight: 400;
   font-size: 13px;
   padding: 0;
-  position: absolute;
-  right: 400%;
-  top: 4px;
+}
+
+.main-nav a{
+  text-decoration: none;
 }

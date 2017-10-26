@@ -22,6 +22,7 @@ body {
 .flex-row {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .flex-col {
@@ -35,6 +36,11 @@ body {
 
 .pos-abs{
   position: absolute;
+}
+
+.circle-thumb {
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 #main-container {
