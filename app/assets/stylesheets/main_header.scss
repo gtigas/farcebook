@@ -29,6 +29,7 @@
 }
 
 .main-nav {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -85,11 +86,12 @@
 .request-list {
   background-color: white;
   z-index: 4;
-  right: -347px;
-  top: 76px;
+  right: 175px;
+  top: 43px;
   width: 400px;
   border: 1px solid #dfe1e5;
   box-shadow: 2px 2px 5px #888888;
+  position: absolute !important;
   ul {
     padding: 0px;
     margin: 0px !important;

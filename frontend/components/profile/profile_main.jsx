@@ -28,7 +28,7 @@ class ProfileMain extends React.Component{
   render(){
     return (
       <div>
-        <ProfileHeader user={this.props.user}
+        <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
 
         <main className='profile-body flex-row'>

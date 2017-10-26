@@ -16,9 +16,11 @@ const sendRequest = (request) => ({
   request
 });
 
-const removeRequest = (request) => ({
+const removeRequest = ({ request, receiver, requester}) => ({
   type: REMOVE_REQUEST,
-  request
+  request,
+  receiver,
+  requester
 });
 
 export const fetchFriendRequests = () => dispatch => {
@@ -37,14 +39,14 @@ export const sendFriendRequest = userId => dispatch => {
 
 export const acceptFriendRequest = userId => dispatch => {
   return FriendAPIUtil.acceptFriendRequest(userId).then(
-    request => dispatch(removeRequest(request)),
+    payload => dispatch(removeRequest(payload)),
     errors => dispatch(receiveErrors(errors, 'friends'))
   )
 };
 
 export const deleteFriendRequest = userId => dispatch => {
   return FriendAPIUtil.deleteFriendRequest(userId).then(
-    request => dispatch(removeRequest(request)),
+    payload => dispatch(removeRequest(payload)),
     errors => dispatch(receiveErrors(errors, 'friends'))
   )
 }

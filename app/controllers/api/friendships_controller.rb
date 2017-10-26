@@ -29,13 +29,16 @@ class Api::FriendshipsController < ApplicationController
     @request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
     @request.status = 'ACCEPTED'
     @request.save!
-    render :show
+    render :remove
   end
 
   def reject_friendship
-    @request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
+    @request = Friendship.where('(requester_id = ? AND receiver_id = ?)
+                              OR (requester_id = ? AND receiver_id = ?)',
+                              params[:user_id], current_user.id,
+                              current_user.id, params[:user_id])[0]
     @request.destroy
-    render json: @request
+    render :remove
   end
 
 end

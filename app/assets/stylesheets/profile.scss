@@ -239,7 +239,7 @@
   top: -5px;
 }
 
-#add-friend, #pending-friend {
+#add-friend, #pending-friend, #already-friends, #remove-friend {
   background-color: white;
   border: 1px solid grey;
   border-radius: 2px;
@@ -255,8 +255,19 @@
   z-index: 3;
 }
 
+#remove-friend{
+  bottom: 45px;
+  box-shadow: 2px 2px 5px #888888;
+}
+
+#already-friends {
+  background-color: #5b9750;
+  color: white;
+  font-size: 13px;
+}
+
 #pending-friend {
-  width: 140px;
+  width: 160px;
 }
 
 

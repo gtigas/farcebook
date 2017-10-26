@@ -5,14 +5,15 @@ import ProfilePicture from './profile_picture';
 import FileUploadForm from './profile_upload'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { fetchUsers } from '../../actions/user_actions'
-import { friendButton } from '../../util/profile_util'
-import { sendFriendRequest } from '../../actions/friends_actions'
+import { FriendButton, requestPending } from '../../util/profile_util'
+import { sendFriendRequest, deleteFriendRequest } from '../../actions/friends_actions'
 
 class ProfileHeader extends React.Component{
   constructor(props){
     super(props);
     this.state = { loading: true }
     this._openUpload = this._openUpload.bind(this);
+    this.forceUpdate = this.forceUpdate.bind(this);
   }
 
   componentDidMount(){
@@ -29,6 +30,10 @@ class ProfileHeader extends React.Component{
       this.setState( { pictureType })
       this.props.openModal('uploadForm');
     }
+  }
+
+  _forceUpdate(){
+    this.forceUpdate();
   }
 
 
@@ -51,19 +56,20 @@ class ProfileHeader extends React.Component{
         </div>
         <ProfilePicture url={this.props.user.profile_picture_url}/>
         <img src={this.props.user.cover_photo_url} />
-        {friendButton(this.props)}
+        <FriendButton {...this.props} forceUpdate={this._forceUpdate}/>
         <ProfileHeaderNav />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, { user }) =>{
+const mapStateToProps = (state, ownProps) =>{
   return {
     modalOpen: Boolean(state.ui.modal.uploadForm),
-    isCurrentUser: state.session.currentUser.id === user.id,
-    friendRequestPending: state.entities.friendRequests.sent.includes(user.id),
-    areFriends: user.friend_ids.includes(state.session.currentUser.id),
+    isCurrentUser: state.session.currentUser.id === parseInt(ownProps.userId),
+    friendRequestPending: requestPending(state, ownProps.userId),
+    user: state.entities.users[ownProps.userId] || {},
+    currentUserId: state.session.currentUser.id
   }
 };
 
@@ -71,6 +77,7 @@ const mapDispatchToProps = dispatch => ({
   openModal: modalType => dispatch(openModal(modalType)),
   closeModal: modalType => dispatch(closeModal(modalType)),
   addFriend: userId => () => dispatch(sendFriendRequest(userId)),
+  removeFriend: userId => () => dispatch(deleteFriendRequest(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)

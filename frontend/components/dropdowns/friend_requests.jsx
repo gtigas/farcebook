@@ -21,7 +21,7 @@ class FriendRequestList extends React.Component {
                             close={close}/> )
     });
     return(
-      <div className="request-list" onFocus={this.onBlur}>
+      <div className="request-list pos-abs" onFocus={this.onBlur}>
         <h3>Friend Requests</h3>
         <ul>
           {requestList}
