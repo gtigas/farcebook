@@ -1,13 +1,16 @@
 class Api::FriendshipsController < ApplicationController
 
   def friends
-    @friends = Friendship.where(receiver_id: current_user.id, status:'ACCEPTED')
+    @friends = current_user.friends
     render :index
   end
 
   def pending_requests
-    @friends = Friendship.where(receiver_id: current_user.id, status:'PENDING')
-    render :index
+    @received_requests = current_user.received_requests.where(status:'PENDING')
+    sent_requests = current_user.sent_requests.where(status:'PENDING')
+    @sent_request_ids = []
+    sent_requests.each{ |req| @sent_request_ids << req.receiver_id }
+    render :pending
   end
 
   def request_friendship

@@ -38,8 +38,13 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :sent_friendships,
-    foreign_key: :requester_id
+  has_many :sent_requests,
+    foreign_key: :requester_id,
+    class_name: 'Friendship'
+
+  has_many :received_requests,
+    foreign_key: :receiver_id,
+    class_name: 'Friendship'
 
   def friendships
     Friendship.includes(:receiver, :requester).where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')

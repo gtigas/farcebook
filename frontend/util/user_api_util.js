@@ -1,3 +1,10 @@
+export const fetchFeed = () => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/feed'
+  })
+}
+
 export const fetchUsers = () => {
   return $.ajax({
     method: 'GET',

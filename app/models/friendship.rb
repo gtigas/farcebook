@@ -13,6 +13,7 @@
 class Friendship < ApplicationRecord
   validates :requester_id, :receiver_id, presence: true
   validates :status, presence:true, inclusion: { in: ['PENDING', 'ACCEPTED'] }
+  validate :cannot_add_self
 
   belongs_to :requester,
     class_name: 'User',
@@ -21,4 +22,13 @@ class Friendship < ApplicationRecord
   belongs_to :receiver,
     class_name: 'User',
     foreign_key: :receiver_id
+
+  private
+
+  def cannot_add_self
+    if requester_id == receiver_id
+      errors.add(:receiver_id, 'You cannot add yourself as a friend')
+    end
+  end
+
 end
