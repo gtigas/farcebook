@@ -4,11 +4,12 @@
   color: white;
   border-bottom: 1px solid black;
   box-sizing: border-box;
+  >div {
+    >div {
+      position: relative;
+    }
+  }
 };
-
-.main-header > div > div {
-  position: relative;
-}
 
 #pseudo-logo {
   background-color: white;
@@ -18,14 +19,13 @@
   width: 25px;
   border-radius: 2px;
   margin-left: 10px;
-}
-
-#pseudo-logo h1 {
-  font-weight: 600;
-  position: absolute;
-  right: 4px;
-  top: -3px;
-  margin: 0;
+  h1 {
+    font-weight: 600;
+    position: absolute;
+    right: 4px;
+    top: -3px;
+    margin: 0;
+  }
 }
 
 .main-nav {
@@ -36,33 +36,27 @@
   align-items: center;
   width: 950px;
   margin: 0 auto;
-}
-
-.main-nav > div {
-  align-items: center;
-}
-
-.main-nav > div > ul {
-  list-style: none;
-  margin-right: 50px;
-}
-
-.main-nav li {
-  padding: 0 15px;
-}
-
-.nav-list li:first-of-type{
-  border-right: 1px solid #3c5b9d;
-}
-
-.main-nav h2{
-  font-weight: 400;
-  font-size: 13px;
-  padding: 0;
-}
-
-.main-nav a{
-  text-decoration: none;
+  >div {
+    align-items: center;
+    >ul {
+      list-style: none;
+      margin-right: 50px;
+    }
+  }
+  li {
+    padding: 0 15px;
+    &:first-of-type {
+      border-right: 1px solid #3c5b9d;
+    }
+  }
+  h2 {
+    font-weight: 400;
+    font-size: 13px;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+  }
 }
 
 .main-header-nav {
@@ -72,6 +66,10 @@
     color: rgba(27,40,70, 0.8);
     padding: 0 7px;
     font-size: 20px;
+    &:hover{
+      cursor: pointer;
+      color: rgba(27,40,70, 1)
+    }
     &:last-of-type {
       border-right: 1px solid #3c5b9d;
       padding-right: 20px

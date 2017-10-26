@@ -7,6 +7,7 @@
   border: 1px solid #dfe1e5;
   border-top: 0;
   border-radius: 0 0 4px 4px;
+  overflow: hidden;
   img {
     overflow: hidden;
     width: 100%;
@@ -60,7 +61,7 @@
   border-radius: 3px;
   bottom: 22px;
   left: 22px;
-  background-color: yellow;
+  background-color: white;
   width: 170px;
   height: 170px;
   z-index: 2;
@@ -133,9 +134,22 @@
   margin-top: 20px;
   max-height: 375px;
   padding: 0;
+  p {
+    font-size: 10px;
+    position: absolute;
+    top: 6px;
+    left: 110px;
+  }
+  >i, p{
+    color: rgba(black, 0.7);
+    padding-left: 5px;
+    font-style: normal;
+  }
   >h2{
     padding: 10px;
     padding-bottom: 5px;
+    display: inline-block;
+    padding-right: 3px;
     >i{
       background-color: #f7006a;
       border-radius: 50%;
@@ -240,8 +254,8 @@
 
 
 #upload-form img {
-  min-width: 100px;
-  min-height: 100px;
+  width: 100px;
+  height: 100px;
   background-color: lightgrey;
   border: 1px dotted black;
 }

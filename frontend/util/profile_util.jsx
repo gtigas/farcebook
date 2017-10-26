@@ -12,7 +12,7 @@ export class FriendButton extends React.Component {
     e.preventDefault();
     setTimeout( () => {
       this.setState( { dropdown: !this.state.dropdown } )
-    }, 150)
+    }, 100)
   }
 
 
@@ -29,7 +29,7 @@ export class FriendButton extends React.Component {
     if (user.friend_ids.includes(currentUserId)) {
       return (
         <div>
-          <button id="already-friends" onClick={this._onClick}
+          <button id="already-friends" onFocus={this._onClick}
                                         onBlur={this._onClick}>
             Friends
             &nbsp; <i className="fa fa-check" aria-hidden="true"></i>

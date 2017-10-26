@@ -5,15 +5,15 @@ class ProfileFriends extends React.Component {
 
 
   render(){
-    const friendsList = this.props.friends.map( friend => {
+    const friendsList = this.props.friends.slice(0,9).map( friend => {
       return (
-        <li><FriendListItem key={friend.id} friend={friend} /></li>
+        <li key={friend.id}><FriendListItem  friend={friend} /></li>
       )
     })
     return (
       <aside id='profile-friends'>
         <h2><i className="fa fa-users" aria-hidden="true"></i>
-        &nbsp;&nbsp;Friends</h2>
+        &nbsp;&nbsp;Friends</h2><p>•</p>&nbsp;<i>{this.props.friends.length}</i>
         <ul className='flex-row'>
           {friendsList}
         </ul>
