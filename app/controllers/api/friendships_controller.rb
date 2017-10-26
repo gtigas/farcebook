@@ -1,4 +1,5 @@
 class Api::FriendshipsController < ApplicationController
+  before_action :ensure_logged_in
 
   def friends
     @friends = current_user.friends
@@ -32,8 +33,9 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def reject_friendship
-    request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
+    @request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
     request.destroy!
+    render json: @request
   end
 
 end

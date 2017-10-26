@@ -1,4 +1,6 @@
 class Api::UsersController < ApplicationController
+  before_action :ensure_logged_in, only: [:index, :show, :update]
+
   def index
     @users = User.all
   end

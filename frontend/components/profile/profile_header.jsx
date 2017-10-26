@@ -5,13 +5,13 @@ import ProfilePicture from './profile_picture';
 import FileUploadForm from './profile_upload'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { fetchUsers } from '../../actions/user_actions'
+import { friendButton } from '../../util/profile_util'
 
 class ProfileHeader extends React.Component{
   constructor(props){
     super(props);
     this.state = { loading: true }
     this._openUpload = this._openUpload.bind(this);
-    this._friendButton = this._friendButton.bind(this);
   }
 
   componentDidMount(){
@@ -30,26 +30,7 @@ class ProfileHeader extends React.Component{
     }
   }
 
-  _friendButton(){
-    const { friendRequestPending, isCurrentUser, areFriends } = this.props;
-    if (isCurrentUser || areFriends ) return null;
 
-    let friendButton;
-    if (!friendRequestPending) {
-      return (
-        <button id="add-friend">
-          <i className="fa fa-user" aria-hidden="true"></i>+
-          &nbsp; Add Friend
-        </button>
-      )
-    } else if (friendRequestPending){
-      return (
-        <button id="pending-friend" disabled>
-          Pending response...
-        </button>
-      )
-    }
-  }
 
   render () {
     if (this.props.loading) return null;
@@ -69,7 +50,7 @@ class ProfileHeader extends React.Component{
         </div>
         <ProfilePicture url={this.props.user.profile_picture_url}/>
         <img src={this.props.user.cover_photo_url} />
-        {this._friendButton()}
+        {friendButton(this.props)}
         <ProfileHeaderNav />
       </div>
     )
@@ -88,7 +69,6 @@ const mapStateToProps = (state, { user }) =>{
 const mapDispatchToProps = dispatch => ({
   openModal: (modalType) => dispatch(openModal(modalType)),
   closeModal: (modalType) => dispatch(closeModal(modalType)),
-  // fetchUsers: ()=> dispatch(fetchUsers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)

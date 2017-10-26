@@ -25,7 +25,7 @@ export const acceptFriendRequest = (userId) => {
     url: `api/users/${userId}/accept_request`
   })
 }
-export const rejectFriendRequest = (userId) => {
+export const deleteFriendRequest = (userId) => {
   return $.ajax({
     method: 'DELETE',
     url: `api/users/${userId}/reject_request`

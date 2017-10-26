@@ -64,7 +64,8 @@ class ProfileAboutList extends React.Component{
     const user = this.props.user || {}
     return(
       <div id='profile-about' className='pos-rel'>
-        <h1 onClick={this.handleClick}>...</h1>
+        {this.props.isCurrentUser &&
+              <h1 onClick={this.handleClick}>...</h1>}
         {this.props.modalIsOpen ? <ProfileUpdateForm
                                         user={user}
                                         closeModal={this.props.closeModal}
@@ -94,7 +95,8 @@ class ProfileAboutList extends React.Component{
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.entities.users[ownProps.userId],
-  modalIsOpen: Boolean(state.ui.modal.updateForm)
+  modalIsOpen: Boolean(state.ui.modal.updateForm),
+  isCurrentUser: state.session.currentUser.id === ownProps.userId,
 });
 
 const mapDispatchToProps = dispatch => ({
