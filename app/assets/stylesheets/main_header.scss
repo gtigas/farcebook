@@ -76,5 +76,22 @@
       padding-right: 20px
     }
   }
+}
 
+.request-item {
+  color: black
+}
+
+.request-list {
+  background-color: white;
+  z-index: 4;
+  right: -430px;
+  top: 100px;
+  h3 {
+    color: rgb(27,40,70);
+    font-size: 14px;
+  }
+  a {
+    color: #3d5b99;
+  }
 }

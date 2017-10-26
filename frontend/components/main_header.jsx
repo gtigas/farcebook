@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/user_actions';
 import { fetchFriendRequests } from '../actions/friends_actions'
+import FriendRequestList from './dropdowns/friend_requests'
 import MainNav from './main-nav'
 import _ from 'lodash';
 
@@ -11,6 +12,9 @@ class MainHeader extends React.Component {
   constructor(props){
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.state = { requestDropdown: false }
+    this.closeDropdown = this.closeDropdown.bind(this);
+    this.openDropdown = this.openDropdown.bind(this);
   }
 
   handleLogout(e) {
@@ -21,6 +25,14 @@ class MainHeader extends React.Component {
   componentDidMount(){
     this.props.fetchUsers();
     this.props.fetchRequests();
+  }
+
+  closeDropdown(type) {
+    return () => {this.setState({ [type]: false } )}
+  }
+
+  openDropdown(type) {
+    return () => {this.setState( { [type]: true })}
   }
 
 
@@ -34,29 +46,33 @@ class MainHeader extends React.Component {
             </div>
           </Link>
 
-          <div className="flex-row">
-            <ul className='flex-row nav-list'>
-              <li className='flex-row'>
-                <img src={this.props.userPic}
-                      width="25px"
-                      height="25px"
-                      className='circle-thumb' />
-                <Link to={`/users/${this.props.userId}`}>
-                  <h2>{this.props.userName}</h2>
-                </Link>
-              </li>
-              <li>
-                <Link to='/'>
-                  <h2>Home</h2>
-                </Link>
-              </li>
-            </ul>
+        {this.state.requestDropdown &&
+          <FriendRequestList
+            close={this.closeDropdown('requestDropdown')} />}
 
-            <MainNav />
+        <div className="flex-row">
+          <ul className='flex-row nav-list'>
+            <li className='flex-row'>
+              <img src={this.props.userPic}
+                    width="25px"
+                    height="25px"
+                    className='circle-thumb' />
+              <Link to={`/users/${this.props.userId}`}>
+                <h2>{this.props.userName}</h2>
+              </Link>
+            </li>
+            <li>
+              <Link to='/'>
+                <h2>Home</h2>
+              </Link>
+            </li>
+          </ul>
 
-            <button onClick={this.handleLogout}
-              className='login-button'>Logout</button>
-            </div>
+          <MainNav open={this.openDropdown}/>
+
+          <button onClick={this.handleLogout}
+            className='login-button'>Logout</button>
+          </div>
 
         </div>
 

@@ -8,11 +8,11 @@ class MainNav extends React.Component {
   render(){
     return (
       <ul className='main-header-nav flex-row'>
-        <li>
+        <li onClick={this.props.open('requestDropdown')}>
           <i className="fa fa-users" aria-hidden="true"></i>
         </li>
         <li>
-          <i class="fa fa-globe" aria-hidden="true"></i>
+          <i className="fa fa-globe" aria-hidden="true"></i>
         </li>
       </ul>
     )
