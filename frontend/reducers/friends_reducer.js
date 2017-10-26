@@ -3,6 +3,7 @@ import { RECEIVE_REQUESTS,
         SEND_REQUEST,
         REMOVE_REQUEST } from '../actions/friends_actions'
 
+
 const FriendsReducer = (state = { received: {}, sent: []}, action) => {
   switch (action.type) {
     case RECEIVE_REQUESTS: {
@@ -16,7 +17,7 @@ const FriendsReducer = (state = { received: {}, sent: []}, action) => {
     }
     case REMOVE_REQUEST: {
       const newState = _.merge({}, state)
-      delete newState[request.id]
+      delete newState.received[action.request.id]
       return newState
     }
     default:

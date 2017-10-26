@@ -15,6 +15,7 @@ class MainHeader extends React.Component {
     this.state = { requestDropdown: false }
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   handleLogout(e) {
@@ -33,6 +34,11 @@ class MainHeader extends React.Component {
 
   openDropdown(type) {
     return () => {this.setState( { [type]: true })}
+  }
+
+  toggleDropdown(type){
+    const value = this.state[type] ? false : true
+    return() => {this.setState( { [type]: value })}
   }
 
 
@@ -68,7 +74,7 @@ class MainHeader extends React.Component {
             </li>
           </ul>
 
-          <MainNav open={this.openDropdown}/>
+          <MainNav toggle={this.toggleDropdown}/>
 
           <button onClick={this.handleLogout}
             className='login-button'>Logout</button>

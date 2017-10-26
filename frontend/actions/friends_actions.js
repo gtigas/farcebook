@@ -1,5 +1,5 @@
 import * as FriendAPIUtil from '../util/friends_api_util';
-import { receiveErrors } from './friends_actions'
+import { receiveErrors } from './session_actions'
 
 export const RECEIVE_REQUESTS = 'RECEIVE_REQUESTS';
 export const SEND_REQUEST = 'SEND_REQUEST';
@@ -36,14 +36,14 @@ export const sendFriendRequest = userId => dispatch => {
 };
 
 export const acceptFriendRequest = userId => dispatch => {
-  return FriendApiUtil.acceptFriendRequest(userId).then(
+  return FriendAPIUtil.acceptFriendRequest(userId).then(
     request => dispatch(removeRequest(request)),
     errors => dispatch(receiveErrors(errors, 'friends'))
   )
 };
 
 export const deleteFriendRequest = userId => dispatch => {
-  return FriendApiUtil.deleteFriendRequest(userId).then(
+  return FriendAPIUtil.deleteFriendRequest(userId).then(
     request => dispatch(removeRequest(request)),
     errors => dispatch(receiveErrors(errors, 'friends'))
   )

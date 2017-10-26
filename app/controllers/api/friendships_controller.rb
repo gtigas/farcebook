@@ -34,7 +34,7 @@ class Api::FriendshipsController < ApplicationController
 
   def reject_friendship
     @request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
-    request.destroy!
+    @request.destroy
     render json: @request
   end
 

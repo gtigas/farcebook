@@ -7,12 +7,12 @@ class FriendRequestListItem extends React.Component {
     this._handleClick = this._handleClick.bind(this)
   }
 
-  _handleClick(button){
+  _handleClick(button, userId){
     const { acceptRequest, denyRequest } = this.props;
     const action = button === 'confirm' ? acceptRequest : denyRequest;
     return (e) => {
       e.preventDefault();
-      action();
+      action(userId);
     }
   }
 
@@ -20,19 +20,19 @@ class FriendRequestListItem extends React.Component {
     const { request } = this.props;
     return(
       <li className='flex-row request-item'>
-        <span>
+        <span className='flex-row'>
           <Link to={`/users/${request.requester_id}`}
           onClick={this.props.close}>
           <img src={request.profile_picture_url}
             height="50px"
             width="50px"
           className='circle-thumb'/>
-            {request.requester_name}
+            <i>{request.requester_name}</i>
           </Link>
         </span>
         <span>
-          <button onClick={this._handleClick('confirm')} >Confirm</button>
-          <button onClick={this._handleClick('deny')}>Delete Request</button>
+          <button onClick={this._handleClick('confirm', request.requester_id)} >Confirm</button>
+          <button onClick={this._handleClick('deny', request.requester_id)}>Delete Request</button>
         </span>
 
       </li>

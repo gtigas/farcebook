@@ -66,7 +66,7 @@
 
 .main-header-nav {
   list-style: none;
-  margin-right: 20px !important;
+  margin-right: 20px;
   li {
     color: rgba(27,40,70, 0.8);
     padding: 0 7px;
@@ -85,13 +85,55 @@
 .request-list {
   background-color: white;
   z-index: 4;
-  right: -430px;
-  top: 100px;
+  right: -347px;
+  top: 76px;
+  width: 400px;
+  border: 1px solid #dfe1e5;
+  box-shadow: 2px 2px 5px #888888;
+  ul {
+    padding: 0px;
+    margin: 0px !important;
+  }
   h3 {
+    border-bottom: 1px solid #dfe1e5;
     color: rgb(27,40,70);
     font-size: 14px;
+    margin: 0;
+    padding: 8px;
   }
   a {
     color: #3d5b99;
+  }
+
+  li{
+    margin: 0;
+    padding: 10px;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  i {
+    font-style: normal;
+    position: absolute;
+    bottom: 25px;
+    font-weight: 600;
+  }
+  button {
+    border: 1px solid #dfe1e5;
+    background-color: #4365af;
+    color: white;
+    height: 25px;
+    margin-right: 7px;
+    font-weight: 600;
+    padding: 5px 9px;
+    font-size: 11px;
+    &:last-of-type {
+      background-color: #f6f7f9;
+      color: #4b4f56;
+    }
+  }
+  p {
+    color: #4b4f56;
+    margin: 10px;
   }
 }

@@ -10,6 +10,7 @@ class FriendRequestList extends React.Component {
     super(props);
   }
 
+
   render(){
     const { requests, acceptRequest, denyRequest, close } = this.props
     const requestList = requests.map( request => {
@@ -20,10 +21,12 @@ class FriendRequestList extends React.Component {
                             close={close}/> )
     });
     return(
-      <div className="pos-abs request-list">
+      <div className="request-list" onFocus={this.onBlur}>
         <h3>Friend Requests</h3>
         <ul>
           {requestList}
+          {(requestList.length === 0) &&
+            <p> No pending friend requests</p>}
         </ul>
       </div>
     )
