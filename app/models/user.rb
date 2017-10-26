@@ -38,11 +38,28 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :friendships,
-    foreign_key: :receiver_id
-
   has_many :sent_friendships,
     foreign_key: :requester_id
+
+  def friendships
+    Friendship.includes(:receiver, :requester).where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')
+  end
+
+  def friends
+    friends = []
+    friendships.each do |friendship|
+      friends << friendship.receiver == self ? friendship.requester : friendship.receiver
+    end
+    friends
+  end
+
+  def friend_ids
+    friend_ids = []
+    friendships.each do |friendship|
+      friend_ids << ( (friendship.receiver == self) ? friendship.requester_id : friendship.receiver_id )
+    end
+    friend_ids
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
