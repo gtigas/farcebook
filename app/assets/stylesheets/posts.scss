@@ -24,11 +24,11 @@
   }
   textarea {
     height: 81px;
-    width: 466px;
+    width: 454px;
     border: none;
     resize: none;
     position: relative;
-    right: -29px;
+    right: -43px;
     box-sizing: border-box;
     padding: 10px;
     padding-top: 15px;
@@ -50,6 +50,11 @@
     padding: 5px 9px;
     font-size: 12px;
     border-radius: 3px;
+  }
+  img {
+    top: 49px;
+    left: 8px;
+    border: 1px solid #dfe1e5;
   }
 }
 

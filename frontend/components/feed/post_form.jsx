@@ -33,6 +33,10 @@ class PostForm extends React.Component {
           Create Post
         </h2>
         <form onSubmit={this.handleSubmit}>
+          <img src={this.props.currentUserPic}
+                width="33px"
+                height="33px"
+                className='circle-thumb pos-abs' />
           <textarea
             onChange={this.handleInput}
             placeholder={this.props.isWallPost ?
