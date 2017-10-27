@@ -5,6 +5,7 @@ import SplashMain from './session/splash_main';
 import MainHeader from './main_header';
 import ProfileMain from './profile/profile_main';
 import Feed from './feed/feed';
+import NotFoundPage from './not-found'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
@@ -13,8 +14,11 @@ const App = () => (
     <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>
       <AuthRoute exact path='/' component={SplashMain}/>
-      <ProtectedRoute exact path='/users/:userId' component={ProfileMain}/>
-      <ProtectedRoute exact path='/feed' component={Feed} />
+      <Switch>
+        <ProtectedRoute exact path='/users/:userId' component={ProfileMain}/>
+        <ProtectedRoute exact path='/feed' component={Feed} />
+        <Route path='*' component={NotFoundPage} />
+      </Switch>
     </main>
   </div>
 );

@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileHeader from './profile_header';
 import ProfileAboutList from './profile-about-side';
 import ProfileFriendsList from './profile_friends';
+import PostForm from './profile_post_form';
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 
@@ -33,13 +34,14 @@ class ProfileMain extends React.Component{
                       fetchUser={this.props.fetchUser}/>
 
         {!this.props.loading ?
-          <main className='profile-body flex-row'>
+          <main className='profile-body'>
             <aside>
               <ProfileAboutList userId={this.props.user.id}/>
               <ProfileFriendsList friends={this.props.friends}/>
             </aside>
-            <section>
-
+            <section className='flex-col profile-feed'>
+              <PostForm isWallPost={this.props.isCurrentUser ? false : true}
+                        receiver={this.props.user} />
             </section>
           </main> : null}
       </div>
@@ -54,6 +56,7 @@ const mapStateToProps = (state, ownProps) => {
     user,
     friends,
     loading: state.ui.loading,
+    isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId)
   })
 };
 

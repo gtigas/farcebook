@@ -17,7 +17,7 @@ class PostForm extends React.Component {
     e.preventDefault();
     const post = {
       body: this.state.body,
-      receiver_id: this.props.receiverId
+      receiver_id: this.props.receiver.id
     }
     this.props.createPost(post).then(
       this.setState({ body: "" })
@@ -35,7 +35,9 @@ class PostForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleInput}
-            placeholder="What's on your mind?"
+            placeholder={this.props.isWallPost ?
+              `Write something to ${this.props.receiver.firstName}...` :
+              "What's on your mind?"}
             value={this.state.body}>
           </textarea>
           <div>

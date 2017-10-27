@@ -1,6 +1,6 @@
  #profile-header {
   position: relative;
-  width: 950px;
+  width: 850px;
   height: 360px;
   background-color: white;
   margin: 0 auto;
@@ -11,6 +11,7 @@
   img {
     overflow: hidden;
     width: 100%;
+    min-height: 100%;
   }
   >h2  {
     font-weight: 300;
@@ -35,7 +36,7 @@
   align-items: center;
   ul {
     position: absolute;
-    right: 350px;
+    right: 250px;
     margin: 0;
     display: flex;
     flex-direction: row;
@@ -188,9 +189,12 @@
 
 
 .profile-body {
-  width: 950px;
+  width: 850px;
   margin: 0 auto;
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 #upload-profile {
@@ -272,6 +276,12 @@
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+}
+
+.profile-feed {
+  justify-content: flex-start;
+  height: 1000px;
+  margin-left: 27px;
 }
 
 #profile-about > h1 {

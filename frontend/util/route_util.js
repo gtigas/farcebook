@@ -2,6 +2,10 @@ import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+}
+
 
 const Auth = ( { component: Component, path, loggedIn, exact }) => (
   <Route exact={exact} path={path} render={ (props) => (
@@ -14,13 +18,16 @@ const Auth = ( { component: Component, path, loggedIn, exact }) => (
 )
 
 const Protected = ( { component: Component, path, loggedIn }) => (
-  <Route path={path} render={ (props) => (
-    loggedIn ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to="/" />
+  <Route path={path} render={ (props) => {
+    scrollToTop();
+    return (
+      loggedIn ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
     )
-  )} />
+  }} />
 )
 
 
