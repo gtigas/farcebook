@@ -1,5 +1,5 @@
 @posts.each do |post|
   json.set! post.id do
-    json.extract! post, :id, :body, :author_id, :receiver_id
+    json.partial! 'api/posts/post', post: post
   end
 end

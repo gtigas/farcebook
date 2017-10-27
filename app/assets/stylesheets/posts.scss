@@ -31,6 +31,7 @@
     right: -29px;
     box-sizing: border-box;
     padding: 10px;
+    padding-top: 15px;
     font-size: 14px;
     &:focus{
       outline:none;
@@ -45,8 +46,13 @@
     color: white;
     height: 25px;
     margin-right: 7px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 5px 9px;
     font-size: 12px;
+    border-radius: 3px;
   }
+}
+
+.post-show {
+
 }

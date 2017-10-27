@@ -5,15 +5,9 @@ json.request do
 end
 
 json.receiver do
-  json.id @request.receiver.id
-  json.profile_picture_url @request.receiver.profile_picture.url
-  json.fullName [@request.receiver.first_name.capitalize,@request.receiver.last_name.capitalize].join(" ")
-  json.friend_ids @request.receiver.friend_ids
+  json.partial! 'api/users/user', user: @receiver
 end
 
 json.requester do
-  json.id @request.requester.id
-  json.profile_picture_url @request.requester.profile_picture.url
-  json.fullName [@request.requester.first_name.capitalize,@request.requester.last_name.capitalize].join(" ")
-  json.friend_ids @request.requester.friend_ids
+  json.partial! 'api/users/user', user: @requester
 end

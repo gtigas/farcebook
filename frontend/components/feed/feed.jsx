@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions'
 import { Link } from 'react-router-dom';
-import PostForm from './post_form'
+import PostForm from './feed_post_form'
 import _ from 'lodash';
 
 class Feed extends React.Component{

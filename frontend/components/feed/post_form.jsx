@@ -15,13 +15,20 @@ class PostForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
+    const post = {
+      body: this.state.body,
+      receiver_id: this.props.receiverId
+    }
+    this.props.createPost(post).then(
+      this.setState({ body: "" })
+    );
   }
 
   render(){
     return (
       <div className='post-form'>
         <h2>
-          <i class="fa fa-pencil" aria-hidden="true"></i>
+          <i className="fa fa-pencil" aria-hidden="true"></i>
           &nbsp;
           Create Post
         </h2>
