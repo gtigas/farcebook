@@ -7,6 +7,7 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.where(receiver_id: params[:user_id])
+                  .order(updated_at: :asc)
   end
 
   def create

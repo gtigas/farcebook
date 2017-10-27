@@ -13,8 +13,8 @@ const App = () => (
     <AuthRoute exact path='/' component={SplashHeader}/>
     <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>
-      <AuthRoute exact path='/' component={SplashMain}/>
       <Switch>
+        <AuthRoute exact path='/' component={SplashMain}/>
         <ProtectedRoute exact path='/users/:userId' component={ProfileMain}/>
         <ProtectedRoute exact path='/feed' component={Feed} />
         <Route path='*' component={NotFoundPage} />

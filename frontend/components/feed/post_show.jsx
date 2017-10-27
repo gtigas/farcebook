@@ -8,18 +8,18 @@ class PostShow extends React.Component {
 
 
   render(){
-    // const { body, updated_at } = this.props.post;
-    // const { receiver, requester, isWallPost } = this.props;
+    const { body, updated_at } = this.props.post;
+    const { receiver, author, isWallPost } = this.props;
     return (
       <div className='post-show'>
         <div className='flex-row'>
-          <div id='test'></div>
+          <img src={author.profile_picture_url}></img>
           <div>
-            <h2>Author Name</h2>
+            <h2>{author.fullName}</h2>
             <i>October 2 at 8:45pm</i>
           </div>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        <p>{body}</p>
         <ul className='flex-row'>
           <li>Like</li>
           <li>Comment</li>
@@ -31,5 +31,19 @@ class PostShow extends React.Component {
 
 }
 
+const mapStateToProps = (state, ownProps) => {
+  const post = state.entities.posts[ownProps.postId]
+  return {
+    post,
+    receiver: state.entities.users[post.receiver_id],
+    author: state.entities.users[post.author_id],
+    isWallPost: post.receiver_id === post.author_id,
+  }
+}
 
-export default PostShow;
+const mapDispatchToProps = dispatch => ({
+
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostShow);
