@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { convertTime } from '../../util/profile_util'
 
 class PostShow extends React.Component {
   constructor(props){
@@ -45,7 +46,7 @@ class PostShow extends React.Component {
             </Link> }
 
             <br></br>
-            <i>October 2 at 8:45pm</i>
+            <i>{convertTime(updated_at)}</i>
           </div>
         </div>
         <p>{body}</p>

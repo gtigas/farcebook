@@ -8,8 +8,22 @@ import _ from 'lodash'
 class FriendRequestList extends React.Component {
   constructor(props){
     super(props);
+    this.handleClickOutside = this.handleClickOutside.bind(this)
   }
 
+  handleClickOutside(e) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)){
+      this.props.close();
+    }
+  };
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
 
   render(){
     const { requests, acceptRequest, denyRequest, close } = this.props
@@ -18,10 +32,10 @@ class FriendRequestList extends React.Component {
                             acceptRequest={acceptRequest}
                             denyRequest={denyRequest}
                             key={request.id}
-                            close={close}/> )
+                            /> )
     });
     return(
-      <div className="request-list pos-abs" onFocus={this.onBlur}>
+      <div className="request-list pos-abs" ref={ (node) => this.wrapperRef=node}>
         <h3>Friend Requests</h3>
         <ul>
           {requestList}

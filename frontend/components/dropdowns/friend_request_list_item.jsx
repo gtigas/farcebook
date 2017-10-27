@@ -21,8 +21,7 @@ class FriendRequestListItem extends React.Component {
     return(
       <li className='flex-row request-item'>
         <span className='flex-row'>
-          <Link to={`/users/${request.requester_id}`}
-          onClick={this.props.close}>
+          <Link to={`/users/${request.requester_id}`}>
           <img src={request.profile_picture_url}
             height="50px"
             width="50px"

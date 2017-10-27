@@ -66,3 +66,20 @@ export const requestPending = (state, user) => {
                                   });
   return (hasSentRequest || hasReceivedRequest)
 }
+
+export const convertTime = (time) => {
+  const timeObj = new Date(time)
+  const month = timeObj.toLocaleString('en-us', { month: "long" })
+  const date = timeObj.getDay()
+  const hours = timeObj.getHours()
+  const hh = hours > 12 ? hours - 12 : hours
+  const mm = "0" + timeObj.getMinutes()
+  const timeOffset = hours >= 12 ? 'PM' : 'AM'
+
+  return month + " " +
+          date + " at " +
+          hh + ":" +
+          mm.slice(-2) + " " +
+          timeOffset
+
+}
