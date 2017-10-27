@@ -1,8 +1,12 @@
 class Api::PostsController < ApplicationController
   before_action :ensure_logged_in
 
+  def feed
+
+  end
+
   def index
-    @posts = Post.where(receiver_id: current_user.id)
+    @posts = Post.where(receiver_id: params[:user_id])
   end
 
   def create

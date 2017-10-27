@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :update, :destroy]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
-    get '/feed', to: 'users#feed'
+    get '/feed', to: 'posts#feed'
   end
 end

@@ -19,8 +19,8 @@ const removePost = post => ({
   post
 });
 
-export const fetchPosts = () => dispatch => {
-  return PostAPIUtil.fetchPosts().then(
+export const fetchPosts = (userId) => dispatch => {
+  return PostAPIUtil.fetchPosts(userId).then(
     posts => dispatch(receivePosts(posts)),
     errors => dispatch(receiveErrors(errors, 'posts'))
   )

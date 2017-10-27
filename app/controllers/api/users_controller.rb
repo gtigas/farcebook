@@ -1,13 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :ensure_logged_in, only: [:index, :show, :update]
 
-  def feed
-    @users = current_user.friends
-
-
-    render :feed
-  end
-
   def index
     @users = User.all
   end
