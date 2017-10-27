@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/posts_actions'
 import { requestPending } from '../../util/profile_util'
+import { sendFriendRequest } from '../../actions/friends_actions'
 
 class ProfileMain extends React.Component{
   constructor(props){
@@ -40,7 +41,7 @@ class ProfileMain extends React.Component{
         <PostShow key={id} postId={id} />
       )
     });
-    const { notFriends, loading,
+    const { notFriends, loading, addFriend,
             isCurrentUser, user, requestPending} = this.props;
     return (
       <div>
@@ -52,7 +53,9 @@ class ProfileMain extends React.Component{
             <div className='flex-row'>
               <p>To post on their wall, send them a friend request!</p>
               {requestPending ? null :
-                <button id='already-friends'>Add Friend</button> }
+                <button id='already-friends'
+                    className='hover'
+                  onClick={addFriend(user.id)}>Add Friend</button> }
             </div>
           </div> }
         { !this.props.loading ?
@@ -91,6 +94,7 @@ const mapDispatchToProps = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchPosts: userId => dispatch(fetchPosts(userId)),
+  addFriend: userId => () => dispatch(sendFriendRequest(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileMain);

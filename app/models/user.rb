@@ -40,19 +40,23 @@ class User < ApplicationRecord
 
   has_many :sent_requests,
     foreign_key: :requester_id,
-    class_name: 'Friendship'
+    class_name: 'Friendship',
+    dependent: :destroy
 
   has_many :received_requests,
     foreign_key: :receiver_id,
-    class_name: 'Friendship'
+    class_name: 'Friendship',
+    dependent: :destroy
 
   has_many :authored_posts,
     foreign_key: :author_id,
-    class_name: 'Post'
+    class_name: 'Post',
+    dependent: :destroy
 
   has_many :wall_posts,
-    foreign_key: :receiver_id, 
-    class_name: 'Post'
+    foreign_key: :receiver_id,
+    class_name: 'Post',
+    dependent: :destroy
 
   def friendships
     Friendship.includes(:receiver, :requester).where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')

@@ -33,6 +33,7 @@ gem  'annotate'
 gem "paperclip"
 gem 'aws-sdk', '2.10.47'
 gem 'figaro'
+gem 'faker'
 
 
 # Use Capistrano for deployment
