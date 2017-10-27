@@ -25,12 +25,13 @@ class ProfileMain extends React.Component{
   }
 
   componentWillReceiveProps(newProps){
-    if (this.props.user.id !== parseInt(newProps.match.params.userId)) {
-      this.props.fetchUser(newProps.match.params.userId)
+    const userId = newProps.match.params.userId
+    if (this.props.user.id !== parseInt(userId)) {
+      this.props.fetchUser(userId);
+      this.props.fetchPosts(userId);
+
     }
   }
-
-
 
   render(){
     const postList = this.props.postIds.map( id => {

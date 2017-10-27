@@ -23,9 +23,10 @@ const UsersReducer = (state = {}, action) => {
       return _.mergeWith({}, state , newUsers, customizer);
     }
     case RECEIVE_POST: {
-      let author = state[action.post.author_id]
-      author.postIds.unshift(action.post.id)
-      return _.merge({}, state, { [author.id]: author})
+      let receiver = Object.assign({}, state[action.post.receiver_id])
+      receiver.postIds = receiver.postIds.slice();
+      receiver.postIds.unshift(action.post.id);
+      return _.merge({}, state, { [receiver.id]: receiver})
     }
     default:
       return state;

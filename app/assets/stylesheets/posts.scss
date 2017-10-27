@@ -82,9 +82,14 @@
 
   }
   h2 {
+    margin: 0 6px 0 0;
+    display: inline;
     font-size: 15px;
     font-weight: 600;
     color: #4365af;
+    &:last-of-type {
+      margin-left: 6px;
+    }
   }
   p {
     padding: 0 16px;
@@ -99,5 +104,8 @@
     li {
       padding: 0 8px;
     }
+  }
+  a {
+    text-decoration: none;
   }
 }
