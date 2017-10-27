@@ -1,3 +1,5 @@
+debugger
+
 json.request do
   json.id @request.id
   json.requester @request.requester_id
@@ -5,9 +7,9 @@ json.request do
 end
 
 json.receiver do
-  json.partial! 'api/users/user', user: @receiver
+  json.partial! 'api/users/user', user: @request.receiver
 end
 
 json.requester do
-  json.partial! 'api/users/user', user: @requester
+  json.partial! 'api/users/user', user: @request.requester
 end

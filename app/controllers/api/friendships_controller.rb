@@ -26,7 +26,7 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def accept_friendship
-    @request = Friendship.where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
+    @request = Friendship.includes(:requester, :receiver).where(requester_id: params[:user_id], receiver_id: current_user.id)[0]
     @request.status = 'ACCEPTED'
     @request.save!
     render :remove

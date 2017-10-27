@@ -39,14 +39,14 @@ class ProfileMain extends React.Component{
         <PostShow key={id} postId={id} />
       )
     });
-    const { notFriends, loading, isCurrentUser } = this.props;
+    const { notFriends, loading, isCurrentUser, user} = this.props;
     return (
       <div>
         <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
         { !loading && notFriends && !isCurrentUser &&
           <div className='not-friends'>
-            <span>DO YOU KNOW BARACK?</span>
+            <span>DO YOU KNOW {user.firstName.toUpperCase()}</span>
             <div className='flex-row'>
               <p>To post on their wall, send them a friend request!</p>
               <button id='already-friends'>Add Friend</button>
