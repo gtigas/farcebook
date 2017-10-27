@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
+# User.destroy_all
 kermit = User.create!(email: 'kermit@TheMuppetShow.com', first_name: 'Kermit', last_name: 'The Frog', password:'asdf123', birth_date: Faker::Date.between(50.years.ago, Date.today))
 kermit.update(profile_picture: File.open("#{Rails.root}/app/assets/images/kermit.jpg"))
 miss_piggy = User.create!(email: 'miss.piggy@TheMuppetShow.com', first_name: 'Miss', last_name: 'Piggy', password:'asdf123', birth_date: Faker::Date.between(50.years.ago, Date.today))
