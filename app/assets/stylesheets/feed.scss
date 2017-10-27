@@ -1,11 +1,21 @@
-.feed-body {
+.main-center {
   background: white;
   height: 800px;
-  border: 1px solid #dfe1e5;
-  justify-content: flex-start !important;
-  align-items: center;
+  width: 500px;
+  margin-top: 15px;
 }
 
+.main-body {
+  width: 950px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#main-container {
+  background-color: #edf0f5;
+  height: 2000px;
+}
 
 .feed-body > ul {
   list-style-position: inside;
@@ -15,4 +25,20 @@
 .feed-body > h2 {
   font-size: 20px !important;
   position: static !important ;
+}
+
+.main-left {
+  width: 195px;
+  height: 1000px;
+  background-color: pink;
+  box-sizing: border-box;
+  margin-right: 15px;
+}
+
+.main-right {
+  margin-left: 15px;
+  width: 300px;
+  height: 1000px;
+  background-color: red;
+  box-sizing: border-box;
 }
