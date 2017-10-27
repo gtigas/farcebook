@@ -7,6 +7,7 @@ import PostShow from '../feed/post_show'
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/posts_actions'
+import { requestPending } from '../../util/profile_util'
 
 class ProfileMain extends React.Component{
   constructor(props){
@@ -39,7 +40,8 @@ class ProfileMain extends React.Component{
         <PostShow key={id} postId={id} />
       )
     });
-    const { notFriends, loading, isCurrentUser, user} = this.props;
+    const { notFriends, loading,
+            isCurrentUser, user, requestPending} = this.props;
     return (
       <div>
         <ProfileHeader userId={this.props.match.params.userId}
@@ -49,7 +51,8 @@ class ProfileMain extends React.Component{
             <span>DO YOU KNOW {user.firstName.toUpperCase()}</span>
             <div className='flex-row'>
               <p>To post on their wall, send them a friend request!</p>
-              <button id='already-friends'>Add Friend</button>
+              {requestPending ? null :
+                <button id='already-friends'>Add Friend</button> }
             </div>
           </div> }
         { !this.props.loading ?
@@ -79,7 +82,8 @@ const mapStateToProps = (state, ownProps) => {
     postIds,
     loading: state.ui.loading,
     isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId),
-    notFriends: !user.friend_ids.includes(state.session.currentUser.id)
+    notFriends: !user.friend_ids.includes(state.session.currentUser.id),
+    requestPending: requestPending(state, user.id),
   })
 };
 

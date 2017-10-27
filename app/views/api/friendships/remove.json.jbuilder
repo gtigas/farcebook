@@ -1,5 +1,3 @@
-debugger
-
 json.request do
   json.id @request.id
   json.requester @request.requester_id
