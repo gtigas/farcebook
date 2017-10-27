@@ -45,6 +45,6 @@ Friendship.create!(requester_id: gonzo.id, receiver_id: honeydew.id, status: 'AC
 
 muppet_ids = (kermit.id..statler.id).to_a
 
-20.times do
+30.times do
   Post.create!(author_id:muppet_ids.sample, receiver_id:muppet_ids.sample, body: Faker::TheFreshPrinceOfBelAir.quote)
 end

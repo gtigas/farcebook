@@ -47,11 +47,15 @@ class MainHeader extends React.Component {
     return (
       <header className='main-header flex-row'>
         <div className='main-nav'>
-          <Link to='/feed' >
-            <div id='pseudo-logo'>
-              <h1>f</h1>
-            </div>
-          </Link>
+          <div className='flex-row'>
+            <Link to='/feed' >
+              <div id='pseudo-logo'>
+                <h1>f</h1>
+              </div>
+            </Link>
+            <input id='search-bar' placeholder='Search'></input>
+          </div>
+
 
         {this.state.requestDropdown &&
           <FriendRequestList
