@@ -3,7 +3,8 @@ import PostForm from '../feed/post_form'
 import { createPost } from '../../actions/posts_actions'
 
 const mapStateToProps = state => ({
-  currentUserPic: state.session.currentUser.profile_picture_url
+  currentUserPic: state.session.currentUser.profile_picture_url,
+  currentUserId: state.session.currentUser.id
 })
 
 const mapDispatchToProps = dispatch => ({

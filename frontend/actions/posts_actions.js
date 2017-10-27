@@ -9,14 +9,15 @@ const receivePosts = posts => ({
   posts
 })
 
-const receivePost = post => ({
+const receivePost = payload => ({
   type:RECEIVE_POST,
-  post
+  post: payload.post
 })
 
-const removePost = post => ({
+const removePost = payload => ({
   type:REMOVE_POST,
-  post
+  post: payload.post,
+  receiver_posts: payload.receiver_posts,
 });
 
 export const fetchPosts = (userId) => dispatch => {

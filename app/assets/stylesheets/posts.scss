@@ -59,11 +59,15 @@
 }
 
 .post-show {
+  position: relative;
   background-color: white;
   width: 500px;
   margin-top: 15px;
   border-radius: 4px;
   border: 1px solid #dfe1e5;
+  &:first-of-type {
+    margin-top: 0;
+  }
   >div {
     padding: 11px;
   }
@@ -107,5 +111,32 @@
   }
   a {
     text-decoration: none;
+  }
+  h3 {
+    font-size: 15px;
+    right: 20px;
+    top: -5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+#post-dropdown {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  list-style: none;
+  border-radius: 4px;
+  border: 1px solid #dfe1e5;
+  font-size: 11px;
+  right: 25px;
+  top: 25px;
+  li {
+    padding: 7px 9px;
+    &:hover {
+      background-color: lightgrey;
+      cursor: pointer;
+    }
   }
 }

@@ -25,6 +25,12 @@ class PostForm extends React.Component {
   }
 
   render(){
+    const currentProfileFriends = this.props.receiver.friend_ids
+    const currentUserId = this.props.currentUserId
+    if (!currentProfileFriends.includes(currentUserId)
+          && this.props.isWallPost) {
+      return null 
+    }
     return (
       <div className='post-form'>
         <h2>
