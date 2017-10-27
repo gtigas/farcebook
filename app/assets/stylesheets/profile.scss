@@ -323,7 +323,37 @@
   width: 160px;
 }
 
-
 #add-friend:hover {
   cursor: pointer;
+}
+
+.not-friends {
+  padding: 0px;
+  box-sizing: border-box;
+  width: 850px;
+  height: 80px;
+  border: 1px solid #dfe1e5;
+  border-radius: 4px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 15px;
+  div {
+   justify-content: space-between;
+   p {
+     padding: 12px 10px;
+     margin: 0;
+   }
+  }
+  span {
+    display: block;
+    padding: 10px 13px 8px 13px;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: #f6f7f9;
+    border-bottom: 1px solid #dfe1e5;
+  }
+  button {
+    position: static !important;
+    margin-right: 10px;
+  }
 }

@@ -39,12 +39,20 @@ class ProfileMain extends React.Component{
         <PostShow key={id} postId={id} />
       )
     });
+    const { notFriends, loading, isCurrentUser } = this.props;
     return (
       <div>
         <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
-
-        {!this.props.loading ?
+        { !loading && notFriends && !isCurrentUser &&
+          <div className='not-friends'>
+            <span>DO YOU KNOW BARACK?</span>
+            <div className='flex-row'>
+              <p>To post on their wall, send them a friend request!</p>
+              <button id='already-friends'>Add Friend</button>
+            </div>
+          </div> }
+        { !this.props.loading ?
           <main className='profile-body'>
             <aside>
               <ProfileAboutList userId={this.props.user.id}/>
@@ -70,7 +78,8 @@ const mapStateToProps = (state, ownProps) => {
     friends,
     postIds,
     loading: state.ui.loading,
-    isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId)
+    isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId),
+    notFriends: !user.friend_ids.includes(state.session.currentUser.id)
   })
 };
 
