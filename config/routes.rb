@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     resource :session, only: [:create, :destroy]
     resources :posts, only: [:index, :create, :update, :destroy]
+    resources :comments, only: [:create, :update, :destroy]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
     get '/feed', to: 'posts#feed'
