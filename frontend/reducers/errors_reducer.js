@@ -1,7 +1,7 @@
 import { RECEIVE_ERRORS, RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import _ from 'lodash';
 
-const defaultState = { login:[], signup:[] }
+const defaultState = { login:[], signup:[], posts: [] }
 
 
 const ErrorsReducer = (state = defaultState, action) => {
@@ -14,7 +14,7 @@ const ErrorsReducer = (state = defaultState, action) => {
       return _.merge({}, state, { [action.errorType]: errors })
     }
     default:
-      return state;
+      return defaultState;
   }
 };
 

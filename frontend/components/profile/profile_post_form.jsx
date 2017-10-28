@@ -4,7 +4,8 @@ import { createPost } from '../../actions/posts_actions'
 
 const mapStateToProps = state => ({
   currentUserPic: state.session.currentUser.profile_picture_url,
-  currentUserId: state.session.currentUser.id
+  currentUserId: state.session.currentUser.id,
+  errors: state.errors.posts
 })
 
 const mapDispatchToProps = dispatch => ({

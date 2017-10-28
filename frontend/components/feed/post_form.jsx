@@ -7,6 +7,8 @@ class PostForm extends React.Component {
     this.state = { body: "" };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.errorShow = this.errorShow.bind(this);
+    this._hasErrors = this._hasErrors.bind(this)
   }
 
   handleInput(e){
@@ -24,15 +26,30 @@ class PostForm extends React.Component {
     );
   }
 
+  errorShow(){
+    if (this._hasErrors()) {
+      return (
+        <div id='post-errors'>
+          <h5>{this.props.errors[0]}</h5>
+        </div>
+      )
+    }
+  }
+
+  _hasErrors(){
+    return (this.props.errors.length > 0);
+  }
+
   render(){
     const currentProfileFriends = this.props.receiver.friend_ids
     const currentUserId = this.props.currentUserId
     if (!currentProfileFriends.includes(currentUserId)
           && this.props.isWallPost) {
-      return null 
+      return null
     }
     return (
       <div className='post-form'>
+        {this.errorShow()}
         <h2>
           <i className="fa fa-pencil" aria-hidden="true"></i>
           &nbsp;
