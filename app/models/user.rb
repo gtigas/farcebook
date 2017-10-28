@@ -58,6 +58,11 @@ class User < ApplicationRecord
     class_name: 'Post',
     dependent: :destroy
 
+  has_many :authored_comments,
+    foreign_key: :author_id,
+    class_name: 'Comment',
+    dependent: :destroy
+
   def friendships
     Friendship.includes(:receiver, :requester).where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')
   end

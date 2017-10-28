@@ -21,7 +21,7 @@ class PostForm extends React.Component {
       body: this.state.body,
       receiver_id: this.props.receiver.id
     }
-    this.props.createPost(post).then(
+    this.props.createPost(post).then( () =>
       this.setState({ body: "" })
     );
   }
