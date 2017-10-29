@@ -5,6 +5,7 @@ import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
 import CommentForm from './comment_form'
+import CommentShow from './comment_show'
 
 class PostShow extends React.Component {
   constructor(props){
@@ -34,10 +35,13 @@ class PostShow extends React.Component {
 
   render(){
     const { body, updated_at, id } = this.props.post;
-    const { receiver, author, isWallPost, currentUserId } = this.props;
+    const { receiver, author, isWallPost, currentUserId, comments } = this.props;
     if (this.state.loading) {
       return null
     }
+    const commentList = comments.map( comment => {
+      return <CommentShow id={comment.id} commentId={comment.id}/>
+    })
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
     return (
@@ -69,7 +73,8 @@ class PostShow extends React.Component {
           <li>Like</li>
           <li>Comment</li>
         </ul>
-        <div className='comment-area'>
+        <div className='comment-area flex-col'>
+          {commentList}
           <CommentForm postId={id}/>
         </div>
       </div>
@@ -80,8 +85,12 @@ class PostShow extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const post = state.entities.posts[ownProps.postId] || {}
+  const comments = post.comment_ids.map( id => {
+    return state.entities.comments[id]
+  })
   return {
     post,
+    comments,
     receiver: state.entities.users[post.receiver_id],
     author: state.entities.users[post.author_id],
     isWallPost: post.receiver_id !== post.author_id,

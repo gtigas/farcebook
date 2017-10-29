@@ -7,7 +7,12 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.where(receiver_id: params[:user_id])
+                  .includes(:comments)
                   .order(updated_at: :asc)
+    @comments = []
+    @posts.each do |post|
+      @comments.concat(post.comments)
+    end
   end
 
   def create

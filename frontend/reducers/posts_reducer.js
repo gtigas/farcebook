@@ -19,7 +19,7 @@ const PostsReducer = (state = {}, action) => {
     case RECEIVE_COMMENT: {
       let post = Object.assign({}, state[action.comment.post_id])
       post.comment_ids = post.comment_ids.slice()
-      post.comment_ids.unshift(action.comment.id)
+      post.comment_ids.push(action.comment.id)
       return _.merge({}, state, { [post.id]: post})
     }
     case REMOVE_COMMENT: {

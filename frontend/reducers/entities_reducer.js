@@ -8,7 +8,7 @@ const EntitiesReducer = combineReducers({
   users: UsersReducer,
   friendRequests: FriendsReducer,
   posts: PostsReducer,
-  commments: CommentsReducer,
+  comments: CommentsReducer,
 });
 
 export default EntitiesReducer;
