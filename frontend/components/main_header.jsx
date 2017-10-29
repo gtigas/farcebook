@@ -3,6 +3,7 @@ import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/user_actions';
+import { fetchFeed } from '../actions/posts_actions';
 import { fetchFriendRequests } from '../actions/friends_actions'
 import FriendRequestList from './dropdowns/friend_requests'
 import MainNav from './main-nav'
@@ -24,9 +25,7 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUsers().then( ()=>{
-      this.props.fetchRequests();
-    });
+    this.props.fetchFeed();
   }
 
   closeDropdown(type) {
@@ -105,6 +104,7 @@ const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchRequests: () => dispatch(fetchFriendRequests()),
+  fetchFeed: () => dispatch(fetchFeed()),
 });
 
 

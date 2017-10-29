@@ -2,7 +2,18 @@ class Api::PostsController < ApplicationController
   before_action :ensure_logged_in
 
   def feed
-
+    @users = current_user.friends
+    @current_user = current_user
+    @posts = @users.inject([]) do |posts, user|
+      posts.concat(user.authored_posts)
+      posts.concat(user.wall_posts)
+    end
+    @posts.concat(@current_user.authored_posts)
+    @posts.concat(@current_user.wall_posts)
+    @posts = @posts.uniq
+    @comments = @posts.inject([]) do |comments, post|
+      comments.concat(post.comments)
+    end
   end
 
   def index

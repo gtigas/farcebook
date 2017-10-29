@@ -10,7 +10,7 @@ const CommentShow = ({ comment, author }) => {
       <img className='circle-thumb' src={author.profile_picture_url}></img>
       <div className='flex-col'>
         <p>
-          <Link to={`/users/${author.id}`} ><h2>{author.fullName}</h2></Link>
+          <Link to={`/users/${author.id}`} ><strong>{author.fullName}</strong></Link>
           {comment.body}
         </p>
         <div className='comment-show-bottom flex-row'>

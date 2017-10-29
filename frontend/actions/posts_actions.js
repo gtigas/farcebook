@@ -4,6 +4,7 @@ import { receiveErrors } from './session_actions'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
+export const RECEIVE_FEED = 'RECEIVE_FEED';
 
 const receivePosts = payload => {
   return ({
@@ -11,6 +12,15 @@ const receivePosts = payload => {
     posts: payload.posts,
     comments: payload.comments,
   })
+}
+
+const receiveFeed = ({ users, posts, comments}) => {
+  return {
+    type: RECEIVE_FEED,
+    users,
+    posts,
+    comments,
+  }
 }
 
 const receivePost = payload => ({
@@ -23,6 +33,13 @@ const removePost = payload => ({
   post: payload.post,
   receiver_posts: payload.receiver_posts,
 });
+
+export const fetchFeed = () => dispatch => {
+  return PostAPIUtil.fetchFeed().then(
+    payload => dispatch(receiveFeed(payload)),
+    errors => dispatch(receiveErrors(errors, 'posts'))
+  )
+}
 
 export const fetchPosts = (userId) => dispatch => {
   return PostAPIUtil.fetchPosts(userId).then(

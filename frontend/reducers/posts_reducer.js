@@ -1,4 +1,5 @@
-import { RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST } from '../actions/posts_actions'
+import { RECEIVE_POSTS, RECEIVE_POST,
+        REMOVE_POST, RECEIVE_FEED } from '../actions/posts_actions'
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import _ from 'lodash'
@@ -7,6 +8,9 @@ const PostsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_POSTS: {
       return action.posts;
+    }
+    case RECEIVE_FEED: {
+      return action.posts
     }
     case RECEIVE_POST: {
       return _.merge(state, { [action.post.id]: action.post })

@@ -17,8 +17,8 @@
     width: 36px;
     margin-top: 7px;
   }
-  h2 {
-    margin: 0 6px 0 0;
+  strong {
+    margin: 0 3px 0 0;
     display: inline;
     font-size: 13px;
     font-weight: 600;
@@ -27,7 +27,15 @@
   p {
     font-size: 13px;
     padding-left: 3px;
+    padding-bottom: 1px;
     margin-bottom: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
   }
 }
 

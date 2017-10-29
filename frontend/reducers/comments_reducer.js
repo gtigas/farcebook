@@ -1,11 +1,14 @@
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_POSTS } from '../actions/posts_actions'
+import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
 
 const CommentsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENT: {
       return _.merge({}, state, { [action.comment.id]: action.comment })
+    }
+    case RECEIVE_FEED: {
+      return action.comments
     }
     case REMOVE_COMMENT: {
       const newState = _.merge({}, state)

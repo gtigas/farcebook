@@ -41,6 +41,7 @@ class PostForm extends React.Component {
   }
 
   render(){
+    if (this.props.loading) return null;
     const currentProfileFriends = this.props.receiver.friend_ids
     const currentUserId = this.props.currentUserId
     if (!currentProfileFriends.includes(currentUserId)
