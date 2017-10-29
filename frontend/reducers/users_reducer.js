@@ -1,6 +1,7 @@
 import { RECEIVE_USERS, RECEIVE_USER } from '../actions/user_actions';
 import { REMOVE_REQUEST } from '../actions/friends_actions'
 import { RECEIVE_POST, REMOVE_POST } from '../actions/posts_actions'
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import _ from 'lodash';
 
 const customizer = (objValue, srcValue) => {
@@ -33,6 +34,11 @@ const UsersReducer = (state = {}, action) => {
       receiver.postIds = action.receiver_posts.slice()
       const newState = _.mergeWith({}, state, { [receiver.id]: receiver}, customizer)
       return newState
+    }
+    case RECEIVE_CURRENT_USER: {
+      if (action.user === null) {
+        return {};
+      }
     }
     default:
       return state;
