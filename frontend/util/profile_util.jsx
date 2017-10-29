@@ -1,5 +1,5 @@
 import React from 'react';
-
+import moment from 'moment';
 export class FriendButton extends React.Component {
   constructor(props){
     super(props)
@@ -68,18 +68,15 @@ export const requestPending = (state, user) => {
 }
 
 export const convertTime = (time) => {
-  const timeObj = new Date(time)
-  const month = timeObj.toLocaleString('en-us', { month: "long" })
-  const date = timeObj.getDay()
-  const hours = timeObj.getHours()
-  const hh = hours > 12 ? hours - 12 : hours
-  const mm = "0" + timeObj.getMinutes()
-  const timeOffset = hours >= 12 ? 'PM' : 'AM'
-
-  return month + " " +
-          date + " at " +
-          hh + ":" +
-          mm.slice(-2) + " " +
-          timeOffset
-
+  const postTime = moment(time);
+  const now = moment();
+  const yesterday = moment().subtract(24,'hours');
+  const startOfYesterday = moment().subtract(24,'hours').startOf('day');
+  if (postTime.isAfter(yesterday)) {
+    return postTime.fromNow(true);
+  } else if (postTime.isAfter(startOfYesterday)) {
+    return postTime.format('[Yesterday] [at] h:mma');
+  } else {
+    return postTime.format('MMMM D [at] h:mma');
+  }
 }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { login, logout } from './actions/session_actions'
 import configureStore from './store/store'
 import Root from './components/root'
-import  { createComment, updateComment, deleteComment } from './actions/comments_actions'
+import moment from 'moment'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.dispatch = store.dispatch;
-  window.createComment = createComment;
-  window.updateComment = updateComment;
-  window.deleteComment = deleteComment;
-
+  window.moment = moment
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

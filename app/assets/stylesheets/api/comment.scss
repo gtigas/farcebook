@@ -62,6 +62,17 @@
   }
 }
 
+#comment-time:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#comment-time {
+  >i {
+    padding: 0;
+  }
+}
+
 .comment-area {
   padding-top: 5px !important;
   background-color: #f6f7f9;

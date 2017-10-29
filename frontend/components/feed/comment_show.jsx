@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 
 const CommentShow = ({ comment, author }) => {
+  const date = moment(comment.updated_at);
   return(
     <div className='flex-row' id='comment-show'>
       <img className='circle-thumb' src={author.profile_picture_url}></img>
@@ -17,7 +18,9 @@ const CommentShow = ({ comment, author }) => {
             <li>Like</li>
             <li>Reply</li>
           </ul>
-          <i alt='asdf'>{moment(comment.updated_at).fromNow(true)}</i>
+          <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
+            <i>{date.fromNow(true)}</i>
+          </a>
         </div>
       </div>
     </div>

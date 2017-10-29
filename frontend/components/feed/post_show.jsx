@@ -6,6 +6,7 @@ import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
+import moment from 'moment'
 
 class PostShow extends React.Component {
   constructor(props){
@@ -39,8 +40,9 @@ class PostShow extends React.Component {
     if (this.state.loading) {
       return null
     }
+    const postTime = moment(updated_at);
     const commentList = comments.map( comment => {
-      return <CommentShow id={comment.id} commentId={comment.id}/>
+      return <CommentShow key={comment.id} commentId={comment.id}/>
     })
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
@@ -65,7 +67,9 @@ class PostShow extends React.Component {
             </Link> }
 
             <br></br>
-            <i>{convertTime(updated_at)}</i>
+            <i title={postTime.format("dddd, MMMM Do YYYY, h:mm:ss a")}>
+              {convertTime(updated_at)}
+            </i>
           </div>
         </div>
         <p>{body}</p>
