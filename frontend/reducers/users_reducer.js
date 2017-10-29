@@ -16,7 +16,7 @@ const UsersReducer = (state = {}, action) => {
       return _.merge({}, state, action.users)
     }
     case RECEIVE_FEED: {
-      return action.users
+      return _.merge({}, state, action.users)
     }
     case RECEIVE_USER: {
       return _.merge({}, state, { [action.user.id]: action.user} )

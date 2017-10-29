@@ -1,5 +1,6 @@
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
 
 const CommentsReducer = (state = {}, action) => {
@@ -9,6 +10,9 @@ const CommentsReducer = (state = {}, action) => {
     }
     case RECEIVE_FEED: {
       return action.comments
+    }
+    case RECEIVE_USER: {
+      return _.merge({}, state, action.comments )
     }
     case REMOVE_COMMENT: {
       const newState = _.merge({}, state)

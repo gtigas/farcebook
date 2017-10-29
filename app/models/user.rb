@@ -70,7 +70,7 @@ class User < ApplicationRecord
   def friends
     friends = []
     friendships.each do |friendship|
-      friends << friendship.receiver == self ? friendship.requester : friendship.receiver
+      friends << (friendship.receiver == self ? friendship.requester : friendship.receiver)
     end
     friends
   end

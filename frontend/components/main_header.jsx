@@ -25,7 +25,9 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchFeed();
+    if (this.props.match.path === "/") {
+      this.props.fetchFeed();
+    }
   }
 
   closeDropdown(type) {
@@ -93,7 +95,7 @@ class MainHeader extends React.Component {
 
 const mapStateToProps = state =>  {
   return {
-    userName: _.capitalize(state.session.currentUser.fullName.split(" ")[0]),
+    userName: _.capitalize(state.session.currentUser.firstName),
     userId: state.session.currentUser.id,
     userPic: state.session.currentUser.profile_picture_url,
     numRequests: _.keys(state.entities.friendRequests).count,

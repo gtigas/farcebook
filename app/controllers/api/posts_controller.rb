@@ -2,9 +2,9 @@ class Api::PostsController < ApplicationController
   before_action :ensure_logged_in
 
   def feed
-    @users = current_user.friends
-    @current_user = current_user
-    @posts = @users.inject([]) do |posts, user|
+    @users = User.all
+    @current_user = User.find_by(id: params[:userId]) || current_user
+    @posts = @current_user.friends.inject([]) do |posts, user|
       posts.concat(user.authored_posts)
       posts.concat(user.wall_posts)
     end

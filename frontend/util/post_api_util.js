@@ -1,7 +1,9 @@
-export const fetchFeed = () => {
+export const fetchFeed = (userId) => {
+  const data = userId ? { userId } : null
   return $.ajax({
     method: 'GET',
-    url: 'api/feed'
+    url: 'api/feed',
+    data
   })
 }
 

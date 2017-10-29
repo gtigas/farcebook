@@ -6,9 +6,10 @@ import PostForm from './profile_post_form';
 import PostShow from '../feed/post_show'
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
-import { fetchPosts } from '../../actions/posts_actions'
+import { fetchPosts, fetchFeed } from '../../actions/posts_actions'
 import { requestPending } from '../../util/profile_util'
 import { sendFriendRequest } from '../../actions/friends_actions'
+
 
 class ProfileMain extends React.Component{
   constructor(props){
@@ -16,6 +17,13 @@ class ProfileMain extends React.Component{
   }
 
   componentDidMount(){
+    if (!this.props.isCurrentUser || this.props.notFriends) {
+      this.props.fetchFeed(parseInt(this.props.match.params.userId));
+    }
+    if (!this.props.user.birth_date){
+      this.props.fetchUser(this.props.match.params.userId)
+    }
+    // this.props.fetchUsers();
     // const userId = this.props.match.params.userId
     // if (!this.props.user.id) {
     //   this.props.fetchUser(userId)
@@ -77,7 +85,6 @@ class ProfileMain extends React.Component{
 const mapStateToProps = (state, ownProps) => {
   const user = state.entities.users[ownProps.match.params.userId] || { friend_ids:[], postIds:[]}
   const friends = user.friend_ids.map( id => state.entities.users[id])
-  debugger
   const postIds = user.postIds
   return ({
     user,
@@ -95,7 +102,7 @@ const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchPosts: userId => dispatch(fetchPosts(userId)),
   addFriend: userId => () => dispatch(sendFriendRequest(userId)),
-  fetchFeed: () => dispatch(fetchFeed()),
+  fetchFeed: (userId) => dispatch(fetchFeed(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileMain);

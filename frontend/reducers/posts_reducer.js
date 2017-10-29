@@ -2,6 +2,7 @@ import { RECEIVE_POSTS, RECEIVE_POST,
         REMOVE_POST, RECEIVE_FEED } from '../actions/posts_actions'
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 import _ from 'lodash'
 
 const PostsReducer = (state = {}, action) => {
@@ -13,7 +14,10 @@ const PostsReducer = (state = {}, action) => {
       return action.posts
     }
     case RECEIVE_POST: {
-      return _.merge(state, { [action.post.id]: action.post })
+      return _.merge({}, state, { [action.post.id]: action.post })
+    }
+    case RECEIVE_USER: {
+      return _.merge({}, state, action.posts )
     }
     case REMOVE_POST: {
       const newState = _.merge({}, state);

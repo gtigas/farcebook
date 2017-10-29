@@ -9,17 +9,11 @@ const receiveUsers = users => ({
   users
 })
 
-const receiveUser = user => ({
+const receiveUser = ({ user, posts, comments }) => ({
   type: RECEIVE_USER,
-  user
-});
-
-const receiveFeed = ( {users, posts, comments, friendRequests}) => ({
-  type: RECEIVE_FEED,
-  users,
+  user,
   posts,
-  comments,
-  friendRequests
+  comments
 });
 
 export const fetchFeed = () => dispatch => {

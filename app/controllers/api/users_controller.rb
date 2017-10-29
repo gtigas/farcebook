@@ -6,7 +6,13 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(wall_posts: :comments).find(params[:id])
+    @posts = @user.wall_posts
+    @comments = []
+    @posts.each do |post|
+      @comments.concat(post.comments)
+    end
+    render :fetch
   end
 
   def create
