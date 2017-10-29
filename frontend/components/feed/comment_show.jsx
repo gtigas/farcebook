@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment';
 
-const CommentShow = ({ comment, author }) => {
+const CommentShow = ({ comment, author, deleteComment, showX }) => {
   const date = moment(comment.updated_at);
   return(
     <div className='flex-row' id='comment-show'>
+      {showX && <i className="fa fa-times pos-abs"
+        aria-hidden="true"
+        onClick={deleteComment}></i> }
       <img className='circle-thumb' src={author.profile_picture_url}></img>
       <div className='flex-col'>
         <p>

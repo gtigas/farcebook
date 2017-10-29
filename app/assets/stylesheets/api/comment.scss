@@ -49,6 +49,13 @@
   &:first-of-type{
     margin-top: 0;
   }
+  >i:first-child {
+    font-size: 15px;
+    right: 12px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 #comment-nav {

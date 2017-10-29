@@ -9,7 +9,7 @@ const CommentsReducer = (state = {}, action) => {
       return _.merge({}, state, { [action.comment.id]: action.comment })
     }
     case RECEIVE_FEED: {
-      return action.comments
+      return action.comments || {}
     }
     case RECEIVE_USER: {
       return _.merge({}, state, action.comments )

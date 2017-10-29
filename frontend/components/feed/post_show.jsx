@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
+import { deleteComment } from '../../actions/comments_actions'
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
 import moment from 'moment'
@@ -36,13 +37,19 @@ class PostShow extends React.Component {
 
   render(){
     const { body, updated_at, id } = this.props.post;
-    const { receiver, author, isWallPost, currentUserId, comments } = this.props;
+    const { receiver, author, isWallPost, currentUserId, comments,
+            profileId, deleteComment } = this.props;
     if (this.state.loading) {
       return null
     }
     const postTime = moment(updated_at);
     const commentList = comments.map( comment => {
-      return <CommentShow key={comment.id} commentId={comment.id}/>
+      const show = (comment.author_id === currentUserId) ||
+                  (profileId === currentUserId)
+      return <CommentShow key={comment.id}
+                          commentId={comment.id}
+                          deleteComment={deleteComment(comment.id)}
+                          showX={show}/>
     })
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
@@ -79,7 +86,7 @@ class PostShow extends React.Component {
         </ul>
         <div className='comment-area flex-col'>
           {commentList}
-          <CommentForm postId={id}/>
+          {currUserIsAuthorOrReceiver && <CommentForm postId={id}/> }
         </div>
       </div>
     )
@@ -103,7 +110,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  delete: postId =>  () => dispatch(deletePost(postId))
+  delete: postId =>  () => dispatch(deletePost(postId)),
+  deleteComment: commentId => () => dispatch(deleteComment(commentId)),
 });
 
 

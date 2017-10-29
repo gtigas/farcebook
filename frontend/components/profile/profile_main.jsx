@@ -43,13 +43,16 @@ class ProfileMain extends React.Component{
   }
 
   render(){
+    const { notFriends, loading, addFriend,
+      isCurrentUser, user, requestPending} = this.props;
+      
     const postList = this.props.postIds.map( id => {
       return (
-        <PostShow key={id} postId={id} />
+        <PostShow key={id} postId={id}
+                          areFriends={!notFriends}
+                          profileId={user.id}/>
       )
     });
-    const { notFriends, loading, addFriend,
-            isCurrentUser, user, requestPending} = this.props;
     return (
       <div>
         <ProfileHeader userId={this.props.match.params.userId}

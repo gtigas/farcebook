@@ -19,6 +19,10 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 .hover:hover {
   cursor: pointer;
 }
