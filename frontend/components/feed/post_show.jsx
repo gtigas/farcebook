@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
+import CommentForm from './comment_form'
 
 class PostShow extends React.Component {
   constructor(props){
@@ -68,7 +69,9 @@ class PostShow extends React.Component {
           <li>Like</li>
           <li>Comment</li>
         </ul>
-        <div></div>
+        <div className='comment-area'>
+          <CommentForm postId={id}/>
+        </div>
       </div>
     )
   }

@@ -1,0 +1,24 @@
+.comment-form {
+
+  input{
+    width: 450px;
+    height: 33px;
+    border-radius: 17px;
+    box-sizing: border-box;
+    border: 1px solid #dfe1e5;
+    font-size: 13px;
+    padding: 10px;
+    margin-left: 3px
+  }
+  img {
+    border: 1px solid #dfe1e5;
+    background-color: pink;
+    height: 36px;
+    width: 36px;
+  }
+}
+
+.comment-area {
+  background-color: #f6f7f9;
+  border-top: 1px solid #dfe1e5;
+}
