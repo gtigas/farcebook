@@ -6,6 +6,7 @@ import { fetchUsers } from '../actions/user_actions';
 import { fetchFeed } from '../actions/posts_actions';
 import { fetchFriendRequests } from '../actions/friends_actions'
 import FriendRequestList from './dropdowns/friend_requests'
+import SearchDropdown from './dropdowns/search_dropdown'
 import MainNav from './main-nav'
 import _ from 'lodash';
 
@@ -13,10 +14,15 @@ class MainHeader extends React.Component {
   constructor(props){
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.state = { requestDropdown: false }
+    this.state = { requestDropdown: false,
+                  searchDropdown: false,
+                  searchTerm: ""}
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this._toggleSearch = this._toggleSearch.bind(this);
+    this.handleInput = this.handleInput.bind(this)
   }
 
   handleLogout(e) {
@@ -44,6 +50,18 @@ class MainHeader extends React.Component {
     return() => {this.setState( { [type]: value })}
   }
 
+  handleSearch(){
+    this._toggleSearch();
+  }
+
+  _toggleSearch(){
+    this.setState({ searchDropdown: !this.state.searchDropdown })
+  }
+
+  handleInput(e){
+    this.setState({searchTerm: e.target.value})
+  }
+
 
   render(){
     return (
@@ -55,7 +73,14 @@ class MainHeader extends React.Component {
                 <h1>f</h1>
               </div>
             </Link>
-            <input id='search-bar' placeholder='Search'></input>
+            <input onFocus={this.handleSearch}
+                  onBlur={this._toggleSearch}
+                  id='search-bar'
+                  placeholder='Search'
+                  value={this.state.searchTerm}
+                  onChange={this.handleInput}></input>
+            {this.state.searchDropdown &&
+              <SearchDropdown searchTerm={this.state.searchTerm}/> }
           </div>
 
 

@@ -152,12 +152,40 @@
 
 
 #num-requests {
-  border-radius: 50%;
-  background-color: rgba(239,33,56, 0.9);
+  border-radius: 2px;
+  background-color: #fc3942;
   color: white;
   position: absolute;
-  padding: 0px 4px;
+  padding: 0px 2.5px;
   font-size: 12px;
   right: 147px;
   top: 12px;
+}
+
+#search-dropdown {
+  width: 406px;
+  left: 47px;
+  top: 25px;
+  min-height: 40px;
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  border: 1px solid #dfe1e5;
+  box-shadow: 2px 2px 5px #888888;
+  figure {
+    color: black;
+    padding: 10px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    &:hover {
+      background-color: #ecf0f7;
+    }
+  }
+  h4 {
+    color: black;
+    font-weight: 500;
+    padding: 6px;
+    margin-top: 5px;
+  }
 }
