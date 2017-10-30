@@ -16,6 +16,11 @@ const receiveUser = ({ user, posts, comments }) => ({
   comments
 });
 
+const receiveUpdatedUser = (user) => ({
+  type: RECEIVE_USER,
+  user
+})
+
 export const fetchFeed = () => dispatch => {
   return UserAPIUtil.fetchFeed().then(
     payload => dispatch(receiveFeed(payload))
@@ -38,7 +43,7 @@ export const fetchUser = userId => dispatch => {
 
 export const updateUser = user => dispatch => {
   return UserAPIUtil.updateUser(user).then(
-    user => dispatch(receiveUser(user)),
+    user => dispatch(receiveUpdatedUser(user)),
     errors => dispatch(receiveErrors(errors, 'users'))
   )
 }
