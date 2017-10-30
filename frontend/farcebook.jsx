@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { login, logout } from './actions/session_actions'
 import configureStore from './store/store'
 import Root from './components/root'
-import moment from 'moment'
-import { fetchTrending } from './util/trending_api_util'
+import * as LikeAPI from './util/likes_api_util'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -22,9 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
+
   window.dispatch = store.dispatch;
 
-  window.fetchTrending = fetchTrending;
+  window.likeComment = LikeAPI.likeComment;
+  window.likePost = LikeAPI.likePost;
+  window.unlikeComment = LikeAPI.unlikeComment;
+  window.unlikePost = LikeAPI.unlikePost;
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });
