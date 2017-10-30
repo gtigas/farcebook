@@ -44,6 +44,7 @@ class ProfileMain extends React.Component{
     if (this.props.user.id !== parseInt(userId)) {
       this.props.fetchUser(userId);
     }
+    document.getElementsByClassName('scroll-container')[0].scrollTop=0
   }
 
   render(){
@@ -59,7 +60,7 @@ class ProfileMain extends React.Component{
       )
     });
     return (
-      <div id='main-container'>
+      <div id='main-container' className='scroll-container'>
         <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
         { !loading && notFriends && !isCurrentUser &&
