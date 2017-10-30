@@ -10,7 +10,7 @@ const defaultState = { login:[],
 const ErrorsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER : {
-      return { login: [], signup: [] }
+      return defaultState;
     }
     case RECEIVE_ERRORS : {
       const errors = action.errors.responseJSON;

@@ -29,7 +29,9 @@ const UsersReducer = (state = {}, action) => {
     case RECEIVE_POST: {
       let receiver = Object.assign({}, state[action.post.receiver_id])
       receiver.postIds = receiver.postIds.slice();
-      receiver.postIds.unshift(action.post.id);
+      if (!receiver.postIds.includes(action.post.id)){
+        receiver.postIds.unshift(action.post.id);
+      }
       return _.merge({}, state, { [receiver.id]: receiver})
     }
     case REMOVE_POST: {

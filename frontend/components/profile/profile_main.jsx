@@ -45,11 +45,12 @@ class ProfileMain extends React.Component{
   render(){
     const { notFriends, loading, addFriend,
       isCurrentUser, user, requestPending} = this.props;
-      
+
     const postList = this.props.postIds.map( id => {
       return (
         <PostShow key={id} postId={id}
                           areFriends={!notFriends}
+                          isCurrentUser={isCurrentUser}
                           profileId={user.id}/>
       )
     });
@@ -61,7 +62,8 @@ class ProfileMain extends React.Component{
           <div className='not-friends'>
             <span>DO YOU KNOW {user.firstName.toUpperCase()}</span>
             <div className='flex-row'>
-              <p>To post on their wall, send them a friend request!</p>
+              <p>To post on their wall or comment on their posts,
+                  send them a friend request!</p>
               {requestPending ? null :
                 <button id='already-friends'
                     className='hover'

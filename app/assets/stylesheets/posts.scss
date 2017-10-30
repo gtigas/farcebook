@@ -161,3 +161,18 @@
     padding: 7px 10px;
   }
 }
+
+#post-edit {
+  z-index: 4;
+  left: -500px;
+  top: -400px;
+  height: 173px;
+  h2 {
+    display: block;
+    margin: 0;
+  }
+  form {
+    position: relative;
+    bottom: -17px;
+  }
+}

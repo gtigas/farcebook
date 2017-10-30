@@ -5,6 +5,7 @@ import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
+import { openModal, closeModal } from '../../actions/ui_actions';
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
 import moment from 'moment'
@@ -37,8 +38,9 @@ class PostShow extends React.Component {
 
   render(){
     const { body, updated_at, id } = this.props.post;
-    const { receiver, author, isWallPost, currentUserId, comments,
-            profileId, deleteComment } = this.props;
+    const { receiver, author, isWallPost,
+          currentUserId, comments, profileId,
+          deleteComment, areFriends, isCurrentUser} = this.props;
     if (this.state.loading) {
       return null
     }
@@ -59,7 +61,9 @@ class PostShow extends React.Component {
         <h3 className='pos-abs' onClick={this.toggleDropdown}>...</h3>}
         {this.state.dropdown &&
                   <PostDropdown close={this.toggleDropdown}
-                                delete={this.props.delete(id)}/> }
+                                delete={this.props.delete(id)}
+                                postId={id}
+                                isAuthor={author.id === currentUserId}/> }
         <div className='flex-row'>
           <img src={author.profile_picture_url}></img>
           <div>
@@ -86,7 +90,7 @@ class PostShow extends React.Component {
         </ul>
         <div className='comment-area flex-col'>
           {commentList}
-          {currUserIsAuthorOrReceiver && <CommentForm postId={id}/> }
+          {(areFriends || isCurrentUser) && <CommentForm postId={id}/> }
         </div>
       </div>
     )
@@ -105,7 +109,8 @@ const mapStateToProps = (state, ownProps) => {
     receiver: state.entities.users[post.receiver_id],
     author: state.entities.users[post.author_id],
     isWallPost: post.receiver_id !== post.author_id,
-    currentUserId: state.session.currentUser.id
+    currentUserId: state.session.currentUser.id,
+
   }
 }
 
