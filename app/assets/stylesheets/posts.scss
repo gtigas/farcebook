@@ -134,8 +134,9 @@
   border-radius: 4px;
   border: 1px solid #dfe1e5;
   font-size: 11px;
-  right: 25px;
+  right: -466px;
   top: 25px;
+  width: 78px;
   box-shadow: 2px 2px 5px #888888;
   li {
     padding: 7px 9px;
@@ -165,7 +166,6 @@
 #post-edit {
   z-index: 4;
   left: -500px;
-  top: -400px;
   height: 173px;
   h2 {
     display: block;

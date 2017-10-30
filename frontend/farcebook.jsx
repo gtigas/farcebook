@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.currentUser) {
     const preloadedState = {
        session: {currentUser: window.currentUser },
-       ui: { feedLoading: false }
+       ui: { modal: {}, loading: true, feedLoading: false }
     };
     store = configureStore(preloadedState);
     delete window.currentUser;

@@ -30,16 +30,22 @@ class PostDropdown extends React.Component {
 
   render(){
     return (
-      <ul className='pos-abs flex-col'
+      <div style={{ position: 'relative',
+                    width: '0' ,
+                    height: '0' ,
+                    padding: '0'}}>
+        <ul className='pos-abs flex-col'
           id='post-dropdown'
           ref={ (node) => this.wrapperRef=node}>
-        {this.props.isAuthor &&
-          <li onClick={this.handleClick}>Edit Post</li>}
-        <li onClick={this.props.delete}>Delete Post</li>
+          {this.props.isAuthor &&
+            <li onClick={this.handleClick}>Edit Post</li>}
+            <li onClick={this.props.delete}>Delete Post</li>
 
-        {this.props.modalOpen ?
-          <PostEditForm postId={this.props.postId} /> : null}
-      </ul>
+            {this.props.modalOpen ?
+            <PostEditForm postId={this.props.postId} /> : null}
+        </ul>
+      </div>
+
     )
   }
 }

@@ -34,7 +34,7 @@ class Feed extends React.Component{
         <main className='main-body'>
 
         <div className='main-left'></div>
-        <div className='main-center flex-col'>
+        <div className='main-center flex-col pos-rel'>
           <PostForm />
           {postList}
         </div>
