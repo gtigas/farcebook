@@ -18,6 +18,7 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.errorShow = this.errorShow.bind(this);
     this._hasErrors = this._hasErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleInput(field){
@@ -30,6 +31,14 @@ class SessionForm extends React.Component {
     e.preventDefault();
     this.setState( { password : "" })
     this.props.login(this.state);
+  }
+
+  handleDemo(e) {
+    e.preventDefault();
+    const demoLogin = {
+      email: "kermit@TheMuppetShow.com",
+      password: "asdf123"}
+    this.props.login(demoLogin)
   }
 
   errorShow(){
@@ -46,7 +55,7 @@ class SessionForm extends React.Component {
   render(){
     return(
       <div className='login-container'>
-        <form className='login-form' onSubmit={this.handleSubmit}>
+        <form className='login-form'>
           {this.errorShow()}
           <label>
             Email
@@ -64,7 +73,8 @@ class SessionForm extends React.Component {
                  className={this._hasErrors() ? 'has-errors' : null}/>
           </label>
 
-          <button className='login-button'>Log In</button>
+          <button className='login-button' onClick={this.handleSubmit}>Log In</button>
+          <button className='login-button' onClick={this.handleDemo}>Demo</button>
         </form>
       </div>
     )
