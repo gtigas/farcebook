@@ -19,8 +19,8 @@ class RightSide extends React.Component {
   render(){
     const trendsList = this.props.trends.map( trend => {
       return (
-        <article>
-          <a href={trend.url}>
+        <article key={trend.publishedAt}>
+          <a href={trend.url} target="_blank">
             <i className="fa fa-bolt" aria-hidden="true"></i>
             <h3>{trend.title}</h3>
           </a>

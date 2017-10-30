@@ -82,12 +82,15 @@ class MainHeader extends React.Component {
           </ul>
 
           <MainNav toggle={this.toggleDropdown} numRequests={this.props.numRequests}/>
-
+          {this.props.numRequests > 0 &&
+            <div id='num-requests'>{this.props.numRequests}</div>
+          }
           <button onClick={this.handleLogout}
             className='login-button'>Logout</button>
           </div>
 
         </div>
+
 
       </header>
     )
@@ -99,7 +102,7 @@ const mapStateToProps = state =>  {
     userName: _.capitalize(state.session.currentUser.firstName),
     userId: state.session.currentUser.id,
     userPic: state.session.currentUser.profile_picture_url,
-    numRequests: _.keys(state.entities.friendRequests).count,
+    numRequests: _.keys(state.entities.friendRequests.received).length,
   }
 };
 
