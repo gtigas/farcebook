@@ -6,6 +6,9 @@
     <%= favicon_link_tag 'fb.png', type: 'image/png' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_tag do %>
+      window._rails_env = "<%= Rails.env %>"
+    <% end %>
     <script src="https://use.fontawesome.com/7aa53fd983.js"></script>
   </head>
 

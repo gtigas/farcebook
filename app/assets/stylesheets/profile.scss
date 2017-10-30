@@ -339,7 +339,7 @@
   cursor: pointer;
 }
 
-.not-friends {
+.not-friends, .friends-page {
   padding: 0px;
   box-sizing: border-box;
   width: 850px;
@@ -349,6 +349,9 @@
   background-color: white;
   margin: 0 auto;
   margin-top: 15px;
+}
+
+.not-friends {
   div {
    justify-content: space-between;
    p {
@@ -367,5 +370,48 @@
   button {
     position: static !important;
     margin-right: 10px;
+  }
+}
+
+.friends-page {
+  height: auto;
+  h2 {
+    padding: 10px 13px 8px 13px;
+    font-size: 24px;
+    font-weight: 500;
+    background-color: #f6f7f9;
+    border-bottom: 1px solid #dfe1e5;
+    color: #4c4f56;
+    i {
+      color: #adb3bc;
+      margin-right: 10px;
+    }
+  }
+}
+
+.friends-page-list {
+  padding-left: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    width: 400px;
+    height: 100px;
+    border: 1px solid #dfe1e5;
+    margin: 8px;
+    align-items: center;
+    img {
+      height: 100px;
+    }
+    a {
+      text-decoration: none;
+    }
+    h3 {
+      display: inline;
+      margin-left: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #4365af;
+
+    }
   }
 }
