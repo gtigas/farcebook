@@ -74,6 +74,25 @@
   box-sizing: border-box;
   border-radius: 4px;
   color: #4b4f56;
+  span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    >h2{
+      display: inline;
+      margin-top: 0 !important;
+    }
+    i {
+      color: #adb3bc;
+      padding-left: 8px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    ul {
+      margin: 0
+    }
+  }
   div {
     background-color: white;
     border: 1px solid #dfe1e5;

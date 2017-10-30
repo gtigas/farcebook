@@ -52,7 +52,7 @@ class Feed extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
-  fetchTrends: () => dispatch(fetchTrends()),
+  fetchTrends: (source) => dispatch(fetchTrends(source)),
 });
 
 const mapStateToProps = state => {

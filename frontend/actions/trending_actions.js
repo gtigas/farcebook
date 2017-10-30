@@ -7,8 +7,8 @@ const receiveTrends = trends => ({
   trends
 });
 
-export const fetchTrends = () => dispatch => {
-  return fetchTrending().then(
+export const fetchTrends = source => dispatch => {
+  return fetchTrending(source).then(
     trends => dispatch(receiveTrends(trends))
   )
 }
