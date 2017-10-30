@@ -42,9 +42,9 @@
 # Friendship.create!(requester_id: gonzo.id, receiver_id: beaker.id, status: 'ACCEPTED')
 # Friendship.create!(requester_id: gonzo.id, receiver_id: honeydew.id, status: 'ACCEPTED')
 
-muppet_ids = (24..33).to_a
+muppet_ids = (12..20).to_a
 
-6.times do
+8.times do
   Post.create!(author_id:muppet_ids.sample, receiver_id:muppet_ids.sample, body: Faker::TheFreshPrinceOfBelAir.quote)
   Post.create!(author_id:muppet_ids.sample, receiver_id:muppet_ids.sample, body: Faker::FamilyGuy.quote)
   Post.create!(author_id:muppet_ids.sample, receiver_id:muppet_ids.sample, body: Faker::HarryPotter.quote)
@@ -54,7 +54,7 @@ end
 
 post_ids = Post.ids
 
-12.times do
+14.times do
   Comment.create!(author_id:muppet_ids.sample, post_id:post_ids.sample, body: Faker::TheFreshPrinceOfBelAir.quote)
   Comment.create!(author_id:muppet_ids.sample, post_id:post_ids.sample, body: Faker::FamilyGuy.quote)
   Comment.create!(author_id:muppet_ids.sample, post_id:post_ids.sample, body: Faker::HarryPotter.quote)
