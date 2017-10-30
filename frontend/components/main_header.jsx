@@ -55,7 +55,9 @@ class MainHeader extends React.Component {
   }
 
   _toggleSearch(){
-    this.setState({ searchDropdown: !this.state.searchDropdown })
+    setTimeout( () => {
+      this.setState({ searchDropdown: !this.state.searchDropdown })
+    }, 200)
   }
 
   handleInput(e){

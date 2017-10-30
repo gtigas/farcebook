@@ -34,6 +34,7 @@ class CommentForm extends React.Component{
           onChange={this.handleInput}
           onKeyPress={this.handleKeypress}
           value={this.state.body}
+          ref={this.props.nameInput}
           placeholder='Write a comment...'></input>
       </div>
     )

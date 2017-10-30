@@ -15,6 +15,7 @@ class PostShow extends React.Component {
     super(props);
     this.state = { loading : true, dropdown: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
+    this.setNameInput = this.setNameInput.bind(this)
   }
 
   componentDidMount(){
@@ -29,6 +30,10 @@ class PostShow extends React.Component {
     if (receiver || author) {
       this.setState({ loading: false })
     }
+  }
+
+  setNameInput(input){
+    this.nameInput = input
   }
 
   toggleDropdown(){
@@ -84,13 +89,20 @@ class PostShow extends React.Component {
           </div>
         </div>
         <p>{body}</p>
-        <ul className='flex-row'>
-          <li>Like</li>
-          <li>Comment</li>
+        <ul className='flex-row' id='post-nav'>
+          <li>
+            <i className="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            Like
+          </li>
+          <li onClick={ () => this.nameInput.focus()}>
+            <i className="fa fa-comment-o" aria-hidden="true"></i>
+            Comment
+          </li>
         </ul>
         <div className='comment-area flex-col'>
           {commentList}
-          {(areFriends || isCurrentUser) && <CommentForm postId={id}/> }
+          {(areFriends || isCurrentUser) && <CommentForm postId={id}
+                                                        nameInput={this.setNameInput}/> }
         </div>
       </div>
     )
