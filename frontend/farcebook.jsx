@@ -8,7 +8,10 @@ import moment from 'moment'
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
-    const preloadedState = { session: {currentUser: window.currentUser }};
+    const preloadedState = {
+       session: {currentUser: window.currentUser },
+       ui: { feedLoading: false }
+    };
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {

@@ -1,11 +1,17 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_POST } from '../actions/posts_actions'
+import { RECEIVE_POST, REMOVE_POST } from '../actions/posts_actions'
 import merge from 'lodash/merge';
 
 const defaultState = {
   currentUser: null,
   errors: [],
 };
+
+const customizer = (objValue, srcValue) => {
+  if (_.isArray(objValue)) {
+    return srcValue;
+  }
+}
 
 const SessionReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -20,6 +26,12 @@ const SessionReducer = (state = defaultState, action) => {
         currentUser.feedIds.unshift(action.post.id);
       }
       return _.merge({}, state, { currentUser })
+    }
+    case REMOVE_POST: {
+      let currentUser = Object.assign({}, state.currentUser)
+      currentUser.feedIds = currentUser.feedIds.slice(),
+      currentUser.feedIds.splice(currentUser.feedIds.indexOf(action.post.id), 1)
+      return _.mergeWith({}, state, { currentUser }, customizer)
     }
     default:
       return state;
