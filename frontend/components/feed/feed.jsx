@@ -4,6 +4,8 @@ import { fetchUsers } from '../../actions/user_actions'
 import { Link } from 'react-router-dom';
 import PostShow from '../feed/post_show'
 import PostForm from './feed_post_form'
+import LeftSide from './left_side'
+import RightSide from './right_side'
 import { ScaleLoader } from 'react-spinners';
 import _ from 'lodash';
 
@@ -33,12 +35,12 @@ class Feed extends React.Component{
       <div id='main-container'>
         <main className='main-body'>
 
-        <div className='main-left'></div>
+        <LeftSide currentUser={this.props.currentUser}/>
         <div className='main-center flex-col pos-rel'>
           <PostForm />
           {postList}
         </div>
-        <div className='main-right'></div>
+        <RightSide />
       </main>
       </div>
     )
