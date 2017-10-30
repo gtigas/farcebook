@@ -60,7 +60,7 @@ class ProfileHeader extends React.Component{
         <ProfilePicture url={this.props.user.profile_picture_url}/>
         <img src={this.props.user.cover_photo_url} />
         <FriendButton {...this.props} forceUpdate={this._forceUpdate}/>
-        <ProfileHeaderNav />
+        <ProfileHeaderNav id={this.props.user.id}/>
       </div>
     )
   }

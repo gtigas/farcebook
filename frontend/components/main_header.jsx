@@ -28,6 +28,7 @@ class MainHeader extends React.Component {
     if (this.props.match.path === "/") {
       this.props.fetchFeed();
     }
+    this.props.fetchRequests();
   }
 
   closeDropdown(type) {

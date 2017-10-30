@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
-const ProfileHeaderNav = () => (
+const ProfileHeaderNav = ({id}) => (
   <div id='profile-header-nav'>
     <ul>
-      <li>Timeline</li>
+      <li><Link to={`/users/${id}`}>Timeline</Link></li>
       <li>About</li>
-      <li>Friends</li>
+      <li><Link to={`/users/${id}/friends`}>Friends</Link></li>
     </ul>
   </div>
 );

@@ -15,7 +15,7 @@ const App = () => (
     <main id='main-container'>
       <Switch>
         <AuthRoute exact path='/' component={SplashMain}/>
-        <ProtectedRoute exact path='/users/:userId' component={ProfileMain}/>
+        <ProtectedRoute path='/users/:userId' component={ProfileMain}/>
         <ProtectedRoute exact path='/feed' component={Feed} />
         <Route path='*' component={NotFoundPage} />
       </Switch>
