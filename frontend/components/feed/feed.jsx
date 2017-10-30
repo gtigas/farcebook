@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions'
+import { fetchTrends } from '../../actions/trending_actions'
 import { Link } from 'react-router-dom';
 import PostShow from '../feed/post_show'
 import PostForm from './feed_post_form'
@@ -40,7 +41,9 @@ class Feed extends React.Component{
           <PostForm />
           {postList}
         </div>
-        <RightSide />
+        <RightSide trends={this.props.trends}
+                  loading={this.props.trendLoading}
+                  fetchTrends={this.props.fetchTrends}/>
       </main>
       </div>
     )
@@ -48,7 +51,8 @@ class Feed extends React.Component{
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  fetchTrends: () => dispatch(fetchTrends()),
 });
 
 const mapStateToProps = state => {
@@ -57,6 +61,8 @@ const mapStateToProps = state => {
     postIds,
     currentUser: state.session.currentUser,
     loading: state.ui.feedLoading || state.ui.loading,
+    trends: _.values(state.entities.trends) || [],
+    trendLoading: state.ui.trendLoading,
   }
 }
 

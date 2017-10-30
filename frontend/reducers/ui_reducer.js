@@ -3,10 +3,14 @@ import { OPEN_MODAL, CLOSE_MODAL } from '../actions/ui_actions';
 import { RECEIVE_USERS } from '../actions/user_actions'
 import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_TRENDS } from '../actions/trending_actions';
 import _ from 'lodash';
 
 
-const defaultState = { modal: {}, loading: true, feedLoading:true }
+const defaultState = { modal: {},
+                      loading: true,
+                      feedLoading:true,
+                      trendLoading:true }
 
 const UIReducer = (state = defaultState, action ) => {
   switch (action.type) {
@@ -21,6 +25,11 @@ const UIReducer = (state = defaultState, action ) => {
     case RECEIVE_USERS: {
       const newState = _.merge({}, state)
       newState.loading = false;
+      return newState
+    }
+    case RECEIVE_TRENDS: {
+      const newState = _.merge({}, state)
+      newState.trendLoading = false;
       return newState
     }
     case RECEIVE_FEED: {

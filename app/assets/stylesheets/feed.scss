@@ -52,36 +52,64 @@
     padding-left: 3px;
     font-size: 15px;
     li {
-      padding: 6px 15px;
-      padding-left: 4px;
       i {
         font-size: 20px;
         padding-right: 5px;
       }
       &:hover {
         background-color: #f6f7f9;
-        border: 1px solid #dfe1e5;
         border-radius: 2px;
+      }
+      a {
+        display: block;
       }
     }
   }
 }
 
 .main-right {
-  margin-left: 15px;
+  margin-left: 25px;
   margin-top: 15px;
   width: 300px;
-  height: 1000px;
   box-sizing: border-box;
   border-radius: 4px;
+  color: #4b4f56;
   div {
     background-color: white;
     border: 1px solid #dfe1e5;
-    height: 200px;
+    min-height: 100px;
     padding: 10px;
     box-sizing: border-box;
     h2 {
-      font-size: 16px;
+      font-size: 14px;
+      &:first-of-type {
+        font-size: 16px;
+      }
+      &:last-of-type {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+    }
+    h3 {
+      font-size: 10px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  article {
+    margin: 10px 0;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    h3 {
+      display: inline;
+    }
+    i {
+      padding-right: 5px;
+      color: #598dfb;
     }
   }
 }

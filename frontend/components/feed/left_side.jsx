@@ -15,16 +15,22 @@ const LeftSide = ({ currentUser }) => {
 
       <ul>
         <li>
+          <a href='https://www.linkedin.com/in/glenn-tigas/'>
           <i className="fa fa-linkedin-square" aria-hidden="true"></i>
-          LinkedIn
+            LinkedIn
+          </a>
         </li>
         <li>
+          <a href='https://github.com/gtigas'>
           <i className="fa fa-github" aria-hidden="true"></i>
-          Github
+            Github
+          </a>
         </li>
         <li>
-          <i className="fa fa-laptop" aria-hidden="true"></i>
-          Website
+          <a href='https://google.com'>
+            <i className="fa fa-laptop" aria-hidden="true"></i>
+            Website
+          </a>
         </li>
       </ul>
     </div>
