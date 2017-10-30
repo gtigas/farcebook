@@ -59,7 +59,7 @@ class ProfileMain extends React.Component{
       )
     });
     return (
-      <div>
+      <div id='main-container'>
         <ProfileHeader userId={this.props.match.params.userId}
                       fetchUser={this.props.fetchUser}/>
         { !loading && notFriends && !isCurrentUser &&

@@ -15,15 +15,15 @@ const LeftSide = ({ currentUser }) => {
 
       <ul>
         <li>
-          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          <i className="fa fa-linkedin-square" aria-hidden="true"></i>
           LinkedIn
         </li>
         <li>
-          <i class="fa fa-github" aria-hidden="true"></i>
+          <i className="fa fa-github" aria-hidden="true"></i>
           Github
         </li>
         <li>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
+          <i className="fa fa-laptop" aria-hidden="true"></i>
           Website
         </li>
       </ul>

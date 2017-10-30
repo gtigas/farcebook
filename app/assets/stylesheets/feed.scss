@@ -13,7 +13,7 @@
 
 #main-container {
   background-color: #edf0f5;
-  min-height: 1000px;
+  height: 853px;
   overflow: auto;
 }
 
@@ -38,6 +38,13 @@
     text-decoration: none;
     font-size: 13px;
     align-items: center;
+    padding: 6px 15px;
+    padding-left: 4px;
+    &:hover {
+      background-color: #f6f7f9;
+      border: 1px solid #dfe1e5;
+      border-radius: 2px;
+    }
   }
   ul {
     list-style-position: outside;
@@ -62,11 +69,21 @@
 
 .main-right {
   margin-left: 15px;
+  margin-top: 15px;
   width: 300px;
   height: 1000px;
   box-sizing: border-box;
-  border: 1px solid #dfe1e5;
   border-radius: 4px;
+  div {
+    background-color: white;
+    border: 1px solid #dfe1e5;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    h2 {
+      font-size: 16px;
+    }
+  }
 }
 
 
