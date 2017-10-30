@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/ui_actions';
 import { RECEIVE_USERS } from '../actions/user_actions'
 import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import _ from 'lodash';
 
 
-const defaultState = { modal: {}, loading: true }
+const defaultState = { modal: {}, loading: true, feedLoading:true }
 
 const UIReducer = (state = defaultState, action ) => {
   switch (action.type) {
@@ -25,6 +26,11 @@ const UIReducer = (state = defaultState, action ) => {
     case RECEIVE_FEED: {
       const newState = _.merge({}, state)
       newState.loading = false;
+      return newState
+    }
+    case RECEIVE_CURRENT_USER: {
+      const newState = _.merge({}, state)
+      newState.feedLoading = false;
       return newState
     }
     default:
