@@ -49,7 +49,3 @@ body {
   border-radius: 50%;
   margin-right: 5px;
 }
-
-.not-found a:hover {
-  cursor: pointer;
-}

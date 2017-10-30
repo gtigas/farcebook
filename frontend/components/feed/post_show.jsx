@@ -99,6 +99,7 @@ class PostShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+
   const post = state.entities.posts[ownProps.postId] || { comment_ids: []}
   const comments = post.comment_ids.map( id => {
     return state.entities.comments[id]

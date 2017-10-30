@@ -47,3 +47,40 @@
   border: 1px solid #dfe1e5;
   border-radius: 4px;
 }
+
+
+.not-found a:hover {
+
+}
+
+.not-found{
+  width: 950px;
+  margin: 0 auto;
+  align-items: center;
+  h1  {
+    font-size: 20px;
+    margin: 20px 0;
+    margin-top: 100px;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 25px 0;
+    margin-top: 5px;
+  }
+  img {
+    width: 282px;
+    height: 250px;
+  }
+  a {
+    text-decoration: none;
+    color: #4365af;
+    font-size: 12px;
+    &:first-of-type{
+      margin-right: 20px;
+    }
+    &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
