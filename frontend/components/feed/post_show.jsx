@@ -67,16 +67,21 @@ class PostShow extends React.Component {
     }
     const postTime = moment(updated_at);
     const likerList = likerNames.map ( (name, i) => <li key={i}>{name}</li>)
-    const commentList = comments.map( comment => {
+    const parentComments = comments.filter( comment => !Boolean(comment.parent_comment_id))
+
+    const commentList = parentComments.map( comment => {
       const show = (comment.author_id === currentUserId) ||
                   (profileId === currentUserId)
-      return <CommentShow key={comment.id}
-                          commentId={comment.id}
-                          deleteComment={deleteComment(comment.id)}
-                          showX={show}
-                          areFriends={areFriends}
-                          topLevelComment/>
+      return <CommentShow
+                    key={comment.id}
+                    commentId={comment.id}
+                    deleteComment={deleteComment(comment.id)}
+                    showX={show}
+                    areFriends={areFriends}
+                    topLevelComment
+                  />
     })
+
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
     return (
