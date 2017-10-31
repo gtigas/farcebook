@@ -63,6 +63,9 @@ class User < ApplicationRecord
     class_name: 'Comment',
     dependent: :destroy
 
+  has_many :notifications,
+    foreign_key: :notifee_id
+
   def friendships
     Friendship.includes(:receiver, :requester )
               .where('(receiver_id = ? OR requester_id = ?)
