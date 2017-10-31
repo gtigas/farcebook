@@ -208,4 +208,29 @@
       cursor: inherit;
     }
   }
+
+}
+
+.comments-likes-show {
+  margin: 0;
+  vertical-align: text-bottom;
+  >i {
+    background-color: #598dfb;
+    color: white;
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 8px;
+    margin: 0;
+    &:hover {
+      text-decoration: none;
+      cursor: inherit;
+    }
+  }
+  >h5 {
+    margin: 6px;
+    margin-left: 1px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #93949b;
+  }
 }
