@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { login, logout } from './actions/session_actions'
 import configureStore from './store/store'
 import Root from './components/root'
-import * as LikeAPI from './util/likes_api_util'
+import { like, unlike } from './actions/likes_actions'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -23,11 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.dispatch = store.dispatch;
+  window.like = like;
+  window.unlike = unlike;
 
-  window.likeComment = LikeAPI.likeComment;
-  window.likePost = LikeAPI.likePost;
-  window.unlikeComment = LikeAPI.unlikeComment;
-  window.unlikePost = LikeAPI.unlikePost;
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

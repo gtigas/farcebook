@@ -29,4 +29,9 @@ class Post < ApplicationRecord
 
   has_many :likers,
     through: :likes
+
+  def user_likes(user)
+    self.liker_ids.include?(user.id)
+  end
+
 end

@@ -43,8 +43,8 @@ class ProfileMain extends React.Component{
     const userId = newProps.match.params.userId
     if (this.props.user.id !== parseInt(userId)) {
       this.props.fetchUser(userId);
+      document.getElementsByClassName('scroll-container')[0].scrollTop=0
     }
-    document.getElementsByClassName('scroll-container')[0].scrollTop=0
   }
 
   render(){

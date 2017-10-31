@@ -1,2 +1,3 @@
-json.commentId @comment.id
-json.commentLikers @comment.liker_ids
+json.likeType 'comment'
+json.id @comment.id
+json.likers @comment.liker_ids

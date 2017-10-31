@@ -1,27 +1,28 @@
-export const likeComment = (comment) => {
+export const like = (type, id) => {
   return $.ajax({
     method: 'POST',
-    url: `api/comments/${comment.id}/like`
+    url: `api/${type}/${id}/like`
   })
 }
 
-export const likePost = post => {
-  return $.ajax({
-    method: 'POST',
-    url: `api/posts/${post.id}/like`
-  })
-}
-
-export const unlikeComment = comment => {
+export const unlike = (type, id) => {
   return $.ajax({
     method: 'DELETE',
-    url: `api/comments/${comment.id}/unlike`
+    url: `api/${type}/${id}/unlike`
   })
 }
 
-export const unlikePost = post => {
-  return $.ajax({
-    method: 'DELETE',
-    url: `api/posts/${post.id}/unlike`
-  })
-}
+// export const likePost = post => {
+//   return $.ajax({
+//     method: 'POST',
+//     url: `api/posts/${post.id}/like`
+//   })
+// }
+
+//
+// export const unlikePost = post => {
+//   return $.ajax({
+//     method: 'DELETE',
+//     url: `api/posts/${post.id}/unlike`
+//   })
+// }
