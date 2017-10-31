@@ -74,7 +74,8 @@ class PostShow extends React.Component {
                           commentId={comment.id}
                           deleteComment={deleteComment(comment.id)}
                           showX={show}
-                          areFriends={areFriends}/>
+                          areFriends={areFriends}
+                          topLevelComment/>
     })
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)

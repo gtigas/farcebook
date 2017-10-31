@@ -10,9 +10,10 @@ import moment from 'moment';
 class CommentShow extends React.Component {
   constructor(props){
     super(props);
-    this.state = { showX: false }
+    this.state = { showX: false, showReplyForm: false }
     this.handleHover = this.handleHover.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
+    this._toggleReplyForm = this._toggleReplyForm.bind(this)
   }
 
   handleHover(){
@@ -27,11 +28,24 @@ class CommentShow extends React.Component {
     }
   }
 
+  _toggleReplyForm(){
+    this.setState( { showReplyForm: !this.state.showReplyForm })
+  }
+
   render(){
     const { comment, author, deleteComment,
-            showX, areFriends } = this.props
+            showX, areFriends, childComments,
+            topLevelComment } = this.props
     const date = moment(comment.updated_at);
-    const show = (showX && this.state.showX)
+    const show = (showX && this.state.showX);
+    let style = {};
+    if (!topLevelComment) {
+      style = {
+        height: '28px',
+        width: '28px',
+        margin: '7px 0 0 5px',
+      }
+    }
     return(
       <div>
       <div className='flex-row'
@@ -42,7 +56,9 @@ class CommentShow extends React.Component {
         {show && <i className="fa fa-times pos-abs"
           aria-hidden="true"
           onClick={deleteComment}></i> }
-        <img className='circle-thumb' src={author.profile_picture_url}></img>
+        <img className='circle-thumb'
+            src={author.profile_picture_url}
+            style={style}></img>
         <div className='flex-col'>
           <p>
             <Link to={`/users/${author.id}`} ><strong>{author.fullName}</strong></Link>
@@ -54,7 +70,8 @@ class CommentShow extends React.Component {
               <li onClick={this._toggleLike}>
                 {comment.currentUserLikes ? 'Unlike' : 'Like'}
               </li>
-              <li>Reply</li>
+              {topLevelComment &&
+                <li onClick={this._toggleReplyForm}>Reply</li> }
             </ul>
             }
             {comment.liker_ids.length > 0 &&
@@ -69,12 +86,19 @@ class CommentShow extends React.Component {
           </div>
         </div>
       </div>
-      <div className='nested-comment-list'>
-        {/* <NestedCommentList /> */}
-        <CommentForm postId={comment.post_id}
-                    smallForm
-                    commentId={comment.id} />
+
+      <div className='nested-comment-list'
+        style={((childComments.length === 0) &&
+                (!this.state.showReplyForm)) ? { display:'none'} : {} }>
+      {topLevelComment &&
+        <NestedCommentList
+            childComments={childComments} {...this.props}/> }
+        {(this.state.showReplyForm && topLevelComment) &&
+            <CommentForm postId={comment.post_id}
+            smallForm
+            commentId={comment.id} /> }
       </div>
+
     </div>
     )
   }
@@ -83,9 +107,13 @@ class CommentShow extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const comment = state.entities.comments[ownProps.commentId]
   const author = state.entities.users[comment.author_id]
+  const childComments = comment.child_comment_ids.map( id => {
+    return state.entities.comments[id]
+  })
   return {
     comment,
     author,
+    childComments,
   }
 };
 
