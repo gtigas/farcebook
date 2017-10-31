@@ -14,6 +14,7 @@ const LeftSide = ({ currentUser }) => {
       </Link>
 
       <ul>
+        <li>Connect With Glenn</li>
         <li>
           <a href='https://www.linkedin.com/in/glenn-tigas/'>
           <i className="fa fa-linkedin-square" aria-hidden="true"></i>
