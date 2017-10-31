@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
     end
     @posts.concat(@current_user.authored_posts)
     @posts.concat(@current_user.wall_posts)
-    @posts = @posts.uniq
+    @posts = @posts.uniq[-7..-1]
     @comments = @posts.inject([]) do |comments, post|
       comments.concat(post.comments)
     end
