@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { convertTime } from '../../util/profile_util';
 import { like, unlike } from '../../actions/likes_actions'
 import moment from 'moment';
 
@@ -56,7 +57,7 @@ class CommentShow extends React.Component {
               </figure>
             }
             <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
-              <i>{date.fromNow(true)}</i>
+              <i>{convertTime(comment.updated_at)}</i>
             </a>
           </div>
         </div>

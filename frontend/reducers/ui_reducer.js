@@ -37,6 +37,11 @@ const UIReducer = (state = defaultState, action ) => {
       newState.loading = false;
       return newState
     }
+    case RECEIVE_POSTS: {
+      const newState = _.merge({}, state)
+      newState.loading = false;
+      return newState
+    }
     case RECEIVE_CURRENT_USER: {
       const newState = _.merge({}, state)
       newState.feedLoading = false;

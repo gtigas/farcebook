@@ -22,7 +22,7 @@ class ProfileMain extends React.Component{
 
   componentDidMount(){
     if (!this.props.isCurrentUser || this.props.notFriends) {
-      this.props.fetchFeed(parseInt(this.props.match.params.userId));
+      this.props.fetchPosts(parseInt(this.props.match.params.userId));
     }
     if (!this.props.user.birth_date){
       this.props.fetchUser(this.props.match.params.userId)

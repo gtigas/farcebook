@@ -16,17 +16,20 @@ class Api::PostsController < ApplicationController
     @comments = @posts.inject([]) do |comments, post|
       comments.concat(post.comments)
     end
+
   end
 
   def index
     @current_user = current_user
+    @users = User.all
     @posts = Post.where(receiver_id: params[:user_id])
-                  .includes(comments: {likes: :liker_id}, likes: :liker_id)
-                  .order(updated_at: :asc)
+                  .includes(comments: {likes: :liker}, likes: :liker)
+                  .order(updated_at: :desc)
     @comments = []
     @posts.each do |post|
       @comments.concat(post.comments)
     end
+    render :feed
   end
 
   def create

@@ -6,11 +6,12 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
 
-const receivePosts = payload => {
+const receivePosts = ({ users, posts, comments}) => {
   return ({
-    type: RECEIVE_POSTS,
-    posts: payload.posts,
-    comments: payload.comments,
+    type: RECEIVE_FEED,
+    users,
+    posts,
+    comments,
   })
 }
 
