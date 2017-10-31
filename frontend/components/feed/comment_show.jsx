@@ -1,4 +1,6 @@
 import React from 'react';
+import NestedCommentList from './nested_comments'
+import CommentForm from './comment_form'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { convertTime } from '../../util/profile_util';
@@ -26,14 +28,17 @@ class CommentShow extends React.Component {
   }
 
   render(){
-    const { comment, author, deleteComment, showX, areFriends } = this.props
+    const { comment, author, deleteComment,
+            showX, areFriends } = this.props
     const date = moment(comment.updated_at);
     const show = (showX && this.state.showX)
     return(
+      <div>
       <div className='flex-row'
             id='comment-show'
             onMouseEnter={this.handleHover}
-            onMouseLeave={this.handleHover}>
+            onMouseLeave={this.handleHover}
+            >
         {show && <i className="fa fa-times pos-abs"
           aria-hidden="true"
           onClick={deleteComment}></i> }
@@ -64,6 +69,13 @@ class CommentShow extends React.Component {
           </div>
         </div>
       </div>
+      <div className='nested-comment-list'>
+        {/* <NestedCommentList /> */}
+        <CommentForm postId={comment.post_id}
+                    smallForm
+                    commentId={comment.id} />
+      </div>
+    </div>
     )
   }
 }

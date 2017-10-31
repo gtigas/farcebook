@@ -15,7 +15,15 @@ const customizer = (objValue, srcValue) => {
 const CommentsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENT: {
-      return _.merge({}, state, { [action.comment.id]: action.comment })
+      let newState = {};
+      if (action.comment.parent_comment_id) {
+        const parentComment = Object.assign({}, state[action.comment.parent_comment_id])
+        parentComment.child_comment_ids = parentComment.child_comment_ids.slice();
+        parentComment.child_comment_ids.push(action.comment.id)
+        newState[parentComment.id] = parentComment
+      }
+      newState[action.comment.id] = action.comment
+      return _.merge({}, state, newState)
     }
     case RECEIVE_FEED: {
       return _.merge({}, state, action.comments )

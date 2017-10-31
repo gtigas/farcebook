@@ -19,6 +19,9 @@ class CommentForm extends React.Component{
     if (e.charCode == 13) {
       e.preventDefault();
       const comment = { body: this.state.body, post_id: this.props.postId};
+      if (this.props.smallForm) {
+        comment.parent_comment_id = this.props.commentId
+      }
       this.props.createComment(comment).then(
         () => this.setState({ body: "" })
       )
@@ -27,15 +30,30 @@ class CommentForm extends React.Component{
   }
 
   render(){
+    const { smallForm } = this.props
+    const imgStyle = smallForm ? {
+      margin: '0 4px',
+      height: '28px',
+      width: '28px',
+    } : {}
+    const inputStyle = smallForm ? {
+      width: '369px',
+      height: '25px',
+      margin: '0'
+    } : {}
     return(
       <div className='comment-form flex-row'>
-        <img src={this.props.currentUserPic} className='circle-thumb'></img>
+        <img src={this.props.currentUserPic}
+            style={imgStyle}
+            className='circle-thumb'></img>
         <input type='text'
           onChange={this.handleInput}
           onKeyPress={this.handleKeypress}
           value={this.state.body}
-          ref={this.props.nameInput}
-          placeholder='Write a comment...'></input>
+          ref={this.props.nameInput || null}
+          style={inputStyle}
+          placeholder={smallForm ? 'Write a reply...' :
+                                  'Write a comment...'}></input>
       </div>
     )
   }
