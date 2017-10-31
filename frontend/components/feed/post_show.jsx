@@ -6,6 +6,7 @@ import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
 import { openModal, closeModal } from '../../actions/ui_actions';
+import { like, unlike } from '../../actions/likes_actions';
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
 import moment from 'moment'
@@ -16,6 +17,7 @@ class PostShow extends React.Component {
     this.state = { loading : true, dropdown: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
     this.setNameInput = this.setNameInput.bind(this)
+    this._toggleLike = this._toggleLike.bind(this)
   }
 
   componentDidMount(){
@@ -40,9 +42,17 @@ class PostShow extends React.Component {
     this.setState( { dropdown: !this.state.dropdown})
   }
 
+  _toggleLike(){
+    if (this.props.post.currentUserLikes) {
+      this.props.unlike(this.props.post.id)
+    } else {
+      this.props.like(this.props.post.id)
+    }
+  }
+
 
   render(){
-    const { body, updated_at, id } = this.props.post;
+    const { body, updated_at, id, currentUserLikes } = this.props.post;
     const { receiver, author, isWallPost,
           currentUserId, comments, profileId,
           deleteComment, areFriends, isCurrentUser} = this.props;
@@ -90,8 +100,12 @@ class PostShow extends React.Component {
         </div>
         <p>{body}</p>
         <ul className='flex-row' id='post-nav'>
-          <li>
-            <i className="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
+              onClick={this._toggleLike}>
+            <i
+              style={ currentUserLikes ? { color: '#598dfb'} : {} }
+              className="fa fa-thumbs-o-up"
+              aria-hidden="true"></i>
             Like
           </li>
           <li onClick={ () => this.nameInput.focus()}>
@@ -122,13 +136,14 @@ const mapStateToProps = (state, ownProps) => {
     author: state.entities.users[post.author_id],
     isWallPost: post.receiver_id !== post.author_id,
     currentUserId: state.session.currentUser.id,
-
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   delete: postId =>  () => dispatch(deletePost(postId)),
   deleteComment: commentId => () => dispatch(deleteComment(commentId)),
+  like: postId => dispatch(like('posts', postId)),
+  unlike: postId => dispatch(unlike('posts', postId)),
 });
 
 

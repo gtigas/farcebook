@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
 
     author_ids = @current_user.friend_ids + [@current_user.id]
 
-    @posts = Post.includes(comments: {likes: :liker_id}, likes: :liker_id)
+    @posts = Post.includes(comments: {likes: :liker}, likes: :liker)
                 .where('author_id IN (?) OR receiver_id = ?', author_ids, @current_user.id)
                 .limit(10)
                 .order(updated_at: :desc)

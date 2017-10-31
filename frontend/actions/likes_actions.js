@@ -25,6 +25,6 @@ export const like = (type, id) => dispatch => {
 
 export const unlike = (type, id) => dispatch => {
   return LikeAPIUtil.unlike(type, id).then(
-    payload => dispatch(receiveLike(payload))
+    payload => dispatch(removeLike(payload))
   )
 }
