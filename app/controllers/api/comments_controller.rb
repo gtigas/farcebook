@@ -5,6 +5,7 @@ class Api::CommentsController < ApplicationController
     @comment.author = current_user
     @current_user = current_user
     if @comment.save
+      @comment.notifiables << Notification.new(notifee_id: @comment.post.author_id)
       render :show
     else
       render json: @comment.errors.full_messages, status: 422

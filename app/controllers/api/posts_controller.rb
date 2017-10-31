@@ -37,6 +37,9 @@ class Api::PostsController < ApplicationController
     @current_user = current_user
     @post.author = current_user
     if @post.save
+      if @post.receiver_id != @post.author_id
+        @post.notifiables << Notification.new(notifee_id: @post.receiver_id)
+      end
       render :post
     else
       render json: @post.errors.full_messages, status: 422

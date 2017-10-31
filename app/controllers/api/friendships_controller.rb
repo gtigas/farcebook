@@ -19,6 +19,7 @@ class Api::FriendshipsController < ApplicationController
     @request.requester = current_user
     @request.receiver_id = params[:user_id]
     if @request.save
+      @request.notifiables << Notification.new(notifee_id: params[:user_id])
       render :show
     else
       render json: @request.errors.full_messages, status: 422
