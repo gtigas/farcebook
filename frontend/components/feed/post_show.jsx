@@ -52,7 +52,8 @@ class PostShow extends React.Component {
 
 
   render(){
-    const { body, updated_at, id, currentUserLikes } = this.props.post;
+    const { body, updated_at, id,
+          currentUserLikes, liker_ids } = this.props.post;
     const { receiver, author, isWallPost,
           currentUserId, comments, profileId,
           deleteComment, areFriends, isCurrentUser} = this.props;
@@ -114,6 +115,12 @@ class PostShow extends React.Component {
           </li>
         </ul>
         <div className='comment-area flex-col'>
+          {liker_ids.length > 0 &&
+            <h5 className='post-likes-show'>
+              <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+              {liker_ids.length}
+            </h5>
+          }
           {commentList}
           {(areFriends || isCurrentUser) && <CommentForm postId={id}
                                                         nameInput={this.setNameInput}/> }

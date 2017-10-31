@@ -192,3 +192,20 @@
     }
   }
 }
+
+.post-likes-show {
+  margin: 0;
+  >i {
+    background-color: #598dfb;
+    color: white;
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 10px;
+    margin-right: 5px;
+    margin: 6px 4px;
+    &:hover {
+      text-decoration: none;
+      cursor: inherit;
+    }
+  }
+}
