@@ -16,7 +16,8 @@
 
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #edf0f5;
 }
 
 .hidden {

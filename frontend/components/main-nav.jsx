@@ -7,7 +7,7 @@ class MainNav extends React.Component {
 
   render(){
     return (
-      <ul className='main-header-nav flex-row'>
+      <ul className='main-header-nav flex-row' id='main-nav-list2'>
         <li onClick={this.props.toggle('requestDropdown')}>
           <i className="fa fa-users" aria-hidden="true"></i>
         </li>

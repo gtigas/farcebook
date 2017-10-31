@@ -91,7 +91,7 @@ class MainHeader extends React.Component {
             close={this.closeDropdown('requestDropdown')} />}
 
         <div className="flex-row">
-          <ul className='flex-row nav-list'>
+          <ul className='flex-row nav-list' id='main-nav-list'>
             <li className='flex-row'>
               <img src={this.props.userPic}
                     width="25px"
@@ -108,7 +108,9 @@ class MainHeader extends React.Component {
             </li>
           </ul>
 
-          <MainNav toggle={this.toggleDropdown} numRequests={this.props.numRequests}/>
+          <MainNav toggle={this.toggleDropdown}
+                  numRequests={this.props.numRequests}
+                  />
           {this.props.numRequests > 0 &&
             <div id='num-requests'>{this.props.numRequests}</div>
           }
