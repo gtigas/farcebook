@@ -31,7 +31,7 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.match.path === "/") {
+    if (this.props.location.pathname === "/feed") {
       this.props.fetchFeed();
     }
     this.props.fetchRequests();
