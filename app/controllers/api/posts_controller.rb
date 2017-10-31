@@ -4,13 +4,15 @@ class Api::PostsController < ApplicationController
   def feed
     @current_user = User.find_by(id: params[:userId]) || current_user
     @users = User.all
-    @posts = @current_user.friends.inject([]) do |posts, user|
-      posts.concat(user.authored_posts)
-      posts.concat(user.wall_posts)
-    end
-    @posts.concat(@current_user.authored_posts)
-    @posts.concat(@current_user.wall_posts)
-    @posts = @posts.uniq[-7..-1]
+
+    author_ids = @current_user.friend_ids + [@current_user.id]
+
+    @posts = Post.includes(comments: {likes: :liker_id}, likes: :liker_id)
+                .where('author_id IN (?) OR receiver_id = ?', author_ids, @current_user.id)
+                .limit(10)
+                .order(updated_at: :desc)
+                .distinct
+
     @comments = @posts.inject([]) do |comments, post|
       comments.concat(post.comments)
     end

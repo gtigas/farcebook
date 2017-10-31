@@ -64,11 +64,14 @@ class User < ApplicationRecord
     dependent: :destroy
 
   def friendships
-    Friendship.includes(receiver: { authored_posts: [comments: { likers: :ids}, likers: :ids],
-                        wall_posts: [comments:{ likers: :ids}, likers: :ids]},
-                        requester: { authored_posts: [comments: { likers: :ids}, likers: :ids],
-                        wall_posts: [comments: { likers: :ids}, likers: :ids]})
-                        .where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')
+    Friendship.includes(:receiver, :requester )
+              .where('(receiver_id = ? OR requester_id = ?)
+                        AND status = ?', self.id, self.id, 'ACCEPTED')
+    # Friendship.includes(receiver: { authored_posts: [comments: { likers: :ids}, likers: :ids],
+    #                     wall_posts: [comments:{ likers: :ids}, likers: :ids]},
+    #                     requester: { authored_posts: [comments: { likers: :ids}, likers: :ids],
+    #                     wall_posts: [comments: { likers: :ids}, likers: :ids]})
+    #                     .where('(receiver_id = ? OR requester_id = ?) AND status = ?', self.id, self.id, 'ACCEPTED')
   end
 
   def friends
