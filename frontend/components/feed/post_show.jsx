@@ -73,7 +73,8 @@ class PostShow extends React.Component {
       return <CommentShow key={comment.id}
                           commentId={comment.id}
                           deleteComment={deleteComment(comment.id)}
-                          showX={show}/>
+                          showX={show}
+                          areFriends={areFriends}/>
     })
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
@@ -106,6 +107,7 @@ class PostShow extends React.Component {
           </div>
         </div>
         <p>{body}</p>
+        {areFriends &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
               onClick={this._toggleLike}>
@@ -120,6 +122,7 @@ class PostShow extends React.Component {
             Comment
           </li>
         </ul>
+        }
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
             <h5 className='post-likes-show'>

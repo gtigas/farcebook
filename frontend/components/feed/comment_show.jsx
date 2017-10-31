@@ -26,7 +26,7 @@ class CommentShow extends React.Component {
   }
 
   render(){
-    const { comment, author, deleteComment, showX } = this.props
+    const { comment, author, deleteComment, showX, areFriends } = this.props
     const date = moment(comment.updated_at);
     const show = (showX && this.state.showX)
     return(
@@ -44,12 +44,14 @@ class CommentShow extends React.Component {
             {comment.body}
           </p>
           <div className='comment-show-bottom flex-row'>
+            {areFriends &&
             <ul className='flex-row' id='comment-nav'>
               <li onClick={this._toggleLike}>
                 {comment.currentUserLikes ? 'Unlike' : 'Like'}
               </li>
               <li>Reply</li>
             </ul>
+            }
             {comment.liker_ids.length > 0 &&
               <figure className='comments-likes-show flex-row'>
                 <i className="fa fa-thumbs-up" aria-hidden="true"></i>
