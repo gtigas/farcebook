@@ -3,6 +3,7 @@ class Api::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.author = current_user
+    @current_user = current_user
     if @comment.save
       render :show
     else
@@ -12,6 +13,7 @@ class Api::CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    @current_user = current_user
     @comment.update(comment_params)
     @comment.save
     render :show
@@ -19,6 +21,7 @@ class Api::CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @current_user = current_user
     @comment.destroy
     render :show
   end

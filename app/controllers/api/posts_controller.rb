@@ -19,8 +19,9 @@ class Api::PostsController < ApplicationController
   end
 
   def index
+    @current_user = current_user
     @posts = Post.where(receiver_id: params[:user_id])
-                  .includes(:comments)
+                  .includes(comments: {likes: :liker_id}, likes: :liker_id)
                   .order(updated_at: :asc)
     @comments = []
     @posts.each do |post|
@@ -30,6 +31,7 @@ class Api::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @current_user = current_user
     @post.author = current_user
     if @post.save
       render :post
@@ -40,6 +42,7 @@ class Api::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @current_user = current_user
     @post.update_attributes(post_params)
     @post.save
     render :post
@@ -47,6 +50,7 @@ class Api::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @current_user = current_user
     @post.destroy
     render :post
   end
