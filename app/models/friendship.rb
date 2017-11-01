@@ -23,6 +23,11 @@ class Friendship < ApplicationRecord
     class_name: 'User',
     foreign_key: :receiver_id
 
+  has_many :notifiables,
+    as: :notifiable,
+    class_name: 'Notification',
+    dependent: :destroy
+
   private
 
   def cannot_add_self

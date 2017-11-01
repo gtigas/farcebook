@@ -27,7 +27,9 @@
 #
 
 class User < ApplicationRecord
+  validates :first_name, :last_name, presence: true
   validates :email, presence:true, uniqueness:true
+  validates :gender, presence:true, inclusion: { in: ['male', 'female']}
   validates :password_digest, :session_token, presence:true
   validates :password, length: { minimum: 6, allow_nil: true }
   has_attached_file :profile_picture, default_url: "https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"
@@ -62,6 +64,9 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: 'Comment',
     dependent: :destroy
+
+  has_many :notifications,
+    foreign_key: :notifee_id
 
   def friendships
     Friendship.includes(:receiver, :requester )

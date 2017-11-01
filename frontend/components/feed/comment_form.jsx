@@ -16,13 +16,14 @@ class CommentForm extends React.Component{
 
 
   handleKeypress(e){
+    const { postId, smallForm, commentId, createComment } = this.props
     if (e.charCode == 13) {
       e.preventDefault();
-      const comment = { body: this.state.body, post_id: this.props.postId};
-      if (this.props.smallForm) {
-        comment.parent_comment_id = this.props.commentId
+      const comment = { body: this.state.body, post_id: postId};
+      if (smallForm) {
+        comment.parent_comment_id = commentId
       }
-      this.props.createComment(comment).then(
+      createComment(comment).then(
         () => this.setState({ body: "" })
       )
       this.setState({ body: ""})
@@ -30,7 +31,7 @@ class CommentForm extends React.Component{
   }
 
   render(){
-    const { smallForm } = this.props
+    const { smallForm, nameInput, currentUserPic } = this.props
     const imgStyle = smallForm ? {
       margin: '0 4px',
       height: '28px',
@@ -43,14 +44,14 @@ class CommentForm extends React.Component{
     } : {}
     return(
       <div className='comment-form flex-row'>
-        <img src={this.props.currentUserPic}
+        <img src={currentUserPic}
             style={imgStyle}
             className='circle-thumb'></img>
         <input type='text'
           onChange={this.handleInput}
           onKeyPress={this.handleKeypress}
           value={this.state.body}
-          ref={this.props.nameInput || null}
+          ref={nameInput || null}
           style={inputStyle}
           placeholder={smallForm ? 'Write a reply...' :
                                   'Write a comment...'}></input>

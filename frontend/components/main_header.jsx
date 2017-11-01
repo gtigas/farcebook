@@ -7,6 +7,7 @@ import { fetchFeed } from '../actions/posts_actions';
 import { fetchFriendRequests } from '../actions/friends_actions'
 import FriendRequestList from './dropdowns/friend_requests'
 import SearchDropdown from './dropdowns/search_dropdown'
+import NotificationList from './dropdowns/notifications'
 import MainNav from './main-nav'
 import _ from 'lodash';
 
@@ -16,6 +17,7 @@ class MainHeader extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.state = { requestDropdown: false,
                   searchDropdown: false,
+                  notificationDropdown: false,
                   searchTerm: ""}
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
@@ -31,16 +33,12 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.location.pathname === "/feed") {
-      this.props.fetchFeed();
-    }
+    const { location } = this.props
+    this.props.fetchFeed();
     this.props.fetchRequests();
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.location.pathname === "/feed") {
-      this.props.fetchFeed();
-    }
   }
 
   closeDropdown(type) {
@@ -72,6 +70,11 @@ class MainHeader extends React.Component {
 
 
   render(){
+    const { searchDropdown, requestDropdown,
+            notificationDropdown, searchTerm } = this.state
+    const { numNotifications, userName,
+              userId, userPic, numRequests} = this.props
+
     return (
       <header className='main-header flex-row'>
         <div className='main-nav'>
@@ -85,26 +88,31 @@ class MainHeader extends React.Component {
                   onBlur={this._toggleSearch}
                   id='search-bar'
                   placeholder='Search'
-                  value={this.state.searchTerm}
+                  value={searchTerm}
                   onChange={this.handleInput}></input>
-            {this.state.searchDropdown &&
-              <SearchDropdown searchTerm={this.state.searchTerm}/> }
+            {searchDropdown &&
+              <SearchDropdown searchTerm={searchTerm}/> }
           </div>
 
 
-        {this.state.requestDropdown &&
+        {requestDropdown &&
           <FriendRequestList
-            close={this.closeDropdown('requestDropdown')} />}
+            close={this.closeDropdown('requestDropdown')} />
+        }
+        {notificationDropdown &&
+          <NotificationList
+            close={this.closeDropdown('notificationDropdown')} />
+        }
 
         <div className="flex-row">
           <ul className='flex-row nav-list' id='main-nav-list'>
             <li className='flex-row'>
-              <img src={this.props.userPic}
+              <img src={userPic}
                     width="25px"
                     height="25px"
                     className='circle-thumb' />
-              <Link to={`/users/${this.props.userId}`}>
-                <h2>{this.props.userName}</h2>
+              <Link to={`/users/${userId}`}>
+                <h2>{userName}</h2>
               </Link>
             </li>
             <li>
@@ -115,15 +123,22 @@ class MainHeader extends React.Component {
           </ul>
 
           <MainNav toggle={this.toggleDropdown}
-                  numRequests={this.props.numRequests}
+                  numRequests={numRequests}
                   />
-          {this.props.numRequests > 0 &&
-            <div id='num-requests'>{this.props.numRequests}</div>
+          {numRequests > 0 &&
+            <div id='num-requests'>
+              {numRequests}
+            </div>
+          }
+
+          {numNotifications > 0 &&
+            <div id='num-requests' style={ {right: '115px'}}>
+              {numNotifications}
+            </div>
           }
           <button onClick={this.handleLogout}
             className='login-button'>Logout</button>
           </div>
-
         </div>
 
 
@@ -133,11 +148,14 @@ class MainHeader extends React.Component {
 }
 
 const mapStateToProps = state =>  {
+  const notifs = state.entities.notifications
+  const numUnreadNotifications = notifs.filter( notif => notif.unread).length
   return {
     userName: _.capitalize(state.session.currentUser.firstName),
     userId: state.session.currentUser.id,
     userPic: state.session.currentUser.profile_picture_url,
     numRequests: _.keys(state.entities.friendRequests.received).length,
+    numNotifications: numUnreadNotifications,
   }
 };
 

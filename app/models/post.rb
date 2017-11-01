@@ -33,6 +33,11 @@ class Post < ApplicationRecord
   has_many :likers,
     through: :likes
 
+  has_many :notifiables,
+    as: :notifiable,
+    class_name: 'Notification',
+    dependent: :destroy
+
   def user_likes(user)
     self.liker_ids.include?(user.id)
   end

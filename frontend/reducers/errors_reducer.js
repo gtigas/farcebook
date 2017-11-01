@@ -14,7 +14,7 @@ const ErrorsReducer = (state = defaultState, action) => {
     }
     case RECEIVE_ERRORS : {
       const errors = action.errors.responseJSON;
-      return _.merge({}, state, { [action.errorType]: errors })
+      return _.merge({}, defaultState, { [action.errorType]: errors })
     }
     default:
       return defaultState;

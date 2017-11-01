@@ -5,6 +5,7 @@ json.profile_picture_url user.profile_picture.url
 json.cover_photo_url user.cover_photo.url
 json.friend_ids user.friend_ids
 json.postIds user.wall_posts.order(updated_at: :desc).map(&:id)
+json.unreadNotifications user.notifications.where(status: 'UNREAD').count
 json.feedIds Post.where(receiver_id: user.id)
           .or(Post.where('(author_id IN (?)) AND (receiver_id != ?)', user.friend_ids, user.id))
           .order(updated_at: :desc)

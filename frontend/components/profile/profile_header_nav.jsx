@@ -5,7 +5,7 @@ const ProfileHeaderNav = ({id}) => (
   <div id='profile-header-nav'>
     <ul>
       <li><Link to={`/users/${id}`}>Timeline</Link></li>
-      <li>About</li>
+      {/* <li>About</li> */}
       <li><Link to={`/users/${id}/friends`}>Friends</Link></li>
     </ul>
   </div>

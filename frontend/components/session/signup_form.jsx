@@ -56,23 +56,27 @@ class SignupForm extends React.Component {
             <input type='text'
                   placeholder='First name'
                   ref={(input) => this.first_name = input}
-                  className={this._hasErrors() ? 'has-errors' : null}
+                  className={(this._hasErrors()
+                      && this.first_name.value.length === 0) ? 'has-errors' : null}
                   ></input>
             <input type='text'
                   placeholder='Last name'
                   ref={(input) => this.last_name = input}
-                  className={this._hasErrors() ? 'has-errors' : null}
+                  className={(this._hasErrors()
+                      && this.last_name.value.length === 0) ? 'has-errors' : null}
                   ></input>
           </span>
           <input type='text'
                 placeholder='Email address'
                 ref={(input) => this.email = input}
-                className={this._hasErrors() ? 'has-errors' : null}
+                className={(this._hasErrors()
+                    && this.email.value.length === 0) ? 'has-errors' : null}
                 ></input>
           <input type='password'
                 placeholder='Password'
                 ref={(input) => this.password = input}
-                className={this._hasErrors() ? 'has-errors' : null}
+                className={(this._hasErrors()
+                    && this.password.value.length < 6) ? 'has-errors' : null}
                 ></input>
           <label>
             Birthday <br></br>
@@ -95,7 +99,9 @@ class SignupForm extends React.Component {
 
           <div>
             <select defaultValue='gender'
-                    ref={(input) => this.gender = input}>
+                    ref={(input) => this.gender = input}
+                    className={(this._hasErrors()
+                        && this.gender.value === 'gender') ? 'has-errors' : null}>
               <option disabled value='gender'>Gender</option>
               <option value='male'>Male</option>
               <option value='female'>Female</option>

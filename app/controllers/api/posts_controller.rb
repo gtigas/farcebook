@@ -2,14 +2,14 @@ class Api::PostsController < ApplicationController
   before_action :ensure_logged_in
 
   def feed
-    @current_user = User.find_by(id: params[:userId]) || current_user
+    @current_user = current_user
     @users = User.all
+    @notifications = @current_user.notifications.order(created_at: :desc)
 
     author_ids = @current_user.friend_ids + [@current_user.id]
 
     @posts = Post.includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
                 .where('author_id IN (?) OR receiver_id = ?', author_ids, @current_user.id)
-                .limit(10)
                 .order(updated_at: :desc)
                 .distinct
 
@@ -22,6 +22,7 @@ class Api::PostsController < ApplicationController
   def index
     @current_user = current_user
     @users = User.all
+    @notifications = @current_user.notifications.order(created_at: :desc)
     @posts = Post.where(receiver_id: params[:user_id])
                   .includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
                   .order(updated_at: :desc)
@@ -32,11 +33,22 @@ class Api::PostsController < ApplicationController
     render :feed
   end
 
+  def show
+    @post = Post
+            .includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
+            .find(params[:id])
+    @comments = @post.comments
+    @current_user = current_user
+  end
+
   def create
     @post = Post.new(post_params)
     @current_user = current_user
     @post.author = current_user
     if @post.save
+      if @post.receiver_id != @post.author_id
+        @post.notifiables << Notification.new(notifee_id: @post.receiver_id)
+      end
       render :post
     else
       render json: @post.errors.full_messages, status: 422

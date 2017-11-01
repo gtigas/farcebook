@@ -39,28 +39,40 @@ class ProfileHeader extends React.Component{
 
 
   render () {
-    if (this.props.loading) return null;
+    const { loading, user, closeModal, modalOpen,
+            pictureType, isCurrentUser} = this.props
+    if (loading) return null;
 
     return (
       <div id='profile-header'>
-        {this.props.modalOpen ? <FileUploadForm user={this.props.user}
-                                                closeModal={this.props.closeModal}
-                                                pictureType= {this.state.pictureType}
-                                                /> : null}
-        <h2>{this.props.user.fullName}</h2>
-        {this.props.isCurrentUser &&
-          <div id='upload-profile' onClick={this._openUpload('profile_picture')}>
-            <i className="fa fa-camera"></i>
-          </div> }
+
+        {modalOpen &&
+        <FileUploadForm user={user}
+                        closeModal={closeModal}
+                        pictureType= {pictureType}/>
+        }
+
+        <h2>
+          {user.fullName}
+        </h2>
+
+        {isCurrentUser &&
+          <div id='upload-profile'
+               onClick={this._openUpload('profile_picture')}>
+            <i className="fa fa-camera" />
+          </div>
+        }
+
         {this.props.isCurrentUser &&
           <div id='upload-cover' onClick={this._openUpload('cover_photo')}>
             <i className="fa fa-camera"></i>
           </div>
         }
-        <ProfilePicture url={this.props.user.profile_picture_url}/>
-        <img src={this.props.user.cover_photo_url} />
+
+        <ProfilePicture url={user.profile_picture_url}/>
+        <img src={user.cover_photo_url} />
         <FriendButton {...this.props} forceUpdate={this._forceUpdate}/>
-        <ProfileHeaderNav id={this.props.user.id}/>
+        <ProfileHeaderNav id={user.id}/>
       </div>
     )
   }

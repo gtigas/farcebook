@@ -41,30 +41,32 @@ class PostForm extends React.Component {
   }
 
   render(){
-    if (this.props.loading) return null;
-    const currentProfileFriends = this.props.receiver.friend_ids
-    const currentUserId = this.props.currentUserId
+    const { loading, receiver, currentUserId, isWallPost,
+            currentUserPic } = this.props
+
+    if (loading) return null;
+    const currentProfileFriends = receiver.friend_ids
     if (!currentProfileFriends.includes(currentUserId)
-          && this.props.isWallPost) {
+          && isWallPost) {
       return null
     }
     return (
       <div className='post-form'>
         {this.errorShow()}
         <h2>
-          <i className="fa fa-pencil" aria-hidden="true"></i>
+          <i className="fa fa-pencil" aria-hidden="true" />
           &nbsp;
           Create Post
         </h2>
         <form onSubmit={this.handleSubmit}>
-          <img src={this.props.currentUserPic}
+          <img src={currentUserPic}
                 width="33px"
                 height="33px"
                 className='circle-thumb pos-abs' />
           <textarea
             onChange={this.handleInput}
-            placeholder={this.props.isWallPost ?
-              `Write something to ${this.props.receiver.firstName}...` :
+            placeholder={isWallPost ?
+              `Write something to ${receiver.firstName}...` :
               "What's on your mind?"}
             value={this.state.body}>
           </textarea>

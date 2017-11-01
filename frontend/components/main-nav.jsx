@@ -11,7 +11,7 @@ class MainNav extends React.Component {
         <li onClick={this.props.toggle('requestDropdown')}>
           <i className="fa fa-users" aria-hidden="true"></i>
         </li>
-        <li>
+        <li onClick={this.props.toggle('notificationDropdown')}> 
           <i className="fa fa-globe" aria-hidden="true"></i>
         </li>
       </ul>

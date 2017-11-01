@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       delete '/reject_request', to: 'friendships#reject_friendship'
     end
     resource :session, only: [:create, :destroy]
-    resources :posts, only: [:index, :create, :update, :destroy] do
+    resources :posts, only: [:index, :show, :create, :update, :destroy] do
       post '/like', to: 'likes#like_post'
       delete '/unlike', to: 'likes#unlike_post'
     end
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post '/like', to: 'likes#like_comment'
       delete '/unlike', to: 'likes#unlike_comment'
     end
+    resources :notifications, only: [:index, :update]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
     get '/feed', to: 'posts#feed'

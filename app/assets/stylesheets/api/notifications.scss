@@ -1,0 +1,27 @@
+// Place all the styles related to the Api::Notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.notification-item, .unread {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start !important;
+  border-bottom: 1px solid #dfe1e5;
+  i {
+    position: static !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+  }
+  div {
+    align-items: flex-start;
+    margin-left: 15px;
+  }
+  &:hover {
+    background-color: #f6f6f6
+  }
+}
+
+.unread {
+  background-color: #edf2fa;
+}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
-import { deletePost } from '../../actions/posts_actions'
+import { deletePost, fetchPost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { like, unlike } from '../../actions/likes_actions';
@@ -22,16 +22,25 @@ class PostShow extends React.Component {
   }
 
   componentDidMount(){
-    const { receiver, author } = this.props;
+    const { receiver, author, singlePost, headerLoading } = this.props;
     if (receiver || author) {
       this.setState({ loading: false })
+    }
+    if (!Boolean(receiver) && singlePost && !headerLoading) {
+      this.props.fetchPost(this.props.postId)
     }
   }
 
   componentWillReceiveProps(newProps){
     const { receiver, author } = newProps;
-    if (receiver || author) {
+    if (this.props.singlePost && newProps.postId !== this.props.postId) {
+      this.props.fetchPost(newProps.postId)
+      this.setState({ loading: true })
+    } else if (receiver || author) {
       this.setState({ loading: false })
+    }
+    if (!Boolean(receiver) && this.props.singlePost) {
+      this.props.fetchPost(this.props.postId)
     }
   }
 
@@ -58,49 +67,56 @@ class PostShow extends React.Component {
 
   render(){
     const { body, updated_at, id,
-          currentUserLikes, liker_ids } = this.props.post;
+      currentUserLikes, liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
-          currentUserId, comments, profileId,
-          deleteComment, areFriends, isCurrentUser} = this.props;
-    if (this.state.loading) {
-      return null
-    }
-    const postTime = moment(updated_at);
-    const likerList = likerNames.map ( (name, i) => <li key={i}>{name}</li>)
-    const parentComments = comments.filter( comment => !Boolean(comment.parent_comment_id))
+          currentUserId, comments, profileId, deleteComment,
+              areFriends, isCurrentUser, singlePost } = this.props;
 
+    if (this.state.loading) return null;
+
+    const postTime = moment(updated_at);
+    const likerList = likerNames.map ( (name, i) => {
+      return <li key={i}>{name}</li>
+    })
+    const parentComments = comments.filter( comment => {
+      return !Boolean(comment.parent_comment_id)
+    })
     const commentList = parentComments.map( comment => {
       const show = (comment.author_id === currentUserId) ||
-                  (profileId === currentUserId)
+                  (receiver_id === currentUserId)
       return <CommentShow
                     key={comment.id}
                     commentId={comment.id}
                     deleteComment={deleteComment(comment.id)}
                     showX={show}
                     areFriends={areFriends}
+                    isCurrentUser={isCurrentUser}
                     topLevelComment
                   />
     })
-
+    const style = singlePost ? { margin:'0 auto', marginTop: '15px' } : {}
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
     return (
-      <div className='post-show'>
+      <div className='post-show' style={style}>
         {currUserIsAuthorOrReceiver &&
-        <h3 className='pos-abs' onClick={this.toggleDropdown}>...</h3>}
+        <h3 className='pos-abs' onClick={this.toggleDropdown}>
+          ...
+        </h3>
+      }
         {this.state.dropdown &&
-                  <PostDropdown close={this.toggleDropdown}
-                                delete={this.props.delete(id)}
-                                postId={id}
-                                isAuthor={author.id === currentUserId}/> }
+        <PostDropdown close={this.toggleDropdown}
+                      delete={this.props.delete(id)}
+                      postId={id}
+                      isAuthor={author.id === currentUserId}/> }
         <div className='flex-row'>
-          <img src={author.profile_picture_url}></img>
+          <img src={author.profile_picture_url}/>
           <div>
             <Link to={`/users/${author.id}`}>
               <h2>{author.fullName}</h2>
             </Link>
             {isWallPost &&
-              <i className="fa fa-caret-right" aria-hidden="true"></i>}
+              <i className="fa fa-caret-right" aria-hidden="true"/>}
             {isWallPost &&
             <Link to={`/users/${receiver.id}`}>
               <h2>{receiver.fullName}</h2>
@@ -112,23 +128,26 @@ class PostShow extends React.Component {
             </i>
           </div>
         </div>
+
         <p>{body}</p>
-        {areFriends &&
+
+        {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
               onClick={this._toggleLike}>
             <i
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
               className="fa fa-thumbs-o-up"
-              aria-hidden="true"></i>
-            Like
+              aria-hidden="true" />
+          { currentUserLikes ?  "Unlike" : "Like"  }
           </li>
           <li onClick={ () => this.nameInput.focus()}>
-            <i className="fa fa-comment-o" aria-hidden="true"></i>
+            <i className="fa fa-comment-o" aria-hidden="true" />
             Comment
           </li>
         </ul>
         }
+
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
             <h5 className='post-likes-show'>
@@ -142,14 +161,16 @@ class PostShow extends React.Component {
                   <ul>{likerList}</ul>
                 </aside>
                 }
-                </i>
+              </i>
               {liker_ids.length}
             </h5>
           }
 
           {commentList}
-          {(areFriends || isCurrentUser) && <CommentForm postId={id}
-                                                        nameInput={this.setNameInput}/> }
+
+          {(areFriends || isCurrentUser) &&
+            <CommentForm postId={id}  nameInput={this.setNameInput}/>
+          }
         </div>
       </div>
     )
@@ -159,7 +180,7 @@ class PostShow extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const post = state.entities.posts[ownProps.postId] ||
-                                      { comment_ids: [], liker_ids: []}
+                                      { comment_ids: [], liker_ids: [] }
   const comments = post.comment_ids.map( id => {
     return state.entities.comments[id]
   })
@@ -170,6 +191,7 @@ const mapStateToProps = (state, ownProps) => {
     post,
     comments,
     likerNames,
+    headerLoading: state.ui.loading,
     receiver: state.entities.users[post.receiver_id],
     author: state.entities.users[post.author_id],
     isWallPost: post.receiver_id !== post.author_id,
@@ -182,6 +204,7 @@ const mapDispatchToProps = dispatch => ({
   deleteComment: commentId => () => dispatch(deleteComment(commentId)),
   like: postId => dispatch(like('posts', postId)),
   unlike: postId => dispatch(unlike('posts', postId)),
+  fetchPost: postId => dispatch(fetchPost(postId))
 });
 
 
