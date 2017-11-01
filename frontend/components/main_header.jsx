@@ -7,6 +7,7 @@ import { fetchFeed } from '../actions/posts_actions';
 import { fetchFriendRequests } from '../actions/friends_actions'
 import FriendRequestList from './dropdowns/friend_requests'
 import SearchDropdown from './dropdowns/search_dropdown'
+import NotificationList from './dropdowns/notifications'
 import MainNav from './main-nav'
 import _ from 'lodash';
 
@@ -16,6 +17,7 @@ class MainHeader extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.state = { requestDropdown: false,
                   searchDropdown: false,
+                  notificationDropdown: false,
                   searchTerm: ""}
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
@@ -95,6 +97,10 @@ class MainHeader extends React.Component {
         {this.state.requestDropdown &&
           <FriendRequestList
             close={this.closeDropdown('requestDropdown')} />}
+        {this.state.notificationDropdown &&
+          <NotificationList
+            close={this.closeDropdown('notificationDropdown')} />
+        }
 
         <div className="flex-row">
           <ul className='flex-row nav-list' id='main-nav-list'>

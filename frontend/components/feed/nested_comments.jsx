@@ -8,7 +8,6 @@ class NestedCommentList extends React.Component {
     const { childComments, currentUserId } = this.props;
     const commentsList = childComments.map( comment => {
       const show = (comment.author_id === currentUserId)
-      debugger
       return (
         <CommentShow key={comment.id}
                     commentId={comment.id}

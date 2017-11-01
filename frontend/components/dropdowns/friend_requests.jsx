@@ -35,7 +35,8 @@ class FriendRequestList extends React.Component {
                             /> )
     });
     return(
-      <div className="request-list pos-abs" ref={ (node) => this.wrapperRef=node}>
+      <div className="request-list pos-abs"
+           ref={ (node) => this.wrapperRef=node}>
         <h3>Friend Requests</h3>
         <ul>
           {requestList}
