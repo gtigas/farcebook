@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post '/like', to: 'likes#like_comment'
       delete '/unlike', to: 'likes#unlike_comment'
     end
+    resources :notifications, only: [:index, :update]
     get '/friends', to: 'friendships#friends'
     get '/friend-requests', to: 'friendships#pending_requests'
     get '/feed', to: 'posts#feed'
