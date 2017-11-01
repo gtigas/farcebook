@@ -21,3 +21,4 @@ json.extract! notification, :id, :created_at
 json.sourceItemId sourceItemId
 json.sourceItemType sourceItemType
 json.likeNotification likeNotification
+json.unread notification.status == 'UNREAD'

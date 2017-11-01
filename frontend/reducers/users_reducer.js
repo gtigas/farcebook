@@ -2,13 +2,8 @@ import { RECEIVE_USERS, RECEIVE_USER } from '../actions/user_actions';
 import { REMOVE_REQUEST } from '../actions/friends_actions'
 import { RECEIVE_POST, REMOVE_POST, RECEIVE_FEED } from '../actions/posts_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { customizer } from '../util/action_util'
 import _ from 'lodash';
-
-const customizer = (objValue, srcValue) => {
-  if (_.isArray(objValue)) {
-    return srcValue;
-  }
-}
 
 const UsersReducer = (state = {}, action) => {
   switch (action.type) {

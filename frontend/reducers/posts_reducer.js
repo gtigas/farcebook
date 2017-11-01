@@ -4,6 +4,7 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/likes_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_USER } from '../actions/user_actions';
+import { customizer } from '../util/action_util'
 import _ from 'lodash'
 
 
@@ -69,13 +70,6 @@ const PostsReducer = (state = {}, action) => {
   }
 }
 
-
-const customizer = (objValue, srcValue) => {
-  if (_.isArray(objValue)) {
-    return srcValue;
-  } else if (_.isBoolean(objValue))
-    return srcValue;
-}
 
 
 export default PostsReducer;

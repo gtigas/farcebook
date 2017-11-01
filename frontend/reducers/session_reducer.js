@@ -1,17 +1,12 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_POST, REMOVE_POST } from '../actions/posts_actions'
+import { customizer } from '../util/action_util'
 import merge from 'lodash/merge';
 
 const defaultState = {
   currentUser: null,
   errors: [],
 };
-
-const customizer = (objValue, srcValue) => {
-  if (_.isArray(objValue)) {
-    return srcValue;
-  }
-}
 
 const SessionReducer = (state = defaultState, action) => {
   switch (action.type) {

@@ -3,14 +3,7 @@ import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/likes_actions'
 import { RECEIVE_USER } from '../actions/user_actions';
 import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
-
-const customizer = (objValue, srcValue) => {
-  if (_.isArray(objValue)) {
-    return srcValue;
-  } else if (_.isBoolean(objValue))
-    return srcValue;
-}
-
+import { customizer } from '../util/action_util'
 
 const CommentsReducer = (state = {}, action) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import { readNotification } from '../util/notification_api_util'
+import * as NotificationAPI from '../util/notification_api_util'
 
 export const READ_NOTIFICATION = 'READ_NOTIFICATION';
 
@@ -8,7 +8,7 @@ const updateNotification = notification => ({
 })
 
 export const readNotification = notification => dispatch => {
-  return readNotification(notification).then(
+  return NotificationAPI.readNotification(notification).then(
     notification => dispatch(updateNotification(notification))
   )
 }
