@@ -147,12 +147,14 @@ class MainHeader extends React.Component {
 }
 
 const mapStateToProps = state =>  {
+  const notifs = state.entities.notifications
+  const numUnreadNotifications = notifs.filter( notif => notif.unread).length
   return {
     userName: _.capitalize(state.session.currentUser.firstName),
     userId: state.session.currentUser.id,
     userPic: state.session.currentUser.profile_picture_url,
     numRequests: _.keys(state.entities.friendRequests.received).length,
-    numNotifications: state.session.currentUser.unreadNotifications,
+    numNotifications: numUnreadNotifications,
   }
 };
 

@@ -122,7 +122,7 @@ class PostShow extends React.Component {
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
               className="fa fa-thumbs-o-up"
               aria-hidden="true"></i>
-          { currentUserLikes ?  "Unlike" : "Like"  }  
+          { currentUserLikes ?  "Unlike" : "Like"  }
           </li>
           <li onClick={ () => this.nameInput.focus()}>
             <i className="fa fa-comment-o" aria-hidden="true"></i>

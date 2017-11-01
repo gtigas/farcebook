@@ -99,7 +99,9 @@ class SignupForm extends React.Component {
 
           <div>
             <select defaultValue='gender'
-                    ref={(input) => this.gender = input}>
+                    ref={(input) => this.gender = input}
+                    className={(this._hasErrors()
+                        && this.gender.value === 'gender') ? 'has-errors' : null}>
               <option disabled value='gender'>Gender</option>
               <option value='male'>Male</option>
               <option value='female'>Female</option>

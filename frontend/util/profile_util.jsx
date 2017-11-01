@@ -73,9 +73,9 @@ export const convertTime = (time) => {
   const yesterday = moment().subtract(24,'hours');
   const startOfYesterday = moment().subtract(24,'hours').startOf('day');
   if (postTime.isAfter(yesterday)) {
-    return postTime.fromNow(true);
+    return postTime.fromNow();
   } else if (postTime.isAfter(startOfYesterday)) {
-    return postTime.format('[Yesterday] [at] h:mma');
+    return postTime.format('[Yesterday] [at] h:mma' );
   } else {
     return postTime.format('MMMM D [at] h:mma');
   }

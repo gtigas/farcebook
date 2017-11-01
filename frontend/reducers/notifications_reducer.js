@@ -9,12 +9,10 @@ const NotificationsReducer = (state = [], action) => {
       return action.notifications
     }
     case READ_NOTIFICATION: {
-      return _.mergeWith(
-        {},
-        state,
-        {[action.notification.id]: action.notification },
-        customizer
-      )
+      const notifIndex = state.findIndex( notif => notif.id === action.notification.id)
+      let newState = state.slice();
+      newState[notifIndex] = action.notification
+      return newState
     }
     default: return state;
 
