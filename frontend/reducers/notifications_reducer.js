@@ -6,7 +6,11 @@ import _ from 'lodash'
 const NotificationsReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_FEED: {
-      return action.notifications
+      if (action.notifications) {
+        return action.notifications
+      } else {
+        return state;
+      }
     }
     case READ_NOTIFICATION: {
       const notifIndex = state.findIndex( notif => notif.id === action.notification.id)

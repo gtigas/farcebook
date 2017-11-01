@@ -34,16 +34,11 @@ class MainHeader extends React.Component {
 
   componentDidMount(){
     const { location } = this.props
-    if ((location.pathname === "/feed") || location.pathname.includes('posts')) {
-      this.props.fetchFeed();
-    }
+    this.props.fetchFeed();
     this.props.fetchRequests();
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.location.pathname === "/feed" && this.props.loading) {
-      this.props.fetchFeed();
-    }
   }
 
   closeDropdown(type) {

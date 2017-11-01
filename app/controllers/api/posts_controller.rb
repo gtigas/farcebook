@@ -23,6 +23,7 @@ class Api::PostsController < ApplicationController
   def index
     @current_user = current_user
     @users = User.all
+    @notifications = @current_user.notifications.order(created_at: :desc)
     @posts = Post.where(receiver_id: params[:user_id])
                   .includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
                   .order(updated_at: :desc)

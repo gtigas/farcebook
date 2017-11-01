@@ -6,12 +6,13 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
 
-const receivePosts = ({ users, posts, comments}) => {
+const receivePosts = ({ users, posts, comments, notifications }) => {
   return ({
     type: RECEIVE_FEED,
     users,
     posts,
     comments,
+    notifications
   })
 }
 

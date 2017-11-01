@@ -66,18 +66,21 @@ class PostShow extends React.Component {
 
 
   render(){
-    const { body, updated_at, id,
-          currentUserLikes, liker_ids, receiver_id } = this.props.post;
+    const { body, updated_at, id, currentUserLikes,
+                            liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
-          currentUserId, comments, profileId,
-          deleteComment, areFriends, isCurrentUser, singlePost } = this.props;
-    if (this.state.loading) {
-      return null
-    }
-    const postTime = moment(updated_at);
-    const likerList = likerNames.map ( (name, i) => <li key={i}>{name}</li>)
-    const parentComments = comments.filter( comment => !Boolean(comment.parent_comment_id))
+          currentUserId, comments, profileId, deleteComment,
+              areFriends, isCurrentUser, singlePost } = this.props;
 
+    if (this.state.loading) return null;
+
+    const postTime = moment(updated_at);
+    const likerList = likerNames.map ( (name, i) => {
+      return <li key={i}>{name}</li>
+    })
+    const parentComments = comments.filter( comment => {
+      return !Boolean(comment.parent_comment_id)
+    })
     const commentList = parentComments.map( comment => {
       const show = (comment.author_id === currentUserId) ||
                   (receiver_id === currentUserId)
@@ -104,7 +107,7 @@ class PostShow extends React.Component {
                                 postId={id}
                                 isAuthor={author.id === currentUserId}/> }
         <div className='flex-row'>
-          <img src={author.profile_picture_url}></img>
+          <img src={author.profile_picture_url}/>
           <div>
             <Link to={`/users/${author.id}`}>
               <h2>{author.fullName}</h2>
@@ -122,7 +125,9 @@ class PostShow extends React.Component {
             </i>
           </div>
         </div>
+
         <p>{body}</p>
+
         {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
@@ -130,15 +135,16 @@ class PostShow extends React.Component {
             <i
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
               className="fa fa-thumbs-o-up"
-              aria-hidden="true"></i>
+              aria-hidden="true" />
           { currentUserLikes ?  "Unlike" : "Like"  }
           </li>
           <li onClick={ () => this.nameInput.focus()}>
-            <i className="fa fa-comment-o" aria-hidden="true"></i>
+            <i className="fa fa-comment-o" aria-hidden="true" />
             Comment
           </li>
         </ul>
         }
+        
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
             <h5 className='post-likes-show'>
