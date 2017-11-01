@@ -15,12 +15,13 @@ const receivePosts = ({ users, posts, comments}) => {
   })
 }
 
-const receiveFeed = ({ users, posts, comments}) => {
+const receiveFeed = ({ users, posts, comments, notifications }) => {
   return {
     type: RECEIVE_FEED,
     users,
     posts,
     comments,
+    notifications
   }
 }
 

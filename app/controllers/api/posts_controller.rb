@@ -2,8 +2,9 @@ class Api::PostsController < ApplicationController
   before_action :ensure_logged_in
 
   def feed
-    @current_user = User.find_by(id: params[:userId]) || current_user
+    @current_user = current_user
     @users = User.all
+    @notifications = @current_user.notifications
 
     author_ids = @current_user.friend_ids + [@current_user.id]
 

@@ -15,6 +15,14 @@ json.users do
   end
 end
 
+json.notifications do
+  @notifications.each do |notification|
+    json.set! notification.id do
+      json.partial! 'api/notifications/notification', notification: notification
+    end
+  end
+end
+
 json.posts do
   @posts.each do |post|
     json.set! post.id do
