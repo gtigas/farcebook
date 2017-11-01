@@ -22,10 +22,12 @@ class RightSide extends React.Component {
     super(props)
     this.state = {  source: 'usa-today',
                     loading: true,
-                    openLabel: null };
+                    openLabel: null,
+                    showAll: false };
     this.handleClick = this.handleClick.bind(this);
     this._showLabel = this._showLabel.bind(this);
     this._closeLabel = this._closeLabel.bind(this);
+    this._showToggle = this._showToggle.bind(this);
   }
 
 
@@ -44,6 +46,10 @@ class RightSide extends React.Component {
     }
   }
 
+  _showToggle(){
+    this.setState( { showAll: !this.state.showAll })
+  }
+
   _showLabel(title){
     return () => this.setState( { openLabel: title })
   }
@@ -54,7 +60,8 @@ class RightSide extends React.Component {
 
   render(){
     const { source } = this.state;
-    const trendsList = this.props.trends.map( (trend,idx) => {
+    const trends = this.state.showAll ? this.props.trends : this.props.trends.slice(0,5)
+    const trendsList = trends.map( (trend,idx) => {
       return (
         <article key={idx}>
           <a href={trend.url} target="_blank">
@@ -113,6 +120,9 @@ class RightSide extends React.Component {
                 <h3>{this.state.openLabel}</h3>
               </aside>
             }
+            {this.state.showAll ?
+            <h4 onClick={this._showToggle} className='hover'>Show less...</h4> :
+            <h4 onClick={this._showToggle} className='hover'>Show more...</h4>}
           </div>
         }
       </div>
