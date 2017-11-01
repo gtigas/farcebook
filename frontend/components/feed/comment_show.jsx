@@ -10,14 +10,19 @@ import moment from 'moment';
 class CommentShow extends React.Component {
   constructor(props){
     super(props);
-    this.state = { showX: false, showReplyForm: false }
+    this.state = { showX: true, showReplyForm: false, xStyle: { display:'none'} }
     this.handleHover = this.handleHover.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
     this._toggleReplyForm = this._toggleReplyForm.bind(this)
   }
 
   handleHover(){
-    this.setState( { showX: !this.state.showX })
+    if (this.state.xStyle.display === 'block') {
+      this.setState( { xStyle: { display:'none'} })
+    } else {
+      this.setState( { xStyle: { display: 'block'} })
+    }
+
   }
 
   _toggleLike(){
@@ -55,7 +60,8 @@ class CommentShow extends React.Component {
             >
         {show && <i className="fa fa-times pos-abs"
           aria-hidden="true"
-          onClick={deleteComment}></i> }
+          onClick={deleteComment}
+          style={this.state.xStyle}></i> }
         <img className='circle-thumb'
             src={author.profile_picture_url}
             style={style}></img>
