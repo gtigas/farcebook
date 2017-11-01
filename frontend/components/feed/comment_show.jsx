@@ -51,60 +51,63 @@ class CommentShow extends React.Component {
         margin: '7px 0 0 5px',
       }
     }
+
     return(
       <div>
-      <div className='flex-row'
-            id='comment-show'
-            onMouseEnter={this.handleHover}
-            onMouseLeave={this.handleHover}
-            >
-        {show && <i className="fa fa-times pos-abs"
-          aria-hidden="true"
-          onClick={deleteComment}
-          style={this.state.xStyle}></i> }
-        <img className='circle-thumb'
-            src={author.profile_picture_url}
-            style={style}></img>
-        <div className='flex-col'>
-          <p>
-            <Link to={`/users/${author.id}`} ><strong>{author.fullName}</strong></Link>
-            {comment.body}
-          </p>
-          <div className='comment-show-bottom flex-row'>
-            {(areFriends || isCurrentUser)  &&
-            <ul className='flex-row' id='comment-nav'>
-              <li onClick={this._toggleLike}>
-                {comment.currentUserLikes ? 'Unlike' : 'Like'}
-              </li>
-              {topLevelComment &&
-                <li onClick={this._toggleReplyForm}>Reply</li> }
-            </ul>
-            }
-            {comment.liker_ids.length > 0 &&
-              <figure className='comments-likes-show flex-row'>
-                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-                <h5>{comment.liker_ids.length} ·</h5>
-              </figure>
-            }
-            <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
-              <i>{convertTime(comment.updated_at)}</i>
-            </a>
+        <div className='flex-row'
+              id='comment-show'
+              onMouseEnter={this.handleHover}
+              onMouseLeave={this.handleHover}
+              >
+        {show &&
+          <i className="fa fa-times pos-abs"
+             aria-hidden="true"
+             onClick={deleteComment}
+             style={this.state.xStyle} /> }
+          <img className='circle-thumb'
+               src={author.profile_picture_url}
+               style={style} />
+          <div className='flex-col'>
+            <p>
+              <Link to={`/users/${author.id}`} >
+                <strong>{author.fullName}</strong>
+              </Link>
+              {comment.body}
+            </p>
+            <div className='comment-show-bottom flex-row'>
+              {(areFriends || isCurrentUser)  &&
+              <ul className='flex-row' id='comment-nav'>
+                <li onClick={this._toggleLike}>
+                  {comment.currentUserLikes ? 'Unlike' : 'Like'}
+                </li>
+                {topLevelComment &&
+                  <li onClick={this._toggleReplyForm}>Reply</li> }
+              </ul>
+              }
+              {comment.liker_ids.length > 0 &&
+                <figure className='comments-likes-show flex-row'>
+                  <i className="fa fa-thumbs-up" aria-hidden="true"/>
+                  <h5>{comment.liker_ids.length} ·</h5>
+                </figure>
+              }
+              <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
+                <i>{convertTime(comment.updated_at)}</i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
       <div className='nested-comment-list'
-        style={((childComments.length === 0) &&
-                (!this.state.showReplyForm)) ? { display:'none'} : {} }>
+          style={((childComments.length === 0) &&
+                  (!this.state.showReplyForm)) ? { display:'none'} : {} }>
       {topLevelComment &&
         <NestedCommentList
             childComments={childComments} {...this.props}/> }
-        {(this.state.showReplyForm && topLevelComment) &&
-            <CommentForm postId={comment.post_id}
-            smallForm
-            commentId={comment.id} /> }
+      {(this.state.showReplyForm && topLevelComment) &&
+        <CommentForm postId={comment.post_id}
+                     smallForm
+                     commentId={comment.id} /> }
       </div>
-
     </div>
     )
   }

@@ -70,6 +70,11 @@ class MainHeader extends React.Component {
 
 
   render(){
+    const { searchDropdown, requestDropdown,
+            notificationDropdown, searchTerm } = this.state
+    const { numNotifications, userName,
+              userId, userPic, numRequests} = this.props
+
     return (
       <header className='main-header flex-row'>
         <div className='main-nav'>
@@ -83,17 +88,18 @@ class MainHeader extends React.Component {
                   onBlur={this._toggleSearch}
                   id='search-bar'
                   placeholder='Search'
-                  value={this.state.searchTerm}
+                  value={searchTerm}
                   onChange={this.handleInput}></input>
-            {this.state.searchDropdown &&
-              <SearchDropdown searchTerm={this.state.searchTerm}/> }
+            {searchDropdown &&
+              <SearchDropdown searchTerm={searchTerm}/> }
           </div>
 
 
-        {this.state.requestDropdown &&
+        {requestDropdown &&
           <FriendRequestList
-            close={this.closeDropdown('requestDropdown')} />}
-        {this.state.notificationDropdown &&
+            close={this.closeDropdown('requestDropdown')} />
+        }
+        {notificationDropdown &&
           <NotificationList
             close={this.closeDropdown('notificationDropdown')} />
         }
@@ -101,12 +107,12 @@ class MainHeader extends React.Component {
         <div className="flex-row">
           <ul className='flex-row nav-list' id='main-nav-list'>
             <li className='flex-row'>
-              <img src={this.props.userPic}
+              <img src={userPic}
                     width="25px"
                     height="25px"
                     className='circle-thumb' />
-              <Link to={`/users/${this.props.userId}`}>
-                <h2>{this.props.userName}</h2>
+              <Link to={`/users/${userId}`}>
+                <h2>{userName}</h2>
               </Link>
             </li>
             <li>
@@ -117,23 +123,22 @@ class MainHeader extends React.Component {
           </ul>
 
           <MainNav toggle={this.toggleDropdown}
-                  numRequests={this.props.numRequests}
+                  numRequests={numRequests}
                   />
-          {this.props.numRequests > 0 &&
+          {numRequests > 0 &&
             <div id='num-requests'>
-              {this.props.numRequests}
+              {numRequests}
             </div>
           }
 
-          {this.props.numNotifications > 0 &&
+          {numNotifications > 0 &&
             <div id='num-requests' style={ {right: '115px'}}>
-              {this.props.numNotifications}
+              {numNotifications}
             </div>
           }
           <button onClick={this.handleLogout}
             className='login-button'>Logout</button>
           </div>
-
         </div>
 
 

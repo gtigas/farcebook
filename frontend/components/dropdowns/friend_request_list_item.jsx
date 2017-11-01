@@ -23,15 +23,21 @@ class FriendRequestListItem extends React.Component {
         <span className='flex-row'>
           <Link to={`/users/${request.requester_id}`}>
           <img src={request.profile_picture_url}
-            height="50px"
-            width="50px"
-          className='circle-thumb'/>
+              height="50px"
+              width="50px"
+              className='circle-thumb'/>
             <i>{request.requester_name}</i>
           </Link>
         </span>
         <span>
-          <button onClick={this._handleClick('confirm', request.requester_id)} >Confirm</button>
-          <button onClick={this._handleClick('deny', request.requester_id)}>Delete Request</button>
+          <button
+            onClick={this._handleClick('confirm', request.requester_id)}>
+            Confirm
+          </button>
+          <button
+            onClick={this._handleClick('deny', request.requester_id)}>
+            Delete Request
+          </button>
         </span>
 
       </li>

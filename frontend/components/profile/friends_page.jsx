@@ -10,7 +10,10 @@ const FriendsPage = ({friends}) => {
   })
   return (
     <div className="friends-page">
-      <h2><i className="fa fa-users" aria-hidden="true"></i>Friends</h2>
+      <h2>
+        <i className="fa fa-users" aria-hidden="true" />
+        Friends
+      </h2>
       <div>
         <ul className="friends-page-list">
           {friendsList}

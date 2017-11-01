@@ -27,15 +27,6 @@ class ProfileMain extends React.Component{
     if (!this.props.user.birth_date){
       this.props.fetchUser(this.props.match.params.userId)
     }
-    // this.props.fetchUsers();
-    // const userId = this.props.match.params.userId
-    // if (!this.props.user.id) {
-    //   this.props.fetchUser(userId)
-    //   this.props.fetchUsers();
-    // } else if (!this.props.user.birth_date){
-    //   this.props.fetchUser(userId)
-    // }
-    // this.props.fetchPosts(userId);
   }
 
   componentWillReceiveProps(newProps){
@@ -48,10 +39,11 @@ class ProfileMain extends React.Component{
   }
 
   render(){
-    const { notFriends, loading, addFriend,
-      isCurrentUser, user, requestPending} = this.props;
+    const { notFriends, loading, addFriend, friends,
+            isCurrentUser, user, requestPending, fetchUser,
+            match, postIds } = this.props;
 
-    const postList = this.props.postIds.map( id => {
+    const postList = postIds.map( id => {
       return (
         <PostShow key={id} postId={id}
                           areFriends={!notFriends}
@@ -61,8 +53,8 @@ class ProfileMain extends React.Component{
     });
     return (
       <div id='main-container' className='scroll-container'>
-        <ProfileHeader userId={this.props.match.params.userId}
-                      fetchUser={this.props.fetchUser}/>
+        <ProfileHeader userId={match.params.userId}
+                       fetchUser={fetchUser}/>
         { !loading && notFriends && !isCurrentUser &&
           <div className='not-friends'>
             <span>DO YOU KNOW {user.firstName.toUpperCase()}</span>
@@ -71,29 +63,32 @@ class ProfileMain extends React.Component{
                   send them a friend request!</p>
               {requestPending ? null :
                 <button id='already-friends'
-                    className='hover'
-                  onClick={addFriend(user.id)}>Add Friend</button> }
+                        className='hover'
+                        onClick={addFriend(user.id)}>
+                  Add Friend
+                </button> }
             </div>
-          </div> }
-          <Switch>
-            <Route path='/users/:userId/friends' component={FriendsPage} />
-            <Route path='/users/:userId' render={ () =>
-               !this.props.loading ?
-                <main className='profile-body'>
-                  <aside>
-                    <ProfileAboutList userId={this.props.user.id}/>
-                    <ProfileFriendsList friends={this.props.friends}/>
-                  </aside>
-                  <section className='flex-col profile-feed'>
-                    <PostForm isWallPost={this.props.isCurrentUser ? false : true}
-                              receiver={this.props.user} />
-                    {postList}
-                  </section>
-                </main> :
-                <div className='loading'>
-                  <ScaleLoader color='#93949b'  />
-                </div>
-             }/>
+          </div>
+        }
+        <Switch>
+          <Route path='/users/:userId/friends' component={FriendsPage} />
+          <Route path='/users/:userId' render={ () =>
+             !loading ? (
+              <main className='profile-body'>
+                <aside>
+                  <ProfileAboutList userId={user.id}/>
+                  <ProfileFriendsList friends={friends}/>
+                </aside>
+                <section className='flex-col profile-feed'>
+                  <PostForm isWallPost={isCurrentUser ? false : true}
+                            receiver={user} />
+                  {postList}
+                </section>
+              </main> ) : (
+              <div className='loading'>
+                <ScaleLoader color='#93949b'  />
+              </div>
+           )}/>
         </Switch>
       </div>
     )

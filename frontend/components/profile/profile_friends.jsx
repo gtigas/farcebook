@@ -12,8 +12,12 @@ class ProfileFriends extends React.Component {
     })
     return (
       <aside id='profile-friends'>
-        <h2><i className="fa fa-users" aria-hidden="true"></i>
-        &nbsp;&nbsp;Friends</h2><p>•</p>&nbsp;<i>{this.props.friends.length}</i>
+        <h2>
+          <i className="fa fa-users" aria-hidden="true"></i>
+          &nbsp;&nbsp;Friends
+        </h2>
+        <p>•</p>&nbsp;
+        <i>{this.props.friends.length}</i>
         <ul className='flex-row'>
           {friendsList}
         </ul>

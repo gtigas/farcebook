@@ -16,6 +16,7 @@ class NestedCommentList extends React.Component {
                     areFriends={this.props.areFriends} />
       )
     })
+    
     return (
       <div>
         {commentsList}

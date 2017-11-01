@@ -16,13 +16,13 @@ class NotificationListItem extends React.Component {
   }
 
   render() {
-    const { notification } = this.props;
+    const { notification, close } = this.props;
     const name = notification.author.fullName;
     const text = createNotificationText(notification);
     const url = notificationItemLink(notification);
 
     return(
-      <Link to={url} id='notif-link'>
+      <Link to={url} id='notif-link' onClick={close}>
         <li
           style={ {color: 'black' }}
           className={notification.unread ? 'unread' : 'notification-item'}
@@ -30,7 +30,7 @@ class NotificationListItem extends React.Component {
           <img src={notification.author.profilePic}
             height="50px"
             width="50px"
-          className='circle-thumb'/>
+            className='circle-thumb'/>
           <div className='flex-col'>
             <h2>
               <strong>{name}</strong>

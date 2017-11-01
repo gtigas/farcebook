@@ -5,20 +5,24 @@ import { Link } from 'react-router-dom';
 class SearchDropdown extends React.Component {
   constructor(props){
     super(props);
-    this.state = { searchTerm: props.searchTerm, currentUsers: []}
+    this.state = { searchTerm: props.searchTerm, currentUsers: [] }
   }
 
   componentWillReceiveProps(newProps){
     if (newProps.searchTerm === "") {
-      this.setState({searchTerm: "",
-                    currentUsers:[]})
+      this.setState({
+        searchTerm: "" ,
+        currentUsers: []
+      })
     } else {
       const searchResults = _.filter(this.props.users, user => (
         user.fullName.toLowerCase()
                       .includes(newProps.searchTerm.toLowerCase())
       ));
-      this.setState({searchTerm: newProps.searchTerm,
-        currentUsers:searchResults})
+      this.setState({
+        searchTerm: newProps.searchTerm,
+        currentUsers: searchResults
+      })
     }
   }
 
@@ -29,9 +33,9 @@ class SearchDropdown extends React.Component {
           <Link to={`/users/${user.id}`}>
             <figure>
               <img src={user.profile_picture_url}
-                width="22px"
-                height="22px"
-                className='circle-thumb' />
+                  width="22px"
+                  height="22px"
+                  className='circle-thumb' />
                 {user.fullName}
             </figure>
           </Link>

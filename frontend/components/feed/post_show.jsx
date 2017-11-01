@@ -66,8 +66,8 @@ class PostShow extends React.Component {
 
 
   render(){
-    const { body, updated_at, id, currentUserLikes,
-                            liker_ids, receiver_id } = this.props.post;
+    const { body, updated_at, id,
+      currentUserLikes, liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
           currentUserId, comments, profileId, deleteComment,
               areFriends, isCurrentUser, singlePost } = this.props;
@@ -100,12 +100,15 @@ class PostShow extends React.Component {
     return (
       <div className='post-show' style={style}>
         {currUserIsAuthorOrReceiver &&
-        <h3 className='pos-abs' onClick={this.toggleDropdown}>...</h3>}
+        <h3 className='pos-abs' onClick={this.toggleDropdown}>
+          ...
+        </h3>
+      }
         {this.state.dropdown &&
-                  <PostDropdown close={this.toggleDropdown}
-                                delete={this.props.delete(id)}
-                                postId={id}
-                                isAuthor={author.id === currentUserId}/> }
+        <PostDropdown close={this.toggleDropdown}
+                      delete={this.props.delete(id)}
+                      postId={id}
+                      isAuthor={author.id === currentUserId}/> }
         <div className='flex-row'>
           <img src={author.profile_picture_url}/>
           <div>
@@ -113,7 +116,7 @@ class PostShow extends React.Component {
               <h2>{author.fullName}</h2>
             </Link>
             {isWallPost &&
-              <i className="fa fa-caret-right" aria-hidden="true"></i>}
+              <i className="fa fa-caret-right" aria-hidden="true"/>}
             {isWallPost &&
             <Link to={`/users/${receiver.id}`}>
               <h2>{receiver.fullName}</h2>
@@ -144,7 +147,7 @@ class PostShow extends React.Component {
           </li>
         </ul>
         }
-        
+
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
             <h5 className='post-likes-show'>
@@ -158,14 +161,16 @@ class PostShow extends React.Component {
                   <ul>{likerList}</ul>
                 </aside>
                 }
-                </i>
+              </i>
               {liker_ids.length}
             </h5>
           }
 
           {commentList}
-          {(areFriends || isCurrentUser) && <CommentForm postId={id}
-                                                        nameInput={this.setNameInput}/> }
+
+          {(areFriends || isCurrentUser) &&
+            <CommentForm postId={id}  nameInput={this.setNameInput}/>
+          }
         </div>
       </div>
     )
@@ -175,7 +180,7 @@ class PostShow extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const post = state.entities.posts[ownProps.postId] ||
-                                      { comment_ids: [], liker_ids: []}
+                                      { comment_ids: [], liker_ids: [] }
   const comments = post.comment_ids.map( id => {
     return state.entities.comments[id]
   })

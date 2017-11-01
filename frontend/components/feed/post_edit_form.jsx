@@ -62,7 +62,9 @@ class PostEditForm extends React.Component {
             </div>
           </form>
         </div>
-        <div className='modal-screen' onClick={this.props.closeModal}></div>
+        
+        <div className='modal-screen' onClick={this.props.closeModal}>
+        </div>
       </div>
 
     )

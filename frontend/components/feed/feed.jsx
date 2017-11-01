@@ -23,28 +23,29 @@ class Feed extends React.Component{
         </div>
       )
     }
+    const { postIds, currentUser, trends,
+            trendLoading, fetchTrends} = this.props
     const postList = this.props.postIds.map( id => {
       return (
         <PostShow key={id} postId={id}
-                          areFriends={true}
-                          isCurrentUser={true}
-                          profileId={this.props.currentUser.id}/>
+                           areFriends={true}
+                           isCurrentUser={true}
+                           profileId={currentUser.id}/>
       )
     });
 
     return (
       <div id='main-container'>
         <main className='main-body'>
-
-        <LeftSide currentUser={this.props.currentUser}/>
-        <div className='main-center flex-col pos-rel'>
-          <PostForm />
-          {postList}
-        </div>
-        <RightSide trends={this.props.trends}
-                  loading={this.props.trendLoading}
-                  fetchTrends={this.props.fetchTrends}/>
-      </main>
+          <LeftSide currentUser={currentUser}/>
+          <div className='main-center flex-col pos-rel'>
+            <PostForm />
+            {postList}
+          </div>
+          <RightSide trends={trends}
+                     loading={trendLoading}
+                     fetchTrends={fetchTrends}/>
+        </main>
       </div>
     )
   }

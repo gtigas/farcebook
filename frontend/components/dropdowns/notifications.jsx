@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { readNotification } from '../../actions/notifications_actions'
+import { fetchPost } from '../../actions/posts_actions'
 import { parseNotifications } from '../../util/notification_util'
 import NotificationListItem from './notification_list_item'
 import _ from 'lodash';
@@ -28,19 +29,22 @@ class NotificationList extends React.Component {
   }
 
   render(){
-    const { notifications, readNotification } = this.props;
+    const { notifications, readNotification, close } = this.props;
     const notificationList = notifications.map( notification => {
       return (
         <NotificationListItem key={notification.id}
                               notification={notification}
-                              readNotification={readNotification}/>
+                              readNotification={readNotification}
+                              close={close}/>
       )
     })
     return (
       <div className='request-list pos-abs'
            style={ {right:'130px', width: '360px'}}
            ref={ (node) => this.wrapperRef = node}>
-        <h3>Notifications</h3>
+        <h3>
+          Notifications
+        </h3>
         <ul>
           {notificationList}
         </ul>
@@ -58,7 +62,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  readNotification: notification => dispatch(readNotification(notification))
+  readNotification: notification => dispatch(readNotification(notification)),
+  fetchPost: postId => dispatch(fetchPost(postId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationList)
