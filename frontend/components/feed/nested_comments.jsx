@@ -1,18 +1,19 @@
 import React from 'react';
 import CommentShow from './comment_show'
 import { deleteComment } from '../../actions/comments_actions'
+import { connect } from 'react-redux';
 
 class NestedCommentList extends React.Component {
   render () {
-    const { childComments } = this.props;
+    const { childComments, currentUserId } = this.props;
     const commentsList = childComments.map( comment => {
-      const show = (comment.author_id === this.props.currentUserId) ||
-                  (this.props.profileId === this.props.currentUserId)
+      const show = (comment.author_id === currentUserId)
+      debugger
       return (
         <CommentShow key={comment.id}
                     commentId={comment.id}
                     deleteComment={deleteComment(comment.id)}
-                    showX={this.props.show}
+                    showX={show}
                     areFriends={this.props.areFriends} />
       )
     })
@@ -24,4 +25,7 @@ class NestedCommentList extends React.Component {
   }
 }
 
-export default NestedCommentList
+const mapStateToProps = state => ({
+  currentUserId: state.session.currentUser.id,
+})
+export default connect(mapStateToProps)(NestedCommentList);

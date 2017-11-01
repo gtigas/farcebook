@@ -58,10 +58,10 @@ class PostShow extends React.Component {
 
   render(){
     const { body, updated_at, id,
-          currentUserLikes, liker_ids } = this.props.post;
+          currentUserLikes, liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
           currentUserId, comments, profileId,
-          deleteComment, areFriends, isCurrentUser} = this.props;
+          deleteComment, areFriends, isCurrentUser } = this.props;
     if (this.state.loading) {
       return null
     }
@@ -71,7 +71,7 @@ class PostShow extends React.Component {
 
     const commentList = parentComments.map( comment => {
       const show = (comment.author_id === currentUserId) ||
-                  (profileId === currentUserId)
+                  (receiver_id === currentUserId)
       return <CommentShow
                     key={comment.id}
                     commentId={comment.id}
