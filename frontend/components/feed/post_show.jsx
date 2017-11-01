@@ -78,6 +78,7 @@ class PostShow extends React.Component {
                     deleteComment={deleteComment(comment.id)}
                     showX={show}
                     areFriends={areFriends}
+                    isCurrentUser={isCurrentUser}
                     topLevelComment
                   />
     })
@@ -113,7 +114,7 @@ class PostShow extends React.Component {
           </div>
         </div>
         <p>{body}</p>
-        {areFriends &&
+        {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
               onClick={this._toggleLike}>

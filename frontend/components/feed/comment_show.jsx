@@ -35,7 +35,7 @@ class CommentShow extends React.Component {
   render(){
     const { comment, author, deleteComment,
             showX, areFriends, childComments,
-            topLevelComment } = this.props
+            topLevelComment, isCurrentUser } = this.props
     const date = moment(comment.updated_at);
     const show = (showX && this.state.showX);
     let style = {};
@@ -65,7 +65,7 @@ class CommentShow extends React.Component {
             {comment.body}
           </p>
           <div className='comment-show-bottom flex-row'>
-            {areFriends &&
+            {(areFriends || isCurrentUser)  &&
             <ul className='flex-row' id='comment-nav'>
               <li onClick={this._toggleLike}>
                 {comment.currentUserLikes ? 'Unlike' : 'Like'}
