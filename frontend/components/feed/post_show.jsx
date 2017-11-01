@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { convertTime } from '../../util/profile_util';
 import PostDropdown from '../dropdowns/post_dropdown'
-import { deletePost } from '../../actions/posts_actions'
+import { deletePost, fetchPost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { like, unlike } from '../../actions/likes_actions';
@@ -22,16 +22,25 @@ class PostShow extends React.Component {
   }
 
   componentDidMount(){
-    const { receiver, author } = this.props;
+    const { receiver, author, singlePost, headerLoading } = this.props;
     if (receiver || author) {
       this.setState({ loading: false })
+    }
+    if (!Boolean(receiver) && singlePost && !headerLoading) {
+      this.props.fetchPost(this.props.postId)
     }
   }
 
   componentWillReceiveProps(newProps){
     const { receiver, author } = newProps;
-    if (receiver || author) {
+    if (this.props.singlePost && newProps.postId !== this.props.postId) {
+      this.props.fetchPost(newProps.postId)
+      this.setState({ loading: true })
+    } else if (receiver || author) {
       this.setState({ loading: false })
+    }
+    if (!Boolean(receiver) && this.props.singlePost) {
+      this.props.fetchPost(this.props.postId)
     }
   }
 
@@ -61,7 +70,7 @@ class PostShow extends React.Component {
           currentUserLikes, liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
           currentUserId, comments, profileId,
-          deleteComment, areFriends, isCurrentUser } = this.props;
+          deleteComment, areFriends, isCurrentUser, singlePost } = this.props;
     if (this.state.loading) {
       return null
     }
@@ -82,11 +91,11 @@ class PostShow extends React.Component {
                     topLevelComment
                   />
     })
-
+    const style = singlePost ? { margin:'0 auto', marginTop: '15px' } : {}
     const currUserIsAuthorOrReceiver = (author.id === currentUserId) ||
                                         (receiver.id === currentUserId)
     return (
-      <div className='post-show'>
+      <div className='post-show' style={style}>
         {currUserIsAuthorOrReceiver &&
         <h3 className='pos-abs' onClick={this.toggleDropdown}>...</h3>}
         {this.state.dropdown &&
@@ -171,6 +180,7 @@ const mapStateToProps = (state, ownProps) => {
     post,
     comments,
     likerNames,
+    headerLoading: state.ui.loading,
     receiver: state.entities.users[post.receiver_id],
     author: state.entities.users[post.author_id],
     isWallPost: post.receiver_id !== post.author_id,
@@ -183,6 +193,7 @@ const mapDispatchToProps = dispatch => ({
   deleteComment: commentId => () => dispatch(deleteComment(commentId)),
   like: postId => dispatch(like('posts', postId)),
   unlike: postId => dispatch(unlike('posts', postId)),
+  fetchPost: postId => dispatch(fetchPost(postId))
 });
 
 

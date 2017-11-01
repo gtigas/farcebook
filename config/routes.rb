@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       delete '/reject_request', to: 'friendships#reject_friendship'
     end
     resource :session, only: [:create, :destroy]
-    resources :posts, only: [:index, :create, :update, :destroy] do
+    resources :posts, only: [:index, :show, :create, :update, :destroy] do
       post '/like', to: 'likes#like_post'
       delete '/unlike', to: 'likes#unlike_post'
     end

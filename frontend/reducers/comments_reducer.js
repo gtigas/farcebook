@@ -2,7 +2,7 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions'
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/likes_actions'
 import { RECEIVE_USER } from '../actions/user_actions';
-import { RECEIVE_POSTS, RECEIVE_FEED } from '../actions/posts_actions'
+import { RECEIVE_POSTS, RECEIVE_FEED, RECEIVE_POST } from '../actions/posts_actions'
 import { customizer } from '../util/action_util'
 
 const CommentsReducer = (state = {}, action) => {
@@ -19,6 +19,9 @@ const CommentsReducer = (state = {}, action) => {
       return _.merge({}, state, newState)
     }
     case RECEIVE_FEED: {
+      return _.merge({}, state, action.comments )
+    }
+    case RECEIVE_POST: {
       return _.merge({}, state, action.comments )
     }
     case RECEIVE_USER: {

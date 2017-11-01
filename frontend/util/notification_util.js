@@ -55,26 +55,26 @@ export const notificationItemLink = notification => {
   if (notification.likeNotification) {
     switch (notification.sourceItemType) {
       case "Post": {
-        return `posts/${notification.sourceItemId}`
+        return `/posts/${notification.sourceItemId}`
       }
       case "Comment": {
-        return `posts/${notification.item.post_id}`
+        return `/posts/${notification.item.post_id}`
       }
     }
   }
   switch (typeof notification.item) {
     case 'string': {
       if (notification.item === 'Wall Post') {
-        return `posts/${notification.sourceItemId}`
+        return `/posts/${notification.sourceItemId}`
       } else if (notification.item === 'Friend Request') {
-        return "#"
+        return "/#"
       }
     }
     case 'object' : {
       if (notification.sourceItemType === 'Post') {
-        return `posts/${notification.sourceItemId}`
+        return `/posts/${notification.sourceItemId}`
       } else if (notification.sourceItemType === 'Comment') {
-        return `posts/${notification.sourceItemId}`
+        return `/posts/${notification.sourceItemId}`
       }
     }
   }

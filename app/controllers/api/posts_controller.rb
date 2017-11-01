@@ -33,6 +33,14 @@ class Api::PostsController < ApplicationController
     render :feed
   end
 
+  def show
+    @post = Post
+            .includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
+            .find(params[:id])
+    @comments = @post.comments
+    @current_user = current_user
+  end
+
   def create
     @post = Post.new(post_params)
     @current_user = current_user
