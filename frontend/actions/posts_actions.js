@@ -21,7 +21,7 @@ const receiveFeed = ({ users, posts, comments, notifications }) => {
     users,
     posts,
     comments,
-    notifications
+    notifications,
   }
 }
 

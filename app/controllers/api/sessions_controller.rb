@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
           .or(Post.where('(author_id IN (?)) AND (receiver_id != ?)', @user.friend_ids, @user.id))
           .order(updated_at: :desc)
           .map(&:id)
-      render 'api/users/show'
+      render 'api/users/window'
     else
       render json: ['Invalid username/password combination'], status: 401
     end

@@ -4,7 +4,9 @@ class Api::LikesController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     new_like =  Like.new(liker_id: current_user.id)
     @comment.likes << new_like
-    Like.last.notifiables << Notification.new(notifee_id: @comment.author_id)
+    if @comment.author_id != current_user.id
+      Like.last.notifiables << Notification.new(notifee_id: @comment.author_id)
+    end
     @current_user = current_user
     render :like_comment
   end
@@ -13,7 +15,9 @@ class Api::LikesController < ApplicationController
     @post = Post.find(params[:post_id])
     new_like =  Like.new(liker_id: current_user.id)
     @post.likes << Like.new(liker_id: current_user.id)
-    Like.last.notifiables << Notification.new(notifee_id: @post.author_id)
+    if @post.author_id != current_user.id
+      Like.last.notifiables << Notification.new(notifee_id: @post.author_id)
+    end
     @current_user = current_user
     render :like_post
   end

@@ -20,6 +20,10 @@ body {
   background-color: #edf0f5;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .hidden {
   display: none;
 }

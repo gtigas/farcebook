@@ -40,7 +40,7 @@ class MainHeader extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.location.pathname === "/feed") {
+    if (newProps.location.pathname === "/feed" && this.props.loading) {
       this.props.fetchFeed();
     }
   }
@@ -124,7 +124,15 @@ class MainHeader extends React.Component {
                   numRequests={this.props.numRequests}
                   />
           {this.props.numRequests > 0 &&
-            <div id='num-requests'>{this.props.numRequests}</div>
+            <div id='num-requests'>
+              {this.props.numRequests}
+            </div>
+          }
+
+          {this.props.numNotifications > 0 &&
+            <div id='num-requests' style={ {right: '115px'}}>
+              {this.props.numNotifications}
+            </div>
           }
           <button onClick={this.handleLogout}
             className='login-button'>Logout</button>
@@ -144,6 +152,7 @@ const mapStateToProps = state =>  {
     userId: state.session.currentUser.id,
     userPic: state.session.currentUser.profile_picture_url,
     numRequests: _.keys(state.entities.friendRequests.received).length,
+    numNotifications: state.session.currentUser.unreadNotifications,
   }
 };
 
