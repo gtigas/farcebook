@@ -9,10 +9,17 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.errorShow = this.errorShow.bind(this);
     this._hasErrors = this._hasErrors.bind(this)
+    this.handleKeypress = this.handleKeypress.bind(this)
   }
 
   handleInput(e){
     this.setState( { body: e.target.value })
+  }
+
+  handleKeypress(e){
+    if (e.charCode == 13) {
+      this.handleSubmit(e);
+    }
   }
 
   handleSubmit(e){
@@ -65,6 +72,7 @@ class PostForm extends React.Component {
                 className='circle-thumb pos-abs' />
           <textarea
             onChange={this.handleInput}
+            onKeyPress={this.handleKeypress}
             placeholder={isWallPost ?
               `Write something to ${receiver.firstName}...` :
               "What's on your mind?"}
