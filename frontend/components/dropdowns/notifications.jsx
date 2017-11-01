@@ -48,8 +48,7 @@ class NotificationList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const notifs = _.values(state.entities.notifications).slice(0,10)
-  const notifications = notifs.map( notification => {
+  const notifications = state.entities.notifications.map( notification => {
     let { notifierId, likeNotification,
           sourceItemId, sourceItemType } = notification
     notification.author = {

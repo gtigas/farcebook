@@ -4,7 +4,7 @@ class Api::PostsController < ApplicationController
   def feed
     @current_user = current_user
     @users = User.all
-    @notifications = @current_user.notifications
+    @notifications = @current_user.notifications.order(created_at: :desc)
 
     author_ids = @current_user.friend_ids + [@current_user.id]
 

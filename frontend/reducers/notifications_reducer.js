@@ -3,10 +3,10 @@ import { READ_NOTIFICATION } from '../actions/notifications_actions'
 import { customizer } from '../util/action_util'
 import _ from 'lodash'
 
-const NotificationsReducer = (state = {}, action) => {
+const NotificationsReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_FEED: {
-      return _.merge({}, state, action.notifications)
+      return action.notifications
     }
     case READ_NOTIFICATION: {
       return _.mergeWith(
