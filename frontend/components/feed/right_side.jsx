@@ -12,8 +12,8 @@ const SOURCES = {
 const style = {
   "New York Magazine": { right : '-87px' },
   "ESPN": { right : '18px' },
-  "USA Today": { right : '30px' },
-  "Buzzfeed": { right : '15px'} ,
+  "USA Today": { right : '45px' },
+  "Buzzfeed": { right : '22px'} ,
   null: {},
 }
 
@@ -92,11 +92,12 @@ class RightSide extends React.Component {
                    onMouseEnter={this._showLabel('USA Today')}
                    onMouseLeave={this._closeLabel}></i>
                 <i onClick={this.handleClick("buzzfeed")}
-                   className="fa fa-level-up"
+                   className="material-icons"
                    style={source === "buzzfeed" ? {color: "#5086fb"} : {}}
                    aria-hidden="true"
+                   id='buzzfeed'
                    onMouseEnter={this._showLabel('Buzzfeed')}
-                   onMouseLeave={this._closeLabel}></i>
+                   onMouseLeave={this._closeLabel}>trending_up</i>
                 <i onClick={this.handleClick("espn")}
                    className="fa fa-futbol-o"
                    style={source === "espn" ? {color: "#5086fb"} : {}}
@@ -111,6 +112,7 @@ class RightSide extends React.Component {
                    onMouseLeave={this._closeLabel}></i>
               </ul>
             </span>
+
 
             <h3>Powered by <a href='https://newsapi.org/'>NewsAPI.org</a></h3>
             <h2>{SOURCES[this.state.source]}</h2>

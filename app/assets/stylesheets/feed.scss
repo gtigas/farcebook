@@ -152,7 +152,7 @@
     background-color: #222222;
     border-radius: 2px;
     right: 0;
-    top: -30px;
+    top: -25px;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     h3 {
       margin: 0;
@@ -178,6 +178,11 @@
   }
 }
 
+#buzzfeed {
+  position: relative;
+  top: 5px;
+  margin-top: -11px;
+}
 
 .not-found{
   width: 950px;
