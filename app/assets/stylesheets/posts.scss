@@ -39,7 +39,7 @@
   }
   button {
     position: relative;
-    bottom: -2px;
+    bottom: 26px;
     right: -428px;;
     border: 1px solid #dfe1e5;
     background-color: #4365af;
@@ -233,4 +233,44 @@
     font-weight: 600;
     color: #93949b;
   }
+}
+
+#upload-photo {
+  position: relative;
+  width: 64px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  align-items: center;
+  height: auto;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-left: 5px;
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 68px;
+  }
+  &:hover {
+     background-color: #dfe1e5;
+     cursor: pointer;
+  }
+  i {
+    color: #8abd53;
+    font-size: 18px;
+  }
+  h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+}
+
+#post-image {
+  width: 475px;
+  height: auto;
+  margin: 0 12px;
+  border: 1px solid #dfe1e5;
+  border-radius: 2px;
 }

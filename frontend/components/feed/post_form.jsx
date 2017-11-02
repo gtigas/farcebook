@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 class PostForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = { body: "" };
+    this.state = { body: "",  imageFile: null, imageUrl: null  };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.errorShow = this.errorShow.bind(this);
     this._hasErrors = this._hasErrors.bind(this)
     this.handleKeypress = this.handleKeypress.bind(this)
+    this.updateFile = this.updateFile.bind(this)
   }
 
   handleInput(e){
@@ -24,12 +25,21 @@ class PostForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    const post = {
-      body: this.state.body,
-      receiver_id: this.props.receiver.id
-    }
-    this.props.createPost(post).then( () =>
-      this.setState({ body: "" })
+    const file = this.state.imageFile;
+    const formData = new FormData();
+    if (file) formData.append(`post[image]`, file);
+    formData.append('post[body]', this.state.body)
+    formData.append('post[receiver_id]', this.props.receiver.id)
+    // const post = {
+    //   body: this.state.body,
+    //   receiver_id: this.props.receiver.id
+    // }
+    this.props.createPost(formData).then( () =>
+      this.setState({
+        body: "",
+        imageFile: null,
+        imageUrl: null
+      })
     );
   }
 
@@ -45,6 +55,19 @@ class PostForm extends React.Component {
 
   _hasErrors(){
     return (this.props.errors.length > 0);
+  }
+
+  updateFile(e){
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    reader.onloadend = () =>
+      this.setState({ imageUrl: reader.result, imageFile: file});
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState( { imageUrl: "", imageFile: null } );
+    }
   }
 
   render(){
@@ -79,6 +102,15 @@ class PostForm extends React.Component {
             value={this.state.body}>
           </textarea>
           <div>
+            <div id='upload-photo'>
+              <i className="fa fa-picture-o" aria-hidden="true"></i>
+              <h3>Photo</h3>
+              <input type='file'
+                     className='pos-abs'
+                     onChange={this.updateFile}
+              >
+              </input>
+            </div>
             <button>Post</button>
           </div>
         </form>

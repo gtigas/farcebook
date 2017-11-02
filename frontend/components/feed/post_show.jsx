@@ -66,7 +66,7 @@ class PostShow extends React.Component {
 
 
   render(){
-    const { body, updated_at, id,
+    const { body, updated_at, id, imageUrl,
       currentUserLikes, liker_ids, receiver_id } = this.props.post;
     const { receiver, author, isWallPost, likerNames,
           currentUserId, comments, profileId, deleteComment,
@@ -130,6 +130,11 @@ class PostShow extends React.Component {
         </div>
 
         <p>{body}</p>
+        
+        {imageUrl !== 'null' &&
+          <img src={imageUrl} id='post-image'/>
+        }
+
 
         {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
