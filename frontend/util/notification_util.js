@@ -18,7 +18,7 @@ export const createNotificationText = (notification) => {
       }
     }
     case 'object' : {
-      if (notification.sourceItemType === 'Post') {
+      if (notification.sourceItemType === 'Post' || notification.topLevelComment) {
         return ' commented on your post.'
       } else if (notification.sourceItemType === 'Comment') {
         return ' commented on your comment'
