@@ -87,7 +87,7 @@ class MainHeader extends React.Component {
             <input onFocus={this.handleSearch}
                   onBlur={this._toggleSearch}
                   id='search-bar'
-                  placeholder='Search'
+                  placeholder='Search users'
                   value={searchTerm}
                   onChange={this.handleInput}></input>
             {searchDropdown &&
