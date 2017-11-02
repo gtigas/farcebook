@@ -12,6 +12,18 @@ const LeftSide = ({ currentUser }) => {
               className='circle-thumb' />
         {fullName}
       </Link>
+      <br></br>
+      <Link to='/' className='flex-row left-nav' id='news-feed' >
+        <i className="fa fa-newspaper-o" aria-hidden="true"></i>
+        News Feed
+      </Link>
+      <span id='not-implemented'>
+        <i className="fa fa-commenting"
+           aria-hidden="true"
+           style={ {fontSize: '15px'}}>
+        </i>
+        Messenger
+      </span>
 
       <ul>
         <li>Connect With Glenn</li>

@@ -30,13 +30,14 @@
 .main-left {
   width: 195px;
   height: 1000px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   margin-right: 15px;
   margin-top: 15px;
   border-radius: 4px;
   a {
+    box-sizing: content-box;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     align-items: center;
     padding: 6px 15px;
     padding-left: 4px;
@@ -51,7 +52,7 @@
     list-style: none;
     padding-left: 3px;
     font-size: 15px;
-    margin-top: 142px;
+    margin-top: 70px;
     li {
       &:first-of-type {
         font-size: 12px;
@@ -79,9 +80,9 @@
 }
 
 .main-right {
-  margin-left: 25px;
+  margin-left: 10px;
   margin-top: 15px;
-  width: 300px;
+  width: 320px;
   box-sizing: border-box;
   border-radius: 4px;
   color: #4b4f56;
@@ -107,7 +108,7 @@
   div {
     background-color: white;
     border: 1px solid #dfe1e5;
-    min-height: 100px;
+    min-height: 20px;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -214,4 +215,64 @@
       cursor: pointer;
     }
   }
+}
+
+#people-container {
+  padding: 0 ;
+  border: none ;
+  align-items: flex-start;
+  margin-bottom: 0;
+  div {
+    padding: 3px ;
+    border: none;
+    min-height: 0;
+    font-size: 12px;
+    align-items: center;
+  }
+  a {
+    text-decoration: none;
+    align-items: center;
+  }
+}
+
+#trending {
+  margin-top: -3px;
+}
+
+#people-pic {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #4583fc;
+}
+
+.left-nav, #not-implemented {
+  >i {
+    color: #4583fc;
+    margin-right: 5px;
+  }
+}
+
+#not-implemented {
+  display: block;
+  width: 143px;
+  font-size: 13px;
+  padding: 6px 15px;
+  padding-left: 4px;
+  color: #dfe1e5;
+  box-sizing: border-box;
+  &:hover {
+    cursor: default;
+    background-color: #f6f7f9;
+    border: 1px solid #dfe1e5;
+    border-radius: 2px;
+  }
+}
+
+#news-feed {
+  background-color: #f6f7f9;
+  border: 1px solid #dfe1e5;
+  border-radius: 2px;
+  font-weight: 600;
 }

@@ -17,11 +17,11 @@ class FriendRequestListItem extends React.Component {
   }
 
   render(){
-    const { request } = this.props;
+    const { request, close } = this.props;
     return(
       <li className='flex-row request-item'>
         <span className='flex-row'>
-          <Link to={`/users/${request.requester_id}`}>
+          <Link to={`/users/${request.requester_id}`} onClick={close}>
           <img src={request.profile_picture_url}
               height="50px"
               width="50px"

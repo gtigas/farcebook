@@ -98,6 +98,7 @@ class CommentShow extends React.Component {
               </ul>
               }
               {comment.liker_ids.length > 0 &&
+<<<<<<< HEAD
                 <figure className='comments-likes-show flex-row pos'>
                   <i className="fa fa-thumbs-up pos-rel"
                      aria-hidden="true"
@@ -111,6 +112,10 @@ class CommentShow extends React.Component {
                   </aside>
                   }
                   </i>
+=======
+                <figure className='comments-likes-show flex-row'>
+                  <i className="fa fa-thumbs-up" aria-hidden="true"/>
+>>>>>>> bonus
                   <h5>{comment.liker_ids.length} ·</h5>
                 </figure>
               }
