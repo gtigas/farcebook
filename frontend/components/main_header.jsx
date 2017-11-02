@@ -92,6 +92,10 @@ class MainHeader extends React.Component {
                   onChange={this.handleInput}></input>
             {searchDropdown &&
               <SearchDropdown searchTerm={searchTerm}/> }
+              <i className="fa fa-search"
+                 aria-hidden="true"
+                 id='search-button'>
+              </i>
           </div>
 
 

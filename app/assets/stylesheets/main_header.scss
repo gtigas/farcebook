@@ -149,10 +149,11 @@
 
 #search-bar {
   box-sizing: border-box;
-  width: 410px;
+  width: 365px;
   height: 25px;
-  border-radius: 4px;
-  border: 1px solid black;
+  border-radius: 4px 0 0 4px ;
+  border: 0.5px solid black;
+  border-right: none;
   padding: 3px;
   margin-left: 10px;
 }
@@ -170,7 +171,7 @@
 }
 
 #search-dropdown {
-  width: 406px;
+  width: 405px;
   left: 47px;
   top: 25px;
   min-height: 40px;
@@ -194,5 +195,22 @@
     font-weight: 500;
     padding: 6px;
     margin-top: 5px;
+  }
+}
+
+#search-button {
+  height: 25px;
+  width: 45px;
+  box-sizing: border-box;
+  border-radius: 0 4px 4px 0;
+  border: 0.5px solid black;
+  border-left: none;
+  background-color: #f6f7f9;
+  color: #606774;
+  padding-left: 12px;
+  padding-top: 3px;
+  &:hover {
+    background-color: #edf0f5;
+    cursor: pointer;
   }
 }
