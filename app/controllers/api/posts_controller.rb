@@ -10,6 +10,7 @@ class Api::PostsController < ApplicationController
 
     @posts = Post.includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
                 .where('author_id IN (?) OR receiver_id = ?', author_ids, @current_user.id)
+                .limit(10)
                 .order(updated_at: :desc)
                 .distinct
 

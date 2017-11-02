@@ -1,7 +1,11 @@
 case notification.notifiable_type
 when 'Like'
-  sourceItemId = notification.notifiable.likable.id
   sourceItemType = notification.notifiable.likable_type
+  if sourceItemType == 'Comment'
+    sourceItemId = notification.notifiable.likable.post.id
+  else
+    sourceItemId = notification.notifiable.likable.id
+  end
   notifierId = notification.notifiable.liker_id
   likeNotification = true
 when 'Comment'

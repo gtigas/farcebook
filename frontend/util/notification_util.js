@@ -58,7 +58,7 @@ export const notificationItemLink = notification => {
         return `/posts/${notification.sourceItemId}`
       }
       case "Comment": {
-        return `/posts/${notification.item.post_id}`
+        return `/posts/${notification.sourceItemId}`
       }
     }
   }
