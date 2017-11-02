@@ -6,23 +6,25 @@ import { convertTime } from '../../util/profile_util';
 class NotificationListItem extends React.Component {
   constructor(props){
     super(props)
+    this._readNotification = this._readNotification.bind(this)
   }
 
-  componentWillUnmount(){
-    const { notification, readNotification } = this.props
+  _readNotification(){
+    const { notification, readNotification, close } = this.props
     if (notification.unread) {
       readNotification(notification);
     }
+    close();
   }
 
   render() {
-    const { notification, close } = this.props;
+    const { notification, close, readNotification } = this.props;
     const name = notification.author.fullName;
     const text = createNotificationText(notification);
     const url = notificationItemLink(notification);
 
     return(
-      <Link to={url} id='notif-link' onClick={close}>
+      <Link to={url} id='notif-link' onClick={this._readNotification}>
         <li
           style={ {color: 'black' }}
           className={notification.unread ? 'unread' : 'notification-item'}

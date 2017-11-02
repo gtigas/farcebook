@@ -47,6 +47,8 @@ class NotificationList extends React.Component {
         </h3>
         <ul>
           {notificationList}
+          {(notificationList.length === 0) &&
+            <p> No notifications.</p>}
         </ul>
       </div>
     )
