@@ -45,6 +45,10 @@ const UIReducer = (state = defaultState, action ) => {
     case RECEIVE_CURRENT_USER: {
       const newState = _.merge({}, state)
       newState.feedLoading = false;
+      if (action.user === null) {
+        newState.loading = true;
+        newState.feedLoading = true;
+      }
       return newState
     }
     default:

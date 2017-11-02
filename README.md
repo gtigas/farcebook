@@ -1,24 +1,14 @@
-# README
+# farcebook
+farcebook is a Facebook-inspired full-stack web application built upon a Rails framework. farcebook uses a PostgreSQL database and React for the rendering of frontend components, with Redux being used for state management.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[farcebook LIVE](https://farce--book.herokuapp.com)
+# Features and Implementation
+## Feature
+## Feature
+## Feature
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Future Directions
+- Messaging/Chat with other users
+- Realtime Notifications/Chat using Pusher
+- Albums for photos

@@ -38,9 +38,6 @@ class MainHeader extends React.Component {
     this.props.fetchRequests();
   }
 
-  componentWillReceiveProps(newProps){
-  }
-
   closeDropdown(type) {
     return () => {this.setState({ [type]: false } )}
   }
@@ -79,7 +76,7 @@ class MainHeader extends React.Component {
       <header className='main-header flex-row'>
         <div className='main-nav'>
           <div className='flex-row'>
-            <Link to='/feed' >
+            <Link to='/' >
               <div id='pseudo-logo'>
                 <h1>f</h1>
               </div>
