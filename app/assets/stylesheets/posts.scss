@@ -246,10 +246,19 @@
   border-radius: 20px;
   padding: 5px 10px;
   margin-left: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+  >label:hover {
+    cursor: pointer;
+  }
   input {
     position: absolute;
     opacity: 0;
-    width: 68px;
+    z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
   }
   &:hover {
      background-color: #dfe1e5;

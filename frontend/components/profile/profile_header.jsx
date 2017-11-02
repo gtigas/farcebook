@@ -49,7 +49,7 @@ class ProfileHeader extends React.Component{
         {modalOpen &&
         <FileUploadForm user={user}
                         closeModal={closeModal}
-                        pictureType= {pictureType}/>
+                        pictureType= {this.state.pictureType}/>
         }
 
         <h2>

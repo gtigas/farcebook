@@ -62,15 +62,8 @@ class FileUploadForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    user: ownProps.user,
-    pictureType: ownProps.pictureType
-  }
-};
-
 const mapDispatchToProps = dispatch => ({
   updatePicture: user => dispatch(updateUser(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FileUploadForm)
+export default connect(null, mapDispatchToProps)(FileUploadForm)

@@ -107,9 +107,13 @@ class PostForm extends React.Component {
           }
           <div>
             <div id='upload-photo'>
-              <i className="fa fa-picture-o" aria-hidden="true"></i>
-              <h3>Photo</h3>
+              <label htmlFor="file" className='flex-row'>
+                <i className="fa fa-picture-o" aria-hidden="true"></i>
+                <h3>Photo</h3>
+              </label>
+
               <input type='file'
+                     id='file'
                      className='pos-abs'
                      onChange={this.updateFile}
               >
