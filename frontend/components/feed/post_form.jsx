@@ -96,11 +96,15 @@ class PostForm extends React.Component {
           <textarea
             onChange={this.handleInput}
             onKeyPress={this.handleKeypress}
+            style={this.state.imageUrl ? { width:'375px'} : {} }
             placeholder={isWallPost ?
               `Write something to ${receiver.firstName}...` :
               "What's on your mind?"}
             value={this.state.body}>
           </textarea>
+          {this.state.imageUrl &&
+            <img src={this.state.imageUrl} id='post-img-preview' />
+          }
           <div>
             <div id='upload-photo'>
               <i className="fa fa-picture-o" aria-hidden="true"></i>
