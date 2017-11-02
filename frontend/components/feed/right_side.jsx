@@ -1,4 +1,5 @@
 import React from 'react';
+import PeopleYouMayKnow from './people'
 import { ScaleLoader } from 'react-spinners';
 import _ from 'lodash';
 
@@ -73,15 +74,13 @@ class RightSide extends React.Component {
     })
     return (
       <div className='main-right'>
-        <div>
-          To be implemented...
-        </div>
+        <PeopleYouMayKnow />
         {this.state.loading ?
           <div className='loading'>
             <ScaleLoader color='#93949b'  />
           </div>
           :
-          <div className='pos-rel'>
+          <div className='pos-rel' id='trending'>
             <span>
               <h2>Trending</h2>
               <ul>

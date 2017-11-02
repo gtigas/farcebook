@@ -79,9 +79,9 @@
 }
 
 .main-right {
-  margin-left: 25px;
+  margin-left: 18px;
   margin-top: 15px;
-  width: 300px;
+  width: 340px;
   box-sizing: border-box;
   border-radius: 4px;
   color: #4b4f56;
@@ -107,7 +107,7 @@
   div {
     background-color: white;
     border: 1px solid #dfe1e5;
-    min-height: 100px;
+    min-height: 20px;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -214,4 +214,32 @@
       cursor: pointer;
     }
   }
+}
+
+#people-container {
+  padding: 0 ;
+  border: none ;
+  align-items: flex-start;
+  margin-bottom: 0;
+  div {
+    padding: 6px ;
+    border: none;
+    min-height: 0;
+    font-size: 12px;
+    align-items: center;
+  }
+  a {
+    text-decoration: none;
+    align-items: center;
+  }
+}
+
+#trending {
+  margin-top: 15px;
+}
+
+#people-pic {
+  height: 43px;
+  width: 43px;
+  border-radius: 50%;
 }
