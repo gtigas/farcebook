@@ -32,7 +32,8 @@ class FriendRequestList extends React.Component {
                             acceptRequest={acceptRequest}
                             denyRequest={denyRequest}
                             key={request.id}
-                            /> )
+                            close={close}
+              /> )
     });
     return(
       <div className="request-list pos-abs"
