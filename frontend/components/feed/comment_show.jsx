@@ -10,10 +10,16 @@ import moment from 'moment';
 class CommentShow extends React.Component {
   constructor(props){
     super(props);
-    this.state = { showX: true, showReplyForm: false, xStyle: { display:'none'} }
+    this.state = {
+      showX: true,
+      showReplyForm: false,
+      xStyle: { display:'none'} ,
+      likerShow: false,
+    }
     this.handleHover = this.handleHover.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
     this._toggleReplyForm = this._toggleReplyForm.bind(this)
+    this._toggleLikerShow = this._toggleLikerShow.bind(this)
   }
 
   handleHover(){
@@ -37,12 +43,19 @@ class CommentShow extends React.Component {
     this.setState( { showReplyForm: !this.state.showReplyForm })
   }
 
+  _toggleLikerShow(){
+    this.setState({ likerShow: !this.state.likerShow })
+  }
+
   render(){
-    const { comment, author, deleteComment,
+    const { comment, author, deleteComment, likerNames,
             showX, areFriends, childComments,
             topLevelComment, isCurrentUser } = this.props
     const date = moment(comment.updated_at);
     const show = (showX && this.state.showX);
+    const likerList = likerNames.map ( (name, i) => {
+      return <li key={i}>{name}</li>
+    })
     let style = {};
     if (!topLevelComment) {
       style = {
@@ -85,8 +98,19 @@ class CommentShow extends React.Component {
               </ul>
               }
               {comment.liker_ids.length > 0 &&
-                <figure className='comments-likes-show flex-row'>
-                  <i className="fa fa-thumbs-up" aria-hidden="true"/>
+                <figure className='comments-likes-show flex-row pos'>
+                  <i className="fa fa-thumbs-up pos-rel"
+                     aria-hidden="true"
+                     onMouseEnter={this._toggleLikerShow}
+                     onMouseLeave={this._toggleLikerShow}
+                  >
+                  { (this.state.likerShow &&  comment.liker_ids.length > 0) &&
+                  <aside>
+                    <h3>Like</h3>
+                    <ul>{likerList}</ul>
+                  </aside>
+                  }
+                  </i>
                   <h5>{comment.liker_ids.length} ·</h5>
                 </figure>
               }
@@ -119,10 +143,14 @@ const mapStateToProps = (state, ownProps) => {
   const childComments = comment.child_comment_ids.map( id => {
     return state.entities.comments[id]
   })
+  const likerNames = comment.liker_ids.map( id => {
+    return state.entities.users[id].fullName
+  })
   return {
     comment,
     author,
     childComments,
+    likerNames
   }
 };
 
