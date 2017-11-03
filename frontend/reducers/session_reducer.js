@@ -1,4 +1,5 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 import { RECEIVE_POST, REMOVE_POST } from '../actions/posts_actions'
 import { customizer } from '../util/action_util'
 import merge from 'lodash/merge';
@@ -13,6 +14,13 @@ const SessionReducer = (state = defaultState, action) => {
     case RECEIVE_CURRENT_USER: {
       const currentUser = action.user;
       return merge({}, state, { currentUser });
+    }
+    case RECEIVE_USER: {
+      if (state.currentUser.id === action.user.id) {
+        return _.merge({}, state, { currentUser: action.user} )
+      } else {
+        return state;
+      }
     }
     case RECEIVE_POST: {
       let currentUser = Object.assign({}, state.currentUser)

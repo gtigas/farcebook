@@ -17,7 +17,7 @@ export const createNotificationText = (notification) => {
         return " has sent you a friend request."
       }
     }
-    case 'object' : {
+    default : {
       if (notification.sourceItemType === 'Post' || notification.topLevelComment) {
         return ' commented on your post.'
       } else if (notification.sourceItemType === 'Comment') {
@@ -70,12 +70,6 @@ export const notificationItemLink = notification => {
         return "/#"
       }
     }
-    case 'object' : {
-      if (notification.sourceItemType === 'Post') {
-        return `/posts/${notification.sourceItemId}`
-      } else if (notification.sourceItemType === 'Comment') {
-        return `/posts/${notification.sourceItemId}`
-      }
-    }
+    default : return `/posts/${notification.sourceItemId}`
   }
 }

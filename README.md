@@ -9,6 +9,7 @@ Once a user signs up for an account, a profile page is created for them. Each pr
 
 Photos are hosted using an AWS S3 bucket and upladed and stored into the database using the `paperclip` gem.
 
+![Profile pic](docs/profile.png)
 ## Posts
 Users share information with others through `Post` and `Comment` components. Posts can be posted directly onto another users wall or posted on their own wall (with the posts `receiver_id` being equal to their own `id`). Users are also able to upload an image to be shared along with each post.
 
@@ -16,11 +17,12 @@ Once created, posts can be both edited and deleted. An author can both edit and 
 
 To show approval, users can choose to `Like` a post. Posts show not only the number of likes received, but also the list of those users that liked it.
 
+![Post gif](docs/post.gif)
 ## Comments
 Users can also leave comments onto posts. Comments are displayed in order based on when they were created. Comments can also be replied to with other comments, with each comment showing all of their nested comments. Comments are associated to other comments through an optional `parent_comment_id`.
 
 Users can also choose to `Like` comments in the same fashion as posts. This is done using one table through the use of a polymorphic association, which uses a `likable_type` to store what kind of item is being liked.
-
+![Comment gif](docs/comment.gif)
 ## Notifications
 A `Notification` is created and sent to another user when any user posts on their wall or any of their posts/comments are liked/commented on. This is once again achieved using a polymorphic associated that keeps track of which item is being notified on.
 

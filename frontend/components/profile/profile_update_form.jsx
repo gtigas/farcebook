@@ -7,7 +7,7 @@ class ProfileUpdateForm extends React.Component{
     const user = this.props.user
     this.state= {
       first_name: user.fullName.split(" ")[0] || "",
-      last_name: user.fullName.split(" ")[1] || "",
+      last_name: user.fullName.split(" ").slice(1).join(" ") || "",
       gender: user.gender || "",
       hometown: user.hometown || "",
       current_city: user.current_city || "",
