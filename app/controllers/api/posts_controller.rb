@@ -22,6 +22,7 @@ class Api::PostsController < ApplicationController
     end
     @comments = comments
 
+    puts @comments
   end
 
   def index
