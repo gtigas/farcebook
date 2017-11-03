@@ -7,7 +7,7 @@ class Api::CommentsController < ApplicationController
     if @comment.save
       if (@comment.post.author_id != @comment.author_id) && !@comment.parent_comment_id
         @comment.notifiables << Notification.new(notifee_id: @comment.post.author_id)
-      elsif (@comment.parent_comment.author_id != @comment.author_id) && @comment.parent_comment_id
+      elsif @comment.parent_comment_id &&  (@comment.parent_comment.author_id != @comment.author_id)
         @comment.notifiables << Notification.new(notifee_id: @comment.parent_comment.author_id)
       end
       render :show
