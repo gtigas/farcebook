@@ -14,8 +14,9 @@ class Api::PostsController < ApplicationController
                 .order(updated_at: :desc)
                 .distinct
 
-    @comments = @posts.inject([]) do |comments, post|
-      comments.concat(post.comments)
+    @comments = []
+    @posts.each do |post|
+      @comments.concat(post.comments)
     end
 
   end
