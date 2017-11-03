@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { convertTime } from '../../util/profile_util';
 import { like, unlike } from '../../actions/likes_actions'
+import { deleteComment } from '../../actions/comments_actions'
 import moment from 'moment';
 
 class CommentShow extends React.Component {
@@ -22,13 +23,14 @@ class CommentShow extends React.Component {
     this._toggleLikerShow = this._toggleLikerShow.bind(this)
   }
 
-  handleHover(){
-    if (this.state.xStyle.display === 'block') {
-      this.setState( { xStyle: { display:'none'} })
-    } else {
-      this.setState( { xStyle: { display: 'block'} })
+  handleHover(type){
+    return () => {
+      if (this.state.xStyle.display === 'block' && type === 'exit') {
+        this.setState( { xStyle: { display:'none'} })
+      } else {
+        this.setState( { xStyle: { display: 'block'} })
+      }
     }
-
   }
 
   _toggleLike(){
@@ -69,13 +71,13 @@ class CommentShow extends React.Component {
       <div>
         <div className='flex-row'
               id='comment-show'
-              onMouseEnter={this.handleHover}
-              onMouseLeave={this.handleHover}
+              onMouseEnter={this.handleHover('enter')}
+              onMouseLeave={this.handleHover('exit')}
               >
         {show &&
           <i className="fa fa-times pos-abs"
              aria-hidden="true"
-             onClick={deleteComment}
+             onClick={deleteComment(comment.id)}
              style={this.state.xStyle} /> }
           <img className='circle-thumb'
                src={author.profile_picture_url}
@@ -157,6 +159,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   like: commentId => dispatch(like('comments', commentId)),
   unlike: commentId => dispatch(unlike('comments', commentId)),
+  deleteComment: commentId => () => dispatch(deleteComment(commentId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentShow);

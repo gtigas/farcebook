@@ -87,7 +87,6 @@ class PostShow extends React.Component {
       return <CommentShow
                     key={comment.id}
                     commentId={comment.id}
-                    deleteComment={deleteComment(comment.id)}
                     showX={show}
                     areFriends={areFriends}
                     isCurrentUser={isCurrentUser}
@@ -130,7 +129,7 @@ class PostShow extends React.Component {
         </div>
 
         <p>{body}</p>
-        
+
         {imageUrl !== 'null' &&
           <img src={imageUrl} id='post-image'/>
         }
@@ -206,7 +205,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   delete: postId =>  () => dispatch(deletePost(postId)),
-  deleteComment: commentId => () => dispatch(deleteComment(commentId)),
   like: postId => dispatch(like('posts', postId)),
   unlike: postId => dispatch(unlike('posts', postId)),
   fetchPost: postId => dispatch(fetchPost(postId))

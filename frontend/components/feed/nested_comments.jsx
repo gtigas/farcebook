@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class NestedCommentList extends React.Component {
   render () {
-    const { childComments, currentUserId } = this.props;
+    const { childComments, currentUserId, deleteComment } = this.props;
     const commentsList = childComments.map( comment => {
       const show = (comment.author_id === currentUserId)
       return (
@@ -16,7 +16,7 @@ class NestedCommentList extends React.Component {
                     areFriends={this.props.areFriends} />
       )
     })
-    
+
     return (
       <div>
         {commentsList}
@@ -28,4 +28,9 @@ class NestedCommentList extends React.Component {
 const mapStateToProps = state => ({
   currentUserId: state.session.currentUser.id,
 })
-export default connect(mapStateToProps)(NestedCommentList);
+
+const mapDispatchToProps = dispatch => ({
+  deleteComment: commentId => () => dispatch(deleteComment(commentId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NestedCommentList);

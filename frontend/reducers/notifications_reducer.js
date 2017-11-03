@@ -1,5 +1,6 @@
 import { RECEIVE_FEED } from '../actions/posts_actions'
 import { READ_NOTIFICATION } from '../actions/notifications_actions'
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { customizer } from '../util/action_util'
 import _ from 'lodash'
 
@@ -17,6 +18,11 @@ const NotificationsReducer = (state = [], action) => {
       let newState = state.slice();
       newState[notifIndex] = action.notification
       return newState
+    }
+    case RECEIVE_CURRENT_USER: {
+      if (action.user === null) {
+        return [];
+      }
     }
     default: return state;
 

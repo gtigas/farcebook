@@ -30,6 +30,11 @@ const CommentsReducer = (state = {}, action) => {
     case REMOVE_COMMENT: {
       const newState = _.merge({}, state)
       delete newState[action.comment.id]
+      if (action.comment.parent_comment_id) {
+        const parentComment = newState[action.comment.parent_comment_id]
+        parentComment.child_comment_ids.splice(parentComment.child_comment_ids.indexOf(action.comment.id), 1)
+        return _.mergeWith({}, newState, { [parentComment.id]: parentComment}, customizer)
+      }
       return newState
     }
     case RECEIVE_POSTS: {

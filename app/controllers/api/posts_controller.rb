@@ -51,6 +51,7 @@ class Api::PostsController < ApplicationController
     @post.author = current_user
     if @post.save
       if @post.receiver_id != @post.author_id
+        # does not create a notification if the receiver is self
         @post.notifiables << Notification.new(notifee_id: @post.receiver_id)
       end
       render :post

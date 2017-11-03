@@ -5,8 +5,10 @@ class Api::CommentsController < ApplicationController
     @comment.author = current_user
     @current_user = current_user
     if @comment.save
-      if @comment.post.author_id != @comment.author_id
+      if (@comment.post.author_id != @comment.author_id) && !@comment.parent_comment_id
         @comment.notifiables << Notification.new(notifee_id: @comment.post.author_id)
+      elsif (@comment.parent_comment.author_id != @comment.author_id) && @comment.parent_comment_id
+        @comment.notifiables << Notification.new(notifee_id: @comment.parent_comment.author_id)
       end
       render :show
     else
