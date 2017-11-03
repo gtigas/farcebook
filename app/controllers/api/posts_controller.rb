@@ -14,10 +14,13 @@ class Api::PostsController < ApplicationController
                 .order(updated_at: :desc)
                 .distinct
 
-    @comments = []
+    comments = []
     @posts.each do |post|
-      @comments.concat(post.comments)
+      puts post
+      puts post.comments
+      comments.concat(post.comments)
     end
+    @comments = comments
 
   end
 
@@ -28,10 +31,11 @@ class Api::PostsController < ApplicationController
     @posts = Post.where(receiver_id: params[:user_id])
                   .includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
                   .order(updated_at: :desc)
-    @comments = []
+    comments = []
     @posts.each do |post|
-      @comments.concat(post.comments)
+      comments.concat(post.comments)
     end
+    @comments = comments
     render :feed
   end
 
