@@ -16,13 +16,10 @@ class Api::PostsController < ApplicationController
 
     comments = []
     @posts.each do |post|
-      puts post
-      puts post.comments
       comments.concat(post.comments)
     end
     @comments = comments
 
-    puts @comments
   end
 
   def index
