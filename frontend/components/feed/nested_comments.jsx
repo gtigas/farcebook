@@ -13,7 +13,8 @@ class NestedCommentList extends React.Component {
                     commentId={comment.id}
                     deleteComment={deleteComment(comment.id)}
                     showX={show}
-                    areFriends={this.props.areFriends} />
+                    areFriends={this.props.areFriends}
+                    isCurrentUser={comment.author_id === currentUserId}/>
       )
     })
 
