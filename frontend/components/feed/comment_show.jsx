@@ -116,9 +116,11 @@ class CommentShow extends React.Component {
                   <h5>{comment.liker_ids.length} ·</h5>
                 </figure>
               }
-              <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
-                <i>{convertTime(comment.updated_at)}</i>
-              </a>
+              <Link to={`/posts/${comment.post_id}`}>
+                <a title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")} id='comment-time'>
+                  <i>{convertTime(comment.updated_at)}</i>
+                </a>
+              </Link>
             </div>
           </div>
         </div>

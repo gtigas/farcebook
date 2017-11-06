@@ -122,9 +122,11 @@ class PostShow extends React.Component {
             </Link> }
 
             <br></br>
-            <i title={postTime.format("dddd, MMMM Do YYYY, h:mm:ss a")}>
-              {convertTime(updated_at)}
-            </i>
+            <Link to={`/posts/${id}`}>
+              <i title={postTime.format("dddd, MMMM Do YYYY, h:mm:ss a")}>
+                {convertTime(updated_at)}
+              </i>
+            </Link>
           </div>
         </div>
 
