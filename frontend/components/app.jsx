@@ -21,6 +21,9 @@ const App = () => (
         <ProtectedRoute exact path='/feed' component={Feed} />
         <Route path='*' component={NotFoundPage} />
       </Switch>
+      <Route exact path='/' render={ () => {
+        return <div className='splash-footer'></div>
+      }} />
     </main>
   </div>
 );

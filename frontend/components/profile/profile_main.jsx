@@ -38,6 +38,7 @@ class ProfileMain extends React.Component{
     }
   }
 
+
   render(){
     const { notFriends, loading, addFriend, friends,
             isCurrentUser, user, requestPending, fetchUser,
@@ -54,7 +55,8 @@ class ProfileMain extends React.Component{
     return (
       <div id='main-container' className='scroll-container'>
         <ProfileHeader userId={match.params.userId}
-                       fetchUser={fetchUser}/>
+                       fetchUser={fetchUser}
+        />
         { !loading && notFriends && !isCurrentUser &&
           <div className='not-friends'>
             <span>DO YOU KNOW {user.firstName.toUpperCase()}</span>

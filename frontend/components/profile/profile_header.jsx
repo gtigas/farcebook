@@ -11,7 +11,8 @@ import { sendFriendRequest, deleteFriendRequest } from '../../actions/friends_ac
 class ProfileHeader extends React.Component{
   constructor(props){
     super(props);
-    this.state = { loading: true }
+    this.state = { loading: true, selectedTab: 'timeline' }
+    this.openTab = this.openTab.bind(this)
     this._openUpload = this._openUpload.bind(this);
     this.forceUpdate = this.forceUpdate.bind(this);
   }
@@ -32,15 +33,18 @@ class ProfileHeader extends React.Component{
     }
   }
 
-  _forceUpdate(){
-    this.forceUpdate();
+  openTab(selectedTab){
+    return () => {
+      this.setState({ selectedTab })
+      console.log(this.state.selectedTab)
+    }
   }
 
 
 
   render () {
     const { loading, user, closeModal, modalOpen,
-            pictureType, isCurrentUser} = this.props
+            pictureType, isCurrentUser } = this.props
     if (loading) return null;
 
     return (
@@ -72,13 +76,13 @@ class ProfileHeader extends React.Component{
         <ProfilePicture url={user.profile_picture_url}/>
         <img src={user.cover_photo_url} />
         <FriendButton {...this.props} forceUpdate={this._forceUpdate}/>
-        <ProfileHeaderNav id={user.id}/>
+        <ProfileHeaderNav id={user.id} openTab={this.openTab} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) =>{
+const mapStateToProps = (state, ownProps) => {
   return {
     modalOpen: Boolean(state.ui.modal.uploadForm),
     isCurrentUser: state.session.currentUser.id === parseInt(ownProps.userId),

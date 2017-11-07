@@ -15,6 +15,10 @@
   margin-top: 3px;
 }
 
+.splash-main {
+  padding-bottom: 50px;
+}
+
 #splash-header form {
   font-size: 12px;
   display: flex;
@@ -25,6 +29,11 @@
 #splash-header label {
   display: flex;
   flex-direction: column;
+}
+
+.splash-footer {
+  background-color: white;
+  height: calc(100vh - 560px);
 }
 
 .login-button {
