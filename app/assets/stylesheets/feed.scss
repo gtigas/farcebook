@@ -13,7 +13,8 @@
 
 #main-container {
   background-color: #edf0f5;
-  height: 93.5vh;
+  max-height: calc(100vh - 43px);
+  min-height: calc(100vh - 80px);
   overflow: auto;
 }
 

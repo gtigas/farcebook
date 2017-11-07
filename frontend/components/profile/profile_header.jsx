@@ -5,6 +5,7 @@ import ProfilePicture from './profile_picture';
 import FileUploadForm from './profile_upload'
 import { openModal, closeModal } from '../../actions/ui_actions';
 import { fetchUsers } from '../../actions/user_actions'
+import { withRouter } from 'react-router'
 import { FriendButton, requestPending } from '../../util/profile_util'
 import { sendFriendRequest, deleteFriendRequest } from '../../actions/friends_actions'
 
@@ -12,9 +13,7 @@ class ProfileHeader extends React.Component{
   constructor(props){
     super(props);
     this.state = { loading: true, selectedTab: 'timeline' }
-    this.openTab = this.openTab.bind(this)
     this._openUpload = this._openUpload.bind(this);
-    this.forceUpdate = this.forceUpdate.bind(this);
   }
 
   componentDidMount(){
@@ -25,6 +24,13 @@ class ProfileHeader extends React.Component{
     this.setState({loading: true});
   }
 
+  componentWillReceiveProps(newProps){
+    if (newProps.location.pathname.includes('friends')) {
+      this.setState({ selectedTab: 'friends'} )
+    } else {
+      this.setState({ selectedTab: 'timeline'} )
+    }
+  }
 
   _openUpload(pictureType){
     return () => {
@@ -32,14 +38,6 @@ class ProfileHeader extends React.Component{
       this.props.openModal('uploadForm');
     }
   }
-
-  openTab(selectedTab){
-    return () => {
-      this.setState({ selectedTab })
-      console.log(this.state.selectedTab)
-    }
-  }
-
 
 
   render () {
@@ -76,7 +74,7 @@ class ProfileHeader extends React.Component{
         <ProfilePicture url={user.profile_picture_url}/>
         <img src={user.cover_photo_url} />
         <FriendButton {...this.props} forceUpdate={this._forceUpdate}/>
-        <ProfileHeaderNav id={user.id} openTab={this.openTab} />
+        <ProfileHeaderNav id={user.id} openTab={this.state.selectedTab} />
       </div>
     )
   }
@@ -99,4 +97,4 @@ const mapDispatchToProps = dispatch => ({
   removeFriend: userId => () => dispatch(deleteFriendRequest(userId))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileHeader))

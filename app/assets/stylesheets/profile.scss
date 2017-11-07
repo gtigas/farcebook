@@ -46,7 +46,7 @@
     font-weight: 600;
   }
   li {
-    padding: 10px 20px;
+    padding: 13px 20px;
     border-left: 1px solid #dfe1e5;
     &:last-of-type {
         border-right: 1px solid #dfe1e5;
@@ -415,4 +415,10 @@
 
     }
   }
+}
+
+.selected {
+  color: #4b4f56;
+  font-weight: bold;
+  background-color: #edf2fa;
 }
