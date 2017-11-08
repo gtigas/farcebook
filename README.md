@@ -1,7 +1,7 @@
 # farcebook
 farcebook is a Facebook-inspired full-stack web application built upon a Rails framework. farcebook uses a PostgreSQL database and React for the rendering of frontend components, with Redux being used for state management.
 
-[farcebook LIVE](https://farce--book.herokuapp.com)
+[farcebook LIVE](http://www.farcebook.online/)
 # Features and Implementation
 
 ## Profile

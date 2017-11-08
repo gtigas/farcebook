@@ -6,17 +6,17 @@ const ProfileHeaderNav = ({ id, openTab }) => {
   return (
     <div id='profile-header-nav'>
       <ul className='pos-rel'>
-        <li className={openTab === 'timeline' ? 'selected' : ''}>
-          <Link to={`/users/${id}`}>
-            Timeline
-          </Link>
-        </li>
+        <Link to={`/users/${id}`}>
+          <li className={openTab === 'timeline' ? 'selected' : ''}>
+              Timeline
+          </li>
+        </Link>
         {/* <li>About</li> */}
-        <li className={openTab === 'friends' ? 'selected' : ''}>
-          <Link to={`/users/${id}/friends`}>
-            Friends
-          </Link>
-        </li>
+        <Link to={`/users/${id}/friends`}>
+          <li className={openTab === 'friends' ? 'selected' : ''}>
+              Friends
+          </li>
+        </Link>
       </ul>
     </div>
   )
