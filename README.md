@@ -60,8 +60,7 @@ To protect users, a lot of functionality for commenting and posting on walls is 
 // Showing Post form on user profiles
 ...
 render() {
-  if (!currentProfileFriends.includes(currentUserId)
-        && isWallPost) {
+  if (!currentProfileFriends.includes(currentUserId)) {
     return null
   }
 ...
