@@ -28,7 +28,7 @@ A `Notification` is created and sent to another user when any user posts on thei
 
 Users have a visual indicator on their navbar that shows whenever they have any new, unseen notifications and a dropdown that shows a list of all of their recent notifications. Each `NotificationListItem` shows the other users name and the action that took place, as well as links to the item in question when clicked on.
 ## Code Examples
-I utilized eager loading using ActiveRecord to optimize my database queries and performance.
+I utilized eager loading using ActiveRecord to optimize my database queries and increase performance. When fetching the feed for a user, all relevant information is also queried along with each post for later usage. 
 ```ruby
 #posts_controller.rb
 ...
