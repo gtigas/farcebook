@@ -186,9 +186,6 @@
     width: 100%;
     margin: 0;
     box-sizing: border-box;
-    &:hover {
-      background-color: #ecf0f7;
-    }
   }
   h4 {
     color: black;
@@ -196,6 +193,10 @@
     padding: 6px;
     margin-top: 5px;
   }
+}
+
+.active {
+  background-color: #ecf0f7
 }
 
 #search-button {

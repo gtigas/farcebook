@@ -15,16 +15,16 @@ class MainHeader extends React.Component {
   constructor(props){
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.state = { requestDropdown: false,
-                  searchDropdown: false,
-                  notificationDropdown: false,
-                  searchTerm: ""}
+    this.state = {
+      requestDropdown: false,
+      searchDropdown: false,
+      notificationDropdown: false,
+      searchTerm: "",
+      cursor: 0,
+    }
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this._toggleSearch = this._toggleSearch.bind(this);
-    this.handleInput = this.handleInput.bind(this)
   }
 
   handleLogout(e) {
@@ -51,24 +51,12 @@ class MainHeader extends React.Component {
     return() => {this.setState( { [type]: value })}
   }
 
-  handleSearch(){
-    this._toggleSearch();
-  }
 
-  _toggleSearch(){
-    setTimeout( () => {
-      this.setState({ searchDropdown: !this.state.searchDropdown })
-    }, 200)
-  }
-
-  handleInput(e){
-    this.setState({searchTerm: e.target.value})
-  }
 
 
   render(){
     const { searchDropdown, requestDropdown,
-            notificationDropdown, searchTerm } = this.state
+            notificationDropdown, searchTerm, cursor } = this.state
     const { numNotifications, userName,
               userId, userPic, numRequests} = this.props
 
@@ -81,14 +69,8 @@ class MainHeader extends React.Component {
                 <h1>f</h1>
               </div>
             </Link>
-            <input onFocus={this.handleSearch}
-                  onBlur={this._toggleSearch}
-                  id='search-bar'
-                  placeholder='Search users'
-                  value={searchTerm}
-                  onChange={this.handleInput}></input>
-            {searchDropdown &&
-              <SearchDropdown searchTerm={searchTerm}/> }
+
+              <SearchDropdown/>
               <i className="fa fa-search"
                  aria-hidden="true"
                  id='search-button'>
