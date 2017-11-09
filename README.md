@@ -27,8 +27,45 @@ Users can also choose to `Like` comments in the same fashion as posts. This is d
 A `Notification` is created and sent to another user when any user posts on their wall or any of their posts/comments are liked/commented on. This is once again achieved using a polymorphic associated that keeps track of which item is being notified on.
 
 Users have a visual indicator on their navbar that shows whenever they have any new, unseen notifications and a dropdown that shows a list of all of their recent notifications. Each `NotificationListItem` shows the other users name and the action that took place, as well as links to the item in question when clicked on.
+## Code Examples
+I utilized eager loading using ActiveRecord to optimize my database queries and performance.
+```ruby
+#posts_controller.rb
+...
+def feed
+...
+author_ids = @current_user.friend_ids + [@current_user.id]
+
+@posts = Post.includes(comments: [{likes: :liker}, :child_comments], likes: :liker)
+            .where('author_id IN (?) OR receiver_id = ?', author_ids, @current_user.id)
+            .limit(10)
+            .order(updated_at: :desc)
+            .distinct
+...
+```
+
+To protect users, a lot of functionality for commenting and posting on walls is protected behind being having a friendship between the users. This is done through the use of conditional rending in React, checking to see if the current user is a friend of the post author or owner of the profile or if the current user is trying to interact with their own posts/profile.
+
+```jsx
+// post_show.jsx
+// Showing comment form on Posts
+...
+{ (areFriends || isCurrentUser) &&
+  <CommentForm postId={id}/>
+}
+...
 
 
+// post_form.jsx
+// Showing Post form on user profiles
+...
+render() {
+  if (!currentProfileFriends.includes(currentUserId)
+        && isWallPost) {
+    return null
+  }
+...
+```
 # Future Directions
 - Messaging/Chat with other users
 - Realtime Notifications/Chat using Pusher
