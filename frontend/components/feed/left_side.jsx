@@ -33,7 +33,7 @@ const LeftSide = ({ currentUser }) => {
           </a>
         </li>
         <li>
-          <a href='https://google.com'>
+          <a href='http://glenn.tig.as/'>
             <i className="fa fa-laptop" aria-hidden="true"></i>
             Website
           </a>
