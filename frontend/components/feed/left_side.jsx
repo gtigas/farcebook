@@ -21,19 +21,19 @@ const LeftSide = ({ currentUser }) => {
       <ul>
         <li>Connect With Glenn</li>
         <li>
-          <a href='https://www.linkedin.com/in/glenn-tigas/'>
+          <a href='https://www.linkedin.com/in/glenn-tigas/' target='_blank'>
           <i className="fa fa-linkedin-square" aria-hidden="true"></i>
             LinkedIn
           </a>
         </li>
         <li>
-          <a href='https://github.com/gtigas'>
+          <a href='https://github.com/gtigas'  target='_blank'>
           <i className="fa fa-github" aria-hidden="true"></i>
             Github
           </a>
         </li>
         <li>
-          <a href='http://glenn.tig.as/'>
+          <a href='http://glenn.tig.as/'  target='_blank'>
             <i className="fa fa-laptop" aria-hidden="true"></i>
             Website
           </a>
