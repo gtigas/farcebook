@@ -31,10 +31,13 @@ class SearchDropdown extends React.Component {
   }
 
   handleInput(e){
-    const currentUsers = _.filter(this.props.users, user => (
+    let currentUsers = _.filter(this.props.users, user => (
       user.fullName.toLowerCase()
                     .includes(e.target.value.toLowerCase())
     ));
+    if (e.target.value === ""_ {
+      currentUsers = [];
+    }
     this.setState({searchTerm: e.target.value, currentUsers})
   }
 
