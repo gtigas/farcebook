@@ -35,7 +35,7 @@ class SearchDropdown extends React.Component {
       user.fullName.toLowerCase()
                     .includes(e.target.value.toLowerCase())
     ));
-    if (e.target.value === ""_ {
+    if (e.target.value === "") {
       currentUsers = [];
     }
     this.setState({searchTerm: e.target.value, currentUsers})
